@@ -1,0 +1,24 @@
+# Resume documents
+*.docx
+
+# Markdown blueprints, checklists, and documentation
+*.md
+
+# Unused/Alternative HTML templates
+portfolio_marketing.html
+color_palettes_preview.html
+
+# Ignore heavy raw images to keep git history lightweight
+Remove background project.png
+
+# LinkedIn assets (kept locally)
+rehman_linkedin_banner_light.png
+rehman_linkedin_banner_dark.png
+rehman_linkedin_banner.png
+
+# IDE / temp files
+.idea/
+.vscode/
+.gemini/
+Thumbs.db
+.DS_Store
