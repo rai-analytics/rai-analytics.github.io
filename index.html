@@ -194,10 +194,23 @@
       background: var(--light-gray);
     }
     .stat-item {
-      flex: 1; padding: 1.4rem .8rem; text-align: center;
+      flex: 1; padding: 1.15rem .8rem; text-align: center;
       border-right: 1px solid var(--border-l);
     }
     .stat-item:last-child { border-right: none; }
+    .stat-ico {
+      width: 20px;
+      height: 20px;
+      margin: 0 auto .6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+    }
+    .stat-ico svg {
+      width: 100%;
+      height: 100%;
+    }
     .stat-num {
       font-family: var(--serif); font-size: clamp(1.1rem, 3vw, 1.8rem); font-weight: 700;
       color: var(--navy); display: block; line-height: 1.1;
@@ -768,18 +781,42 @@
 <!-- STATS BAR -->
 <div class="stats-bar">
   <div class="stat-item">
+    <div class="stat-ico">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+      </svg>
+    </div>
     <span class="stat-num">2+ Years</span>
     <span class="stat-lbl">QSR &amp; Retail Ops</span>
   </div>
   <div class="stat-item">
+    <div class="stat-ico">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+        <path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+        <path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"></path>
+      </svg>
+    </div>
     <span class="stat-num">15</span>
     <span class="stat-lbl">FMCG Brands Analysed</span>
   </div>
   <div class="stat-item">
+    <div class="stat-ico">
+      <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 489 511.8">
+        <path fill="#FF7A59" fill-rule="nonzero" d="M375.25 168.45V107.5c16.43-7.68 26.97-24.15 27.08-42.29V63.8c0-25.95-21.05-46.99-47-46.99h-1.37c-25.95 0-46.99 21.04-46.99 46.99v1.41a46.985 46.985 0 0027.29 42.3v60.94c-23.13 3.53-44.98 13.18-63.19 27.84L103.88 66.16c1.19-4.29 1.83-8.73 1.89-13.17v-.11C105.77 23.68 82.09 0 52.88 0 23.68 0 0 23.68 0 52.88c0 29.18 23.64 52.85 52.81 52.89 9.17-.08 18.16-2.59 26.06-7.23l164.62 128.07a133.501 133.501 0 00-22.16 73.61c0 27.39 8.46 54.17 24.18 76.58l-50.06 50.06a43.926 43.926 0 00-12.43-1.81c-23.96 0-43.38 19.42-43.38 43.37 0 23.96 19.42 43.38 43.38 43.38 23.95 0 43.37-19.42 43.37-43.38v-.13a41.81 41.81 0 00-2.02-12.5l49.52-49.56a133.687 133.687 0 0081.54 27.78c73.76 0 133.57-59.81 133.57-133.57 0-66.05-48.3-122.2-113.61-132.06l-.14.07zm-20.39 200.4c-36.79-1.52-65.85-31.79-65.85-68.62 0-35.43 26.97-65.06 62.23-68.38h3.62c35.8 2.73 63.46 32.58 63.46 68.48 0 35.91-27.66 65.76-63.45 68.48l-.01.04zm0 0z"/>
+      </svg>
+    </div>
     <span class="stat-num">HubSpot</span>
     <span class="stat-lbl">Certified Marketer</span>
   </div>
   <div class="stat-item">
+    <div class="stat-ico">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+        <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+      </svg>
+    </div>
     <span class="stat-num">Python &amp; BI</span>
     <span class="stat-lbl">Analytical Stack</span>
   </div>
