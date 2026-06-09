@@ -497,30 +497,128 @@
     footer p { color: var(--muted); font-size: .76rem; }
 
     /* ── INTERACTIVE CHART ────────────────────────────────────── */
-    .chart-container {
-      margin-top: 1.5rem;
+    /* ── INTERACTIVE DASHBOARD ───────────────────────────────── */
+    .dashboard-container {
+      margin-top: 1.8rem;
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: clamp(1rem, 3vw, 1.8rem);
-      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,.02);
       text-align: left;
     }
-    .chart-header {
+    .dashboard-header {
+      background: var(--light-gray);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem clamp(1.2rem, 4vw, 2.2rem);
+    }
+    .dashboard-title-wrap {
+      margin-bottom: 1.2rem;
+    }
+    .dashboard-eyebrow {
+      font-size: .65rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      font-weight: 700;
+      margin-bottom: .3rem;
+    }
+    .dashboard-title {
+      font-family: var(--serif);
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    .dashboard-subtitle {
+      font-size: .84rem;
+      color: var(--slate);
+      line-height: 1.6;
+      margin-top: .4rem;
+      max-width: 650px;
+    }
+    
+    .dashboard-nav {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--light-gray);
+      border-bottom: 1px solid var(--border);
+      gap: 0;
+    }
+    .dashboard-tab-btn {
+      flex: 1;
+      min-width: 130px;
+      border: none;
+      background: transparent;
+      padding: .9rem .5rem;
+      font-size: .7rem;
+      font-weight: 600;
+      color: var(--slate);
+      cursor: pointer;
+      transition: all .2s;
+      border-bottom: 2px solid transparent;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      text-align: center;
+    }
+    .dashboard-tab-btn:hover {
+      color: var(--navy);
+      background: rgba(107, 146, 181, 0.04);
+    }
+    .dashboard-tab-btn.active {
+      color: var(--navy);
+      border-bottom-color: var(--blue);
+      background: var(--white);
+    }
+
+    .dashboard-content {
+      padding: 2rem clamp(1.2rem, 4vw, 2.2rem);
+      position: relative;
+    }
+    .dashboard-panel {
+      display: none;
+      animation: dashboardFadeIn .4s ease forwards;
+    }
+    .dashboard-panel.active {
+      display: block;
+    }
+    @keyframes dashboardFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .dashboard-panel-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.5rem;
       flex-wrap: wrap;
       gap: 1rem;
     }
-    .chart-legend {
+    .dashboard-panel-title-wrap {
+      max-width: 500px;
+    }
+    .dashboard-panel-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: .2rem;
+    }
+    .dashboard-panel-desc {
+      font-size: .8rem;
+      color: var(--slate);
+      line-height: 1.5;
+    }
+    
+    .dashboard-legend {
       display: flex;
       gap: 1.2rem;
       font-size: .72rem;
       color: var(--slate);
-      margin-bottom: .8rem;
       flex-wrap: wrap;
+      align-items: center;
+      margin-top: .4rem;
     }
     .legend-item {
       display: flex;
@@ -532,38 +630,22 @@
       height: 12px;
       border-radius: 2px;
     }
-    .legend-color.adspend { background: var(--blue); opacity: 0.75; }
-    .legend-color.gpmargin { background: var(--navy); }
-    
-    .chart-toggle-group {
-      display: flex;
-      gap: .2rem;
-      background: var(--ice);
-      padding: .2rem;
-      border-radius: 6px;
-      border: 1px solid var(--border);
+    .legend-color.navy-fill { background: var(--navy); }
+    .legend-color.blue-fill { background: var(--blue); }
+    .legend-color.coral-fill { background: #E05A47; }
+    .legend-color.coral-stroke { border: 2px solid #E05A47; background: var(--white); }
+    .legend-color.navy-stroke { border: 2px solid var(--navy); background: var(--white); }
+
+    .chart-outer-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
     }
-    .chart-toggle-btn {
-      border: none;
-      background: transparent;
-      color: var(--slate);
-      font-size: .68rem;
-      font-weight: 600;
-      padding: .3rem .8rem;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all .2s;
-    }
-    .chart-toggle-btn.active {
-      background: var(--white);
-      color: var(--navy);
-      box-shadow: 0 1px 4px rgba(0,0,0,.06);
-    }
-    
     .chart-wrapper {
       position: relative;
       width: 100%;
-      height: 250px;
+      min-width: 620px;
+      height: 280px;
     }
     .chart-svg {
       width: 100%;
@@ -571,160 +653,186 @@
       overflow: visible;
     }
     
+    /* ── SCATTER & BARS ──────────────────────────────────────── */
+    .axis-line { stroke: var(--border); stroke-width: 1; }
+    .grid-line { stroke: var(--border-l); stroke-width: 1; stroke-dasharray: 4; }
+    .axis-text { font-size: 10px; fill: var(--slate); font-family: var(--sans); }
+    .axis-title { font-size: 10px; font-weight: 600; fill: var(--navy); font-family: var(--sans); letter-spacing: .05em; text-transform: uppercase; }
+    
+    .chart-path-navy { fill: none; stroke: var(--navy); stroke-width: 2.5; stroke-linecap: round; }
+    .chart-path-coral { fill: none; stroke: #E05A47; stroke-width: 2.5; stroke-linecap: round; }
+    
+    .chart-bar {
+      transition: fill .2s ease, opacity .2s ease;
+      cursor: pointer;
+    }
+    .chart-bar:hover {
+      opacity: 0.95;
+    }
+    .chart-dot {
+      transition: r .2s ease, fill .2s ease, stroke-width .2s ease;
+      cursor: pointer;
+    }
+    .chart-dot:hover {
+      r: 7.5px;
+      stroke-width: 3px;
+    }
+    .trend-line {
+      stroke-dasharray: 6 4;
+      animation: trendLineDraw 1.5s ease forwards;
+    }
+    @keyframes trendLineDraw {
+      from { stroke-dashoffset: 200; }
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* ── TOOLTIPS ────────────────────────────────────────────── */
     .chart-tooltip {
       position: absolute;
-      background: rgba(27, 42, 74, 0.96);
+      background: rgba(27, 42, 74, 0.97);
       color: var(--white);
-      padding: .6rem .9rem;
+      padding: .7rem 1rem;
       border-radius: 4px;
       font-size: .72rem;
       pointer-events: none;
       opacity: 0;
       transition: opacity .15s ease;
-      box-shadow: 0 6px 16px rgba(0,0,0,.15);
+      box-shadow: 0 6px 18px rgba(0,0,0,.15);
       z-index: 10;
-      line-height: 1.4;
+      line-height: 1.45;
       text-align: left;
       border: 1px solid rgba(255,255,255,0.1);
+      width: max-content;
+      max-width: 260px;
     }
-    .chart-tooltip-year { font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: .2rem; margin-bottom: .3rem; }
-    
-    .chart-path {
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 1000;
-      animation: drawLine 2s ease forwards;
+    .tooltip-header {
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding-bottom: .25rem;
+      margin-bottom: .4rem;
+      color: var(--ice);
     }
-    @keyframes drawLine {
-      to { stroke-dashoffset: 0; }
+    .tooltip-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: .15rem;
     }
-    .chart-point {
-      transition: r 0.15s ease, fill 0.15s ease;
-      cursor: pointer;
+    .tooltip-row:last-child {
+      margin-bottom: 0;
     }
-    .chart-point:hover {
-      r: 7px;
-      fill: var(--blue);
+    .tooltip-val {
+      font-weight: 600;
+      color: var(--white);
     }
 
-    /* ── SHAN FOODS CASE STUDY TABS ──────────────────────────── */
-    .cs-tabs-container {
-      margin-top: 1.5rem;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      text-align: left;
-    }
-    .cs-tabs-header {
-      display: flex;
-      background: var(--light-gray);
-      border-bottom: 1px solid var(--border);
-      flex-wrap: wrap;
-    }
-    .cs-tab-btn {
-      flex: 1;
-      min-width: 120px;
-      border: none;
-      background: transparent;
-      padding: 1rem .5rem;
-      font-size: .76rem;
-      font-weight: 600;
-      color: var(--slate);
-      cursor: pointer;
-      transition: all .2s;
-      border-bottom: 2px solid transparent;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-    }
-    .cs-tab-btn:hover {
-      color: var(--navy);
-      background: rgba(107, 146, 181, 0.04);
-    }
-    .cs-tab-btn.active {
-      color: var(--navy);
-      border-bottom-color: var(--blue);
-      background: var(--white);
-    }
-    .cs-tabs-content {
-      padding: 2rem clamp(1.2rem, 4vw, 2.2rem);
-    }
-    .cs-tab-panel {
-      display: none;
-      animation: fadeIn .4s ease forwards;
-    }
-    .cs-tab-panel.active {
-      display: block;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: none; }
-    }
-    
-    .comp-table-wrapper {
-      overflow-x: auto;
-      margin-top: 1.2rem;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-    }
-    .comp-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: .82rem;
-      text-align: left;
-      min-width: 500px;
-    }
-    .comp-table th {
-      background: var(--light-gray);
-      color: var(--navy);
-      font-weight: 600;
-      padding: .8rem 1rem;
-      border-bottom: 2px solid var(--border);
-      font-size: .74rem;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-    }
-    .comp-table td {
-      padding: .9rem 1rem;
-      border-bottom: 1px solid var(--border);
-      color: var(--slate);
-      line-height: 1.5;
-    }
-    .comp-table tr:last-child td {
-      border-bottom: none;
-    }
-    .comp-table tr:hover td {
-      background: rgba(107, 146, 181, 0.03);
-      color: var(--navy);
-    }
-    .highlight-cell {
-      font-weight: 600;
-      color: var(--navy);
-    }
-    
-    .swot-grid {
+    /* ── TAB 5 EXECUTIVE INSIGHTS ────────────────────────────── */
+    .kpi-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      margin-top: 1.2rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
     }
-    @media (max-width: 600px) { .swot-grid { grid-template-columns: 1fr; } }
-    .swot-box {
+    @media (max-width: 768px) {
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .kpi-grid { grid-template-columns: 1fr; }
+    }
+    .kpi-card {
+      background: var(--light-gray);
       border: 1px solid var(--border);
       border-radius: 6px;
-      padding: 1.2rem;
-      background: var(--light-gray);
+      padding: 1.2rem 1rem;
+      text-align: center;
+      transition: transform .25s ease, border-color .25s ease;
     }
-    .swot-box.strength { border-left: 3px solid #2E7D32; }
-    .swot-box.vulnerability { border-left: 3px solid #C62828; }
-    .swot-title {
-      font-size: .72rem;
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--blue-border);
+    }
+    .kpi-value {
+      font-family: var(--serif);
+      font-size: 1.8rem;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      margin-bottom: .5rem;
+      color: var(--navy);
+      line-height: 1.1;
+      display: block;
+      margin-bottom: .3rem;
     }
-    .swot-box.strength .swot-title { color: #2E7D32; }
-    .swot-box.vulnerability .swot-title { color: #C62828; }
+    .kpi-label {
+      font-size: .65rem;
+      color: var(--muted);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .findings-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+    }
+    .findings-list li {
+      color: var(--slate);
+      font-size: .88rem;
+      line-height: 1.7;
+      padding-left: 1.3rem;
+      position: relative;
+    }
+    .findings-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: .5rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+    .findings-list li strong {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    /* ── PLACEHOLDER FOR BRAND AUDITS ───────────────────────── */
+    .placeholder-card {
+      margin-top: 2rem;
+      border: 1px dashed var(--blue-border);
+      background: var(--white);
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      transition: border-color .2s;
+    }
+    .placeholder-card:hover {
+      border-color: var(--blue);
+    }
+    .placeholder-icon {
+      color: var(--blue);
+      width: 36px;
+      height: 36px;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.85;
+    }
+    .placeholder-title {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: .4rem;
+    }
+    .placeholder-desc {
+      font-size: .82rem;
+      color: var(--slate);
+      max-width: 460px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
 
     /* ── ANIMATIONS ──────────────────────────────────────────── */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
@@ -1011,147 +1119,165 @@
       <div class="sec-rule"></div>
     </div>
 
-    <!-- Interactive Graph Container -->
-    <div class="chart-container reveal">
-      <div class="chart-header">
-        <div>
-          <p class="case-tag">Thesis Interactive Visualization</p>
-          <h3 class="case-title">Ad Spend vs. Gross Profit Margin: The Flatline Effect</h3>
-          <p class="case-desc" style="max-width: 550px; margin-bottom: 0;">Hover over the points/bars to see the data. Toggle below to compare the overall sector against a specific firm under pressure.</p>
-        </div>
-        <div class="chart-toggle-group">
-          <button id="btnSector" class="chart-toggle-btn active">15-Firm Average</button>
-          <button id="btnShan" class="chart-toggle-btn">Shan Foods Ltd</button>
+    <!-- Interactive Dashboard Container -->
+    <div class="dashboard-container reveal">
+      <!-- Dashboard Title Block -->
+      <div class="dashboard-header">
+        <div class="dashboard-title-wrap">
+          <p class="dashboard-eyebrow">Thesis Data Explorer</p>
+          <h3 class="dashboard-title">FMCG Inflation Impact Dashboard</h3>
+          <p class="dashboard-subtitle">An interactive reconstruction of the 5-page Capstone Power BI dashboard. Switch tabs below to explore macroeconomic baselines, industry cost structures, and correlation trends across 15 Pakistani FMCG brands.</p>
         </div>
       </div>
-      <div class="chart-legend">
-        <div class="legend-item"><span class="legend-color adspend"></span><span>Advertising Spend (% of Revenue)</span></div>
-        <div class="legend-item"><span class="legend-color gpmargin"></span><span>Gross Profit Margin (%)</span></div>
+      
+      <!-- Dashboard Navigation Tabs -->
+      <div class="dashboard-nav">
+        <button class="dashboard-tab-btn active" data-db-tab="db-macro">1. Macro Baseline</button>
+        <button class="dashboard-tab-btn" data-db-tab="db-adspend">2. Ad Spend vs. COGS</button>
+        <button class="dashboard-tab-btn" data-db-tab="db-scatter">3. Correlation Scatter</button>
+        <button class="dashboard-tab-btn" data-db-tab="db-benchmark">4. Firm Benchmarking</button>
+        <button class="dashboard-tab-btn" data-db-tab="db-insights">5. Executive Insights</button>
       </div>
-      <div id="chartWrapper" class="chart-wrapper">
-        <!-- SVG Chart -->
-        <svg id="chartSvg" class="chart-svg" viewBox="0 0 700 250">
-          <!-- Grid lines -->
-          <line x1="100" y1="50" x2="600" y2="50" stroke="var(--border)" stroke-dasharray="4" />
-          <line x1="100" y1="100" x2="600" y2="100" stroke="var(--border)" stroke-dasharray="4" />
-          <line x1="100" y1="150" x2="600" y2="150" stroke="var(--border)" stroke-dasharray="4" />
-          <line x1="100" y1="200" x2="600" y2="200" stroke="var(--border)" />
+
+      <!-- Dashboard Interactive Content Panel -->
+      <div class="dashboard-content">
+        
+        <!-- Tab 1: Macroeconomic Baseline -->
+        <div id="db-macro" class="dashboard-panel active">
+          <div class="dashboard-panel-header">
+            <div class="dashboard-panel-title-wrap">
+              <h4 class="dashboard-panel-title">Pakistan's Inflation Timeline (2019–2024)</h4>
+              <p class="dashboard-panel-desc">A comparative timeline showing Pakistan's CPI Inflation rate against the State Bank of Pakistan's (SBP) Policy Rate. Hover over data nodes for details.</p>
+            </div>
+            <div class="dashboard-legend">
+              <div class="legend-item"><span class="legend-color coral-stroke"></span><span>Average CPI (%)</span></div>
+              <div class="legend-item"><span class="legend-color navy-stroke"></span><span>Average SBP Policy Rate (%)</span></div>
+            </div>
+          </div>
+          <div class="chart-outer-wrap">
+            <div id="macroWrapper" class="chart-wrapper">
+              <svg id="macroSvg" class="chart-svg" viewBox="0 0 620 250"></svg>
+            </div>
+          </div>
+          <div class="finding" style="margin-bottom: 0;">
+            <p class="finding-lbl">Analytical Insight</p>
+            <p>CPI surged from <strong>9.5% to 30.8%</strong> between 2021–2023. The SBP responded by raising the policy rate to <strong>20.6%</strong>, the highest in Pakistan's modern history, to contain macro heat.</p>
+          </div>
+        </div>
+
+        <!-- Tab 2: Ad Spend vs COGS Combo -->
+        <div id="db-adspend" class="dashboard-panel">
+          <div class="dashboard-panel-header">
+            <div class="dashboard-panel-title-wrap">
+              <h4 class="dashboard-panel-title">Cost Pressure vs. Advertising Response</h4>
+              <p class="dashboard-panel-desc">Comparing average firm cost structure (COGS % of revenue) as bars against average ad budget intensity (Ad Spend % of sales) as a line overlay.</p>
+            </div>
+            <div class="dashboard-legend">
+              <div class="legend-item"><span class="legend-color blue-fill"></span><span>Average COGS Ratio (Left Axis)</span></div>
+              <div class="legend-item"><span class="legend-color coral-stroke"></span><span>Average Ad-to-Sales Ratio (Right Axis)</span></div>
+            </div>
+          </div>
+          <div class="chart-outer-wrap">
+            <div id="adspendWrapper" class="chart-wrapper">
+              <svg id="adspendSvg" class="chart-svg" viewBox="0 0 620 250"></svg>
+            </div>
+          </div>
+          <div class="finding" style="margin-bottom: 0;">
+            <p class="finding-lbl">Analytical Insight</p>
+            <p>Average ad spend peaked at <strong>6.43% in 2022</strong> as firms went on the offensive during early inflation. By 2023–2024, as CPI hit 30.8% and input costs mounted, ad budgets collapsed to <strong>2.58%</strong> to protect cash flow.</p>
+          </div>
+        </div>
+
+        <!-- Tab 3: Profitability Correlation Scatter -->
+        <div id="db-scatter" class="dashboard-panel">
+          <div class="dashboard-panel-header">
+            <div class="dashboard-panel-title-wrap">
+              <h4 class="dashboard-panel-title">Did Advertising Protect Margins?</h4>
+              <p class="dashboard-panel-desc">Scatter plot correlating Average Gross Profit Margin (GPM) against Average Ad-to-Sales Ratio across all 15 FMCG firms (2019–2024).</p>
+            </div>
+            <div class="dashboard-legend">
+              <div class="legend-item"><span class="legend-color navy-fill" style="border-radius: 50%;"></span><span>FMCG Company Node</span></div>
+              <div class="legend-item"><span class="legend-color coral-fill" style="height: 2px; width: 15px;"></span><span>Regression Line (&beta; = -0.110)</span></div>
+            </div>
+          </div>
+          <div class="chart-outer-wrap">
+            <div id="scatterWrapper" class="chart-wrapper">
+              <svg id="scatterSvg" class="chart-svg" viewBox="0 0 620 250"></svg>
+            </div>
+          </div>
+          <div class="finding" style="margin-bottom: 0; border-left-color: var(--navy);">
+            <p class="finding-lbl" style="color: var(--navy);">Empirical Regression Result</p>
+            <p style="font-style: italic;">"Empirical analysis confirms no statistically significant relationship between advertising intensity (A/S Ratio) and gross profit margins (GPM) across the 15-company sample. This indicates that margin performance during peak inflation was dominated by firm-level pricing power and cost structures, rather than marketing expenditures."</p>
+          </div>
+        </div>
+
+        <!-- Tab 4: Firm Benchmarking Horizontal Bars -->
+        <div id="db-benchmark" class="dashboard-panel">
+          <div class="dashboard-panel-header">
+            <div class="dashboard-panel-title-wrap">
+              <h4 class="dashboard-panel-title">Market Leaders Comparison: Proactive vs. Defensive</h4>
+              <p class="dashboard-panel-desc">Ranking the average Ad-to-Sales allocation of the 15 FMCG firms. Hover over bars to view GPM margin values.</p>
+            </div>
+            <div class="dashboard-legend">
+              <div class="legend-item"><span class="legend-color blue-fill"></span><span>Proactive Spenders (&ge; 4% Ad spend)</span></div>
+              <div class="legend-item"><span class="legend-color coral-fill"></span><span>Defensive Spenders (&lt; 4% Ad spend)</span></div>
+            </div>
+          </div>
+          <div class="chart-outer-wrap">
+            <div id="benchmarkWrapper" class="chart-wrapper" style="height: 380px;">
+              <svg id="benchmarkSvg" class="chart-svg" viewBox="0 0 620 380"></svg>
+            </div>
+          </div>
+          <div class="finding" style="margin-bottom: 0;">
+            <p class="finding-lbl">Analytical Insight</p>
+            <p><strong>Shield Corporation</strong> allocated <strong>11.63%</strong> of total revenue to advertising—nearly <strong>40x more</strong> proportionally than <strong>Unity Foods (0.29%)</strong>. A select few 'Proactive' market leaders maintained high visibility to capture market share, while the rest turned 'Defensive'.</p>
+          </div>
+        </div>
+
+        <!-- Tab 5: Executive Insights Summary Grid -->
+        <div id="db-insights" class="dashboard-panel">
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <span class="kpi-value">15</span>
+              <span class="kpi-label">FMCG Firms Sampled</span>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-value">6 Years</span>
+              <span class="kpi-label">Analysis Span (2019-24)</span>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-value">3.77%</span>
+              <span class="kpi-label">Average Ad-to-Sales</span>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-value">30.77%</span>
+              <span class="kpi-label">Peak CPI Inflation</span>
+            </div>
+          </div>
           
-          <!-- X-Axis Labels (Years) -->
-          <text x="100" y="222" font-size="11" fill="var(--slate)" text-anchor="middle">2019</text>
-          <text x="200" y="222" font-size="11" fill="var(--slate)" text-anchor="middle">2020</text>
-          <text x="300" y="222" font-size="11" fill="var(--slate)" text-anchor="middle">2021</text>
-          <text x="400" y="222" font-size="11" fill="var(--slate)" text-anchor="middle">2022</text>
-          <text x="500" y="222" font-size="11" fill="var(--slate)" text-anchor="middle">2023</text>
-          <text x="600" y="222" font-size="11" fill="var(--slate)" text-anchor="middle">2024</text>
-          
-          <!-- Bars Container (Ad Spend) -->
-          <g id="barsContainer"></g>
-          
-          <!-- GPMargin Line Path (rendered dynamically via JS) -->
-          <path id="marginPath" fill="none" stroke="var(--navy)" stroke-width="3" stroke-linecap="round" class="chart-path" />
-          
-          <!-- Points Container (GPMargin Dots) -->
-          <g id="pointsContainer"></g>
-        </svg>
-        <div id="chartTooltip" class="chart-tooltip"></div>
+          <h4 style="font-family: var(--serif); color: var(--navy); margin-bottom: 1rem; font-size: 1.1rem;">Key Strategic Takeaways</h4>
+          <ul class="findings-list">
+            <li><strong>Strategic Variance:</strong> No industry-wide consensus existed under inflation. Companies operated on a spectrum: "Proactive Heroes" defended visibility at all costs, while "Defensive Pragmatists" preserved operational cash flow.</li>
+            <li><strong>Spending Volatility:</strong> Raw promotional budgets peaked in 2022 at a record 6.43% industry average before severe supply-side inflation forced a sharp industry-wide retrenchment by 2023.</li>
+            <li><strong>Market Leadership:</strong> Shield Corporation (11.63%) and Gillette Pakistan (8.48%) maintained highly aggressive visibility footprints compared to standard commodity-spiced competitors.</li>
+            <li><strong>Margin Compression:</strong> Escalating global raw material costs drove average COGS ratios above 74% across the panel, which structurally squeezed gross margins regardless of marketing support.</li>
+          </ul>
+        </div>
+
       </div>
+      <!-- Shared Tooltip Div for all charts -->
+      <div id="dashboardTooltip" class="chart-tooltip"></div>
     </div>
 
-    <!-- Shan Foods Case Study Interactive Tabs -->
-    <div class="cs-tabs-container reveal" style="margin-top: 2rem;">
-      <div class="cs-tabs-header">
-        <button class="cs-tab-btn active" data-tab="tab-audit">1. Shan Brand Audit</button>
-        <button class="cs-tab-btn" data-tab="tab-competitor">2. Competitor Table</button>
-        <button class="cs-tab-btn" data-tab="tab-campaign">3. Campaign Idea</button>
+    <!-- Future Brand Audits Placeholder -->
+    <div class="placeholder-card reveal">
+      <div class="placeholder-icon">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width: 30px; height: 30px;">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z" />
+        </svg>
       </div>
-      <div class="cs-tabs-content">
-        
-        <!-- Tab 1: Brand Audit -->
-        <div id="tab-audit" class="cs-tab-panel active">
-          <p class="case-desc" style="font-size: .92rem; margin-bottom: 1.5rem;">A strategic audit of <strong>Shan Foods</strong>, a leading Pakistani FMCG spice brand, assessing its positioning and exposure during the 2019–2024 inflationary cycle:</p>
-          <div class="swot-grid">
-            <div class="swot-box strength">
-              <h4 class="swot-title">Core Strengths &amp; Defense</h4>
-              <ul style="font-size: .84rem; color: var(--slate); padding-left: 1rem; margin-top: .4rem; line-height: 1.65;">
-                <li><strong>Global Footprint:</strong> Spice exports to 65+ countries provided a USD revenue cushion, helping offset domestic currency devaluation.</li>
-                <li><strong>High Brand Equity:</strong> Cultural lock-in of recipe mixes (Biryani, Korma) kept domestic demand resilient even as pricing rose.</li>
-              </ul>
-            </div>
-            <div class="swot-box vulnerability">
-              <h4 class="swot-title">Category Vulnerabilities</h4>
-              <ul style="font-size: .84rem; color: var(--slate); padding-left: 1rem; margin-top: .4rem; line-height: 1.65;">
-                <li><strong>Raw Material Shocks:</strong> High reliance on imported key ingredients (e.g. black pepper) caused direct gross margin compression.</li>
-                <li><strong>Advertising Rigidity:</strong> Continued massive, unmeasured TV/Print advertising investments failed to recover gross margins.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Tab 2: Competitor Table -->
-        <div id="tab-competitor" class="cs-tab-panel">
-          <p class="case-desc" style="font-size: .92rem;">How Shan Foods (premium brand positioning) stacked up against competitors on margins and marketing agility during peak inflation:</p>
-          <div class="comp-table-wrapper">
-            <table class="comp-table">
-              <thead>
-                <tr>
-                  <th>Metric / Strategy</th>
-                  <th>Shan Foods (Premium Brand)</th>
-                  <th>National Foods (Mass Market)</th>
-                  <th>Local Spice Mills (Loose)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="highlight-cell">Category Pricing</td>
-                  <td>Premium Pricing (+15-20% brand margin)</td>
-                  <td>Baseline Average (Mass pricing)</td>
-                  <td>Low-Cost Commodity (-45% vs branded)</td>
-                </tr>
-                <tr>
-                  <td class="highlight-cell">Advertising Policy</td>
-                  <td><strong>Rigid:</strong> Maintained high-cost TV campaign budgets.</td>
-                  <td><strong>Flexible:</strong> Shifted budgets to wholesale trade discounts.</td>
-                  <td>Zero Advertising (Word of mouth)</td>
-                </tr>
-                <tr>
-                  <td class="highlight-cell">Gross Margin Impact</td>
-                  <td>Compressed; absorbed input costs to protect market share.</td>
-                  <td>Protected; aggressively downsized pack sizes.</td>
-                  <td>Highly volatile; direct pass-through of crop costs.</td>
-                </tr>
-                <tr>
-                  <td class="highlight-cell">Marketing Analytics</td>
-                  <td>Traditional distributor push. Low direct consumer tracking.</td>
-                  <td>Basic digital retailer incentive loops.</td>
-                  <td>None. Cash-based local distribution.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        
-        <!-- Tab 3: Campaign Idea -->
-        <div id="tab-campaign" class="cs-tab-panel">
-          <h4 style="font-family: var(--serif); color: var(--navy); margin-bottom: .6rem; font-size: 1.1rem;">"Recipe for Resilience": Optimizing Rigid Ad Budgets</h4>
-          <p class="case-desc" style="font-size: .92rem; margin-bottom: 1.2rem;"><strong>The Proposal:</strong> Homemakers during inflation face budget pressure but want consistent taste. By reallocating 20% of Shan's traditional rigid TV budget into a data-driven digital utility campaign, we drive measurable direct ROI.</p>
-          <div style="background: var(--ice); border-left: 3px solid var(--blue); padding: 1.2rem; border-radius: 0 4px 4px 0;">
-            <p style="font-size: .86rem; line-height: 1.6; color: var(--navy); margin-bottom: .6rem;">
-              <strong>1. Smart Portion &amp; Cost Calculator (Digital Web App)</strong><br>
-              A clean mobile web utility where users input their household size and weekly budget to generate optimized Shan-recipe shopping lists, reducing food waste and proving brand utility.
-            </p>
-            <p style="font-size: .86rem; line-height: 1.6; color: var(--navy); margin-bottom: .6rem;">
-              <strong>2. HubSpot CRM Lead Capture &amp; Automation</strong><br>
-              Drive users to sign up for weekly email meal plans. Automate workflows based on recipes viewed, triggering localized SMS or email discount codes for specific spice SKUs.
-            </p>
-            <p style="font-size: .86rem; line-height: 1.6; color: var(--navy); margin-bottom: 0;">
-              <strong>3. Closed-Loop Attribution</strong><br>
-              Supermarket partners scan the CRM-issued discount codes. Shan Foods tracks code redemptions in real-time, calculating exact sales revenue generated per digital advertising rupee.
-            </p>
-          </div>
-        </div>
-        
-      </div>
+      <h4 class="placeholder-title">Strategic Brand Audits &amp; Funnel Teardowns</h4>
+      <p class="placeholder-desc">I am currently preparing custom quantitative brand teardowns and funnel optimization audits for Pakistani FMCG companies. These case studies will explore real-world digital applications of this panel data.</p>
     </div>
   </div>
 </section>
@@ -1365,163 +1491,461 @@
 </footer>
 
 <script>
-  // Interactive Chart Logic
-  const chartData = {
-    sector: {
-      years: [2019, 2020, 2021, 2022, 2023, 2024],
-      adSpend: [4.1, 4.0, 4.2, 4.3, 4.4, 4.2],
-      gpMargin: [34.2, 34.0, 33.8, 33.5, 33.1, 33.4]
-    },
-    shan: {
-      years: [2019, 2020, 2021, 2022, 2023, 2024],
-      adSpend: [4.8, 4.7, 4.9, 5.1, 5.2, 4.9],
-      gpMargin: [38.5, 38.2, 38.0, 37.8, 37.5, 37.9]
-    }
+  // ── INTERACTIVE DASHBOARD CODE ────────────────────────────
+  // 1. Data Definitions
+  const timelineData = {
+    years: [2019, 2020, 2021, 2022, 2023, 2024],
+    cpi: [10.6, 9.7, 9.5, 19.9, 30.8, 12.6],
+    sbp: [12.0, 8.9, 7.3, 12.0, 20.6, 19.0],
+    cogs: [73.76, 75.71, 74.53, 76.11, 70.98, 74.01],
+    adSpend: [4.81, 3.24, 3.04, 6.43, 2.70, 2.58]
   };
 
-  const xCoords = [100, 200, 300, 400, 500, 600];
+  const firmData = [
+    { name: "Shield Corporation", gpm: 27.0, ad: 11.63 },
+    { name: "Gillette Pakistan", gpm: 29.0, ad: 8.48 },
+    { name: "Fauji Foods", gpm: 6.0, ad: 6.49 },
+    { name: "Unilever Pakistan Foods", gpm: 38.0, ad: 5.45 },
+    { name: "National Foods", gpm: 29.0, ad: 4.43 },
+    { name: "Colgate-Palmolive", gpm: 31.0, ad: 4.30 },
+    { name: "Nestle Pakistan", gpm: 30.0, ad: 4.23 },
+    { name: "Zil Limited", gpm: 28.0, ad: 3.10 },
+    { name: "FrieslandCampina Engro", gpm: 15.0, ad: 2.69 },
+    { name: "Mitchells Fruit Farms", gpm: 24.0, ad: 1.92 },
+    { name: "Ismail Industries", gpm: 21.0, ad: 1.85 },
+    { name: "Attahur Limited", gpm: 35.0, ad: 0.73 },
+    { name: "Bunny's Limited", gpm: 23.0, ad: 0.52 },
+    { name: "Shezan International", gpm: 22.0, ad: 0.42 },
+    { name: "Unity Foods", gpm: 9.0, ad: 0.29 }
+  ];
 
-  function getGPMarginY(val) {
-    return 200 - (val / 50) * 150;
-  }
-
-  function getAdSpendY(val) {
-    return 200 - (val / 6) * 150;
-  }
-
-  const chartTooltip = document.getElementById('chartTooltip');
-
-  function renderChart(type) {
-    const data = chartData[type];
-    
-    // Update GP Margin Line path
-    const pathPoints = xCoords.map((x, i) => `${x},${getGPMarginY(data.gpMargin[i])}`).join(' L ');
-    const pathD = `M ${pathPoints}`;
-    const marginPath = document.getElementById('marginPath');
-    marginPath.setAttribute('d', pathD);
-    
-    // Animate GP Margin Line (reset dash offset)
-    const pathLength = marginPath.getTotalLength();
-    marginPath.style.strokeDasharray = pathLength;
-    marginPath.style.strokeDashoffset = pathLength;
-    marginPath.getBoundingClientRect(); // trigger reflow
-    marginPath.style.transition = 'stroke-dashoffset 1.5s ease-in-out';
-    marginPath.style.strokeDashoffset = '0';
-
-    // Update Ad Spend Bars
-    const barsContainer = document.getElementById('barsContainer');
-    barsContainer.innerHTML = '';
-    data.adSpend.forEach((val, i) => {
-      const x = xCoords[i] - 15;
-      const y = getAdSpendY(val);
-      const h = 200 - y;
-      
-      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-      rect.setAttribute('x', x);
-      rect.setAttribute('y', y);
-      rect.setAttribute('width', 30);
-      rect.setAttribute('height', h);
-      rect.setAttribute('fill', 'var(--blue)');
-      rect.setAttribute('opacity', '0.75');
-      rect.setAttribute('rx', '2');
-      rect.style.transition = 'all 0.5s ease';
-      
-      rect.addEventListener('mouseover', (e) => {
-        rect.setAttribute('opacity', '0.95');
-        showTooltip(e, data.years[i], val, data.gpMargin[i]);
-      });
-      rect.addEventListener('mousemove', moveTooltip);
-      rect.addEventListener('mouseout', () => {
-        rect.setAttribute('opacity', '0.75');
-        hideTooltip();
-      });
-      
-      barsContainer.appendChild(rect);
-    });
-
-    // Update GP Margin Points
-    const pointsContainer = document.getElementById('pointsContainer');
-    pointsContainer.innerHTML = '';
-    data.gpMargin.forEach((val, i) => {
-      const x = xCoords[i];
-      const y = getGPMarginY(val);
-      
-      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      circle.setAttribute('cx', x);
-      circle.setAttribute('cy', y);
-      circle.setAttribute('r', '5');
-      circle.setAttribute('fill', 'var(--navy)');
-      circle.setAttribute('stroke', 'var(--white)');
-      circle.setAttribute('stroke-width', '2');
-      circle.setAttribute('class', 'chart-point');
-      circle.style.transition = 'all 0.3s ease';
-      
-      circle.addEventListener('mouseover', (e) => {
-        showTooltip(e, data.years[i], data.adSpend[i], val);
-      });
-      circle.addEventListener('mousemove', moveTooltip);
-      circle.addEventListener('mouseout', hideTooltip);
-      
-      pointsContainer.appendChild(circle);
-    });
-  }
-
-  function showTooltip(e, year, adSpend, gpMargin) {
-    chartTooltip.style.opacity = '1';
-    chartTooltip.innerHTML = `
-      <div class="chart-tooltip-year">${year} Financials</div>
-      <div><strong>Ad Spend:</strong> ${adSpend.toFixed(1)}% of Rev</div>
-      <div><strong>Gross Margin:</strong> ${gpMargin.toFixed(1)}%</div>
-    `;
+  // Tooltip Helper Functions
+  const dbTooltip = document.getElementById('dashboardTooltip');
+  
+  function showTooltip(e, content) {
+    dbTooltip.innerHTML = content;
+    dbTooltip.style.opacity = '1';
     moveTooltip(e);
   }
 
   function moveTooltip(e) {
-    const containerRect = document.getElementById('chartWrapper').getBoundingClientRect();
-    const tooltipW = chartTooltip.offsetWidth;
-    const tooltipH = chartTooltip.offsetHeight;
+    const contentBox = document.querySelector('.dashboard-content').getBoundingClientRect();
+    const tooltipW = dbTooltip.offsetWidth;
+    const tooltipH = dbTooltip.offsetHeight;
     
-    let x = e.clientX - containerRect.left + 15;
-    let y = e.clientY - containerRect.top - tooltipH - 10;
+    let x = e.clientX - contentBox.left + 15;
+    let y = e.clientY - contentBox.top - tooltipH - 10;
     
-    if (x + tooltipW > containerRect.width) x = e.clientX - containerRect.left - tooltipW - 15;
-    if (y < 0) y = e.clientY - containerRect.top + 15;
+    // Prevent clipping edges
+    if (x + tooltipW > contentBox.width) {
+      x = e.clientX - contentBox.left - tooltipW - 15;
+    }
+    if (y < 0) {
+      y = e.clientY - contentBox.top + 15;
+    }
     
-    chartTooltip.style.left = `${x}px`;
-    chartTooltip.style.top = `${y}px`;
+    dbTooltip.style.left = `${x}px`;
+    dbTooltip.style.top = `${y}px`;
   }
 
   function hideTooltip() {
-    chartTooltip.style.opacity = '0';
+    dbTooltip.style.opacity = '0';
   }
 
-  // Bind chart toggle buttons
-  document.getElementById('btnSector').addEventListener('click', (e) => {
-    document.querySelectorAll('.chart-toggle-btn').forEach(btn => btn.classList.remove('active'));
-    e.target.classList.add('active');
-    renderChart('sector');
-  });
+  // DOM SVG Namespace Helper
+  function createSvgEl(tag, attrs = {}) {
+    const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (let key in attrs) {
+      el.setAttribute(key, attrs[key]);
+    }
+    return el;
+  }
 
-  document.getElementById('btnShan').addEventListener('click', (e) => {
-    document.querySelectorAll('.chart-toggle-btn').forEach(btn => btn.classList.remove('active'));
-    e.target.classList.add('active');
-    renderChart('shan');
-  });
-
-  // Case Study Tabs Logic
-  document.querySelectorAll('.cs-tab-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      document.querySelectorAll('.cs-tab-btn').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.cs-tab-panel').forEach(p => p.classList.remove('active'));
+  // ── CHART 1: MACRO TIMELINE ───────────────────────────────
+  function drawMacroChart() {
+    const svg = document.getElementById('macroSvg');
+    svg.innerHTML = '';
+    
+    const w = 620;
+    const h = 250;
+    const padding = { top: 30, right: 40, bottom: 40, left: 45 };
+    
+    const chartW = w - padding.left - padding.right;
+    const chartH = h - padding.top - padding.bottom;
+    
+    // Limits
+    const yMax = 35; // 0 to 35% CPI/Rates
+    
+    // Coordinate Mapping Helpers
+    const getX = (i) => padding.left + (i / 5) * chartW;
+    const getY = (val) => padding.top + chartH - (val / yMax) * chartH;
+    
+    // Draw Grid Lines & Axes Labels
+    for (let val = 0; val <= 35; val += 10) {
+      const y = getY(val);
+      svg.appendChild(createSvgEl('line', { x1: padding.left, y1: y, x2: w - padding.right, y2: y, class: 'grid-line' }));
       
-      btn.classList.add('active');
-      const panelId = btn.getAttribute('data-tab');
-      document.getElementById(panelId).classList.add('active');
+      const label = createSvgEl('text', { x: padding.left - 10, y: y + 4, 'text-anchor': 'end', class: 'axis-text' });
+      label.textContent = `${val}%`;
+      svg.appendChild(label);
+    }
+    
+    // Draw Year Labels
+    timelineData.years.forEach((year, i) => {
+      const x = getX(i);
+      const label = createSvgEl('text', { x: x, y: h - padding.bottom + 18, 'text-anchor': 'middle', class: 'axis-text' });
+      label.textContent = year;
+      svg.appendChild(label);
     });
-  });
+    
+    // Draw Axis lines
+    svg.appendChild(createSvgEl('line', { x1: padding.left, y1: padding.top, x2: padding.left, y2: h - padding.bottom, class: 'axis-line' }));
+    svg.appendChild(createSvgEl('line', { x1: padding.left, y1: h - padding.bottom, x2: w - padding.right, y2: h - padding.bottom, class: 'axis-line' }));
+    
+    // CPI Path (Coral)
+    const cpiPoints = timelineData.cpi.map((val, i) => `${getX(i)},${getY(val)}`).join(' L ');
+    const cpiPath = createSvgEl('path', { d: `M ${cpiPoints}`, class: 'chart-path-coral' });
+    
+    // SBP Path (Navy)
+    const sbpPoints = timelineData.sbp.map((val, i) => `${getX(i)},${getY(val)}`).join(' L ');
+    const sbpPath = createSvgEl('path', { d: `M ${sbpPoints}`, class: 'chart-path-navy' });
+    
+    svg.appendChild(cpiPath);
+    svg.appendChild(sbpPath);
+    
+    // Draw nodes & Tooltips
+    timelineData.years.forEach((year, i) => {
+      const x = getX(i);
+      const cpiY = getY(timelineData.cpi[i]);
+      const sbpY = getY(timelineData.sbp[i]);
+      
+      // CPI Dot
+      const cpiDot = createSvgEl('circle', { cx: x, cy: cpiY, r: 4.5, fill: '#E05A47', stroke: '#fff', 'stroke-width': 1.5, class: 'chart-dot' });
+      cpiDot.addEventListener('mouseover', (e) => {
+        showTooltip(e, `
+          <div class="tooltip-header">${year} Macro Baseline</div>
+          <div class="tooltip-row"><span>CPI Inflation:</span><span class="tooltip-val" style="color: #E05A47;">${timelineData.cpi[i]}%</span></div>
+          <div class="tooltip-row"><span>SBP Policy Rate:</span><span class="tooltip-val">${timelineData.sbp[i]}%</span></div>
+        `);
+      });
+      cpiDot.addEventListener('mousemove', moveTooltip);
+      cpiDot.addEventListener('mouseout', hideTooltip);
+      
+      // SBP Dot
+      const sbpDot = createSvgEl('circle', { cx: x, cy: sbpY, r: 4.5, fill: 'var(--navy)', stroke: '#fff', 'stroke-width': 1.5, class: 'chart-dot' });
+      sbpDot.addEventListener('mouseover', (e) => {
+        showTooltip(e, `
+          <div class="tooltip-header">${year} Macro Baseline</div>
+          <div class="tooltip-row"><span>SBP Policy Rate:</span><span class="tooltip-val" style="color: var(--blue);">${timelineData.sbp[i]}%</span></div>
+          <div class="tooltip-row"><span>CPI Inflation:</span><span class="tooltip-val">${timelineData.cpi[i]}%</span></div>
+        `);
+      });
+      sbpDot.addEventListener('mousemove', moveTooltip);
+      sbpDot.addEventListener('mouseout', hideTooltip);
+      
+      svg.appendChild(cpiDot);
+      svg.appendChild(sbpDot);
+    });
+  }
 
-  // Initial render
-  renderChart('sector');
+  // ── CHART 2: AD SPEND VS COGS COMBO ────────────────────────
+  function drawAdspendChart() {
+    const svg = document.getElementById('adspendSvg');
+    svg.innerHTML = '';
+    
+    const w = 620;
+    const h = 250;
+    const padding = { top: 30, right: 45, bottom: 40, left: 45 };
+    
+    const chartW = w - padding.left - padding.right;
+    const chartH = h - padding.top - padding.bottom;
+    
+    const getX = (i) => padding.left + (i / 5) * chartW;
+    const getCogsY = (val) => padding.top + chartH - (val / 100) * chartH; // COGS: 0 to 100%
+    const getAdY = (val) => padding.top + chartH - (val / 8) * chartH;     // Ad Spend: 0 to 8%
+    
+    // Draw Left Y-Axis Grid & Labels (COGS: 0-100)
+    for (let val = 0; val <= 100; val += 20) {
+      const y = getCogsY(val);
+      svg.appendChild(createSvgEl('line', { x1: padding.left, y1: y, x2: w - padding.right, y2: y, class: 'grid-line' }));
+      
+      const label = createSvgEl('text', { x: padding.left - 10, y: y + 4, 'text-anchor': 'end', class: 'axis-text' });
+      label.textContent = `${val}%`;
+      svg.appendChild(label);
+    }
+    
+    // Draw Right Y-Axis Labels (Ad Spend: 0-8%)
+    for (let val = 0; val <= 8; val += 2) {
+      const y = getAdY(val);
+      const label = createSvgEl('text', { x: w - padding.right + 10, y: y + 4, 'text-anchor': 'start', class: 'axis-text' });
+      label.textContent = `${val}%`;
+      svg.appendChild(label);
+    }
+    
+    // Draw Year Labels
+    timelineData.years.forEach((year, i) => {
+      const x = getX(i);
+      const label = createSvgEl('text', { x: x, y: h - padding.bottom + 18, 'text-anchor': 'middle', class: 'axis-text' });
+      label.textContent = year;
+      svg.appendChild(label);
+    });
+    
+    // Draw Axis lines
+    svg.appendChild(createSvgEl('line', { x1: padding.left, y1: padding.top, x2: padding.left, y2: h - padding.bottom, class: 'axis-line' }));
+    svg.appendChild(createSvgEl('line', { x1: w - padding.right, y1: padding.top, x2: w - padding.right, y2: h - padding.bottom, class: 'axis-line' }));
+    svg.appendChild(createSvgEl('line', { x1: padding.left, y1: h - padding.bottom, x2: w - padding.right, y2: h - padding.bottom, class: 'axis-line' }));
+    
+    // 1. Draw COGS Bars (Light Blue)
+    const barW = 28;
+    timelineData.cogs.forEach((val, i) => {
+      const x = getX(i) - barW / 2;
+      const y = getCogsY(val);
+      const barH = h - padding.bottom - y;
+      
+      const rect = createSvgEl('rect', {
+        x: x, y: y, width: barW, height: barH,
+        fill: 'var(--blue)', opacity: '0.8', rx: '2', class: 'chart-bar'
+      });
+      
+      rect.addEventListener('mouseover', (e) => {
+        showTooltip(e, `
+          <div class="tooltip-header">${timelineData.years[i]} Cost Dynamics</div>
+          <div class="tooltip-row"><span>Avg COGS Ratio:</span><span class="tooltip-val" style="color: var(--blue-hover);">${val.toFixed(2)}%</span></div>
+          <div class="tooltip-row"><span>Avg Ad-to-Sales:</span><span class="tooltip-val">${timelineData.adSpend[i].toFixed(2)}%</span></div>
+        `);
+      });
+      rect.addEventListener('mousemove', moveTooltip);
+      rect.addEventListener('mouseout', hideTooltip);
+      svg.appendChild(rect);
+    });
+    
+    // 2. Draw Ad Spend Line overlay (Coral)
+    const adPoints = timelineData.adSpend.map((val, i) => `${getX(i)},${getAdY(val)}`).join(' L ');
+    const adPath = createSvgEl('path', { d: `M ${adPoints}`, class: 'chart-path-coral' });
+    svg.appendChild(adPath);
+    
+    // 3. Draw Ad Spend Dots
+    timelineData.adSpend.forEach((val, i) => {
+      const x = getX(i);
+      const y = getAdY(val);
+      const dot = createSvgEl('circle', { cx: x, cy: y, r: 4.5, fill: '#E05A47', stroke: '#fff', 'stroke-width': 1.5, class: 'chart-dot' });
+      
+      dot.addEventListener('mouseover', (e) => {
+        showTooltip(e, `
+          <div class="tooltip-header">${timelineData.years[i]} Advertising Spend</div>
+          <div class="tooltip-row"><span>Avg Ad-to-Sales:</span><span class="tooltip-val" style="color: #E05A47;">${val.toFixed(2)}%</span></div>
+          <div class="tooltip-row"><span>Avg COGS Ratio:</span><span class="tooltip-val">${timelineData.cogs[i].toFixed(2)}%</span></div>
+        `);
+      });
+      dot.addEventListener('mousemove', moveTooltip);
+      dot.addEventListener('mouseout', hideTooltip);
+      svg.appendChild(dot);
+    });
+  }
+
+  // ── CHART 3: CORRELATION SCATTER ───────────────────────────
+  function drawScatterChart() {
+    const svg = document.getElementById('scatterSvg');
+    svg.innerHTML = '';
+    
+    const w = 620;
+    const h = 250;
+    const padding = { top: 30, right: 30, bottom: 40, left: 45 };
+    
+    const chartW = w - padding.left - padding.right;
+    const chartH = h - padding.top - padding.bottom;
+    
+    // X-axis: 0 to 12% (Ad spend)
+    // Y-axis: 0 to 50% (GPM)
+    const getX = (val) => padding.left + (val / 12) * chartW;
+    const getY = (val) => padding.top + chartH - (val / 50) * chartH;
+    
+    // Draw Y grid & labels
+    for (let val = 0; val <= 50; val += 10) {
+      const y = getY(val);
+      svg.appendChild(createSvgEl('line', { x1: padding.left, y1: y, x2: w - padding.right, y2: y, class: 'grid-line' }));
+      
+      const label = createSvgEl('text', { x: padding.left - 10, y: y + 4, 'text-anchor': 'end', class: 'axis-text' });
+      label.textContent = `${val}%`;
+      svg.appendChild(label);
+    }
+    
+    // Draw X labels
+    for (let val = 0; val <= 12; val += 2) {
+      const x = getX(val);
+      const label = createSvgEl('text', { x: x, y: h - padding.bottom + 18, 'text-anchor': 'middle', class: 'axis-text' });
+      label.textContent = `${val}%`;
+      svg.appendChild(label);
+    }
+    
+    // X Axis Title
+    const xTitle = createSvgEl('text', { x: padding.left + chartW / 2, y: h - 6, 'text-anchor': 'middle', class: 'axis-title' });
+    xTitle.textContent = "Average Ad-to-Sales Ratio";
+    svg.appendChild(xTitle);
+    
+    // Y Axis Title
+    const yTitle = createSvgEl('text', { x: 12, y: padding.top + chartH / 2, 'text-anchor': 'middle', transform: `rotate(-90 12 ${padding.top + chartH / 2})`, class: 'axis-title' });
+    yTitle.textContent = "Average GP Margin";
+    svg.appendChild(yTitle);
+    
+    // Axes lines
+    svg.appendChild(createSvgEl('line', { x1: padding.left, y1: padding.top, x2: padding.left, y2: h - padding.bottom, class: 'axis-line' }));
+    svg.appendChild(createSvgEl('line', { x1: padding.left, y1: h - padding.bottom, x2: w - padding.right, y2: h - padding.bottom, class: 'axis-line' }));
+    
+    // 1. Draw SPSS Regression Line (Coral)
+    // Formula: GPM = 27.5% - 0.11 * AdSpend
+    const lineX1 = getX(0);
+    const lineY1 = getY(27.5);
+    const lineX2 = getX(12);
+    const lineY2 = getY(27.5 - 0.11 * 12);
+    
+    const regression = createSvgEl('line', {
+      x1: lineX1, y1: lineY1, x2: lineX2, y2: lineY2,
+      stroke: '#E05A47', 'stroke-width': 2.5, class: 'trend-line'
+    });
+    svg.appendChild(regression);
+    
+    // 2. Plot Company Nodes
+    firmData.forEach((firm) => {
+      const cx = getX(firm.ad);
+      const cy = getY(firm.gpm);
+      
+      const circle = createSvgEl('circle', {
+        cx: cx, cy: cy, r: 5,
+        fill: 'var(--navy)', stroke: '#fff', 'stroke-width': 1.5, class: 'chart-dot'
+      });
+      
+      circle.addEventListener('mouseover', (e) => {
+        circle.setAttribute('fill', '#E05A47');
+        showTooltip(e, `
+          <div class="tooltip-header" style="border-bottom-color: rgba(224,90,71,0.3);">${firm.name}</div>
+          <div class="tooltip-row"><span>Ad-to-Sales Ratio:</span><span class="tooltip-val">${firm.ad.toFixed(2)}%</span></div>
+          <div class="tooltip-row"><span>Gross Profit Margin:</span><span class="tooltip-val" style="color: var(--blue);">${firm.gpm.toFixed(1)}%</span></div>
+        `);
+      });
+      
+      circle.addEventListener('mousemove', moveTooltip);
+      
+      circle.addEventListener('mouseout', () => {
+        circle.setAttribute('fill', 'var(--navy)');
+        hideTooltip();
+      });
+      
+      svg.appendChild(circle);
+    });
+  }
+
+  // ── CHART 4: FIRM BENCHMARKING H-BARS ──────────────────────
+  function drawBenchmarkChart() {
+    const svg = document.getElementById('benchmarkSvg');
+    svg.innerHTML = '';
+    
+    const w = 620;
+    const h = 380;
+    const padding = { top: 20, right: 40, bottom: 40, left: 160 }; // generous left padding for names
+    
+    const chartW = w - padding.left - padding.right;
+    const chartH = h - padding.top - padding.bottom;
+    
+    const getX = (val) => padding.left + (val / 12) * chartW; // ad spend max: 12%
+    const getBarY = (i) => padding.top + (i / 15) * chartH;
+    
+    // Draw Vertical Grid Lines & Labels
+    for (let val = 0; val <= 12; val += 2) {
+      const x = getX(val);
+      svg.appendChild(createSvgEl('line', { x1: x, y1: padding.top, x2: x, y2: h - padding.bottom, class: 'grid-line' }));
+      
+      const label = createSvgEl('text', { x: x, y: h - padding.bottom + 16, 'text-anchor': 'middle', class: 'axis-text' });
+      label.textContent = `${val}%`;
+      svg.appendChild(label);
+    }
+    
+    // Draw Axis Title
+    const axisTitle = createSvgEl('text', { x: padding.left + chartW / 2, y: h - 6, 'text-anchor': 'middle', class: 'axis-title' });
+    axisTitle.textContent = "Average Ad-to-Sales Ratio (2019-2024)";
+    svg.appendChild(axisTitle);
+    
+    // Axis lines
+    svg.appendChild(createSvgEl('line', { x1: padding.left, y1: padding.top, x2: padding.left, y2: h - padding.bottom, class: 'axis-line' }));
+    svg.appendChild(createSvgEl('line', { x1: padding.left, y1: h - padding.bottom, x2: w - padding.right, y2: h - padding.bottom, class: 'axis-line' }));
+    
+    // Render Bars & Firm Labels
+    const barHeight = 13;
+    firmData.forEach((firm, i) => {
+      const y = getBarY(i) + 4;
+      const barW = getX(firm.ad) - padding.left;
+      
+      // Label (Company Name)
+      const label = createSvgEl('text', {
+        x: padding.left - 10, y: y + 10, 'text-anchor': 'end',
+        class: 'axis-text', 'font-weight': '500'
+      });
+      label.textContent = firm.name;
+      svg.appendChild(label);
+      
+      // Color-coding gradient (Proactive vs Defensive boundary: 4%)
+      const isProactive = firm.ad >= 4.0;
+      const barColor = isProactive ? 'var(--blue)' : '#E05A47';
+      
+      // Animated bar structure
+      const rect = createSvgEl('rect', {
+        x: padding.left, y: y, width: 0, height: barHeight,
+        fill: barColor, opacity: '0.8', rx: '1.5', class: 'chart-bar'
+      });
+      svg.appendChild(rect);
+      
+      // Animate width expansion
+      setTimeout(() => {
+        rect.setAttribute('width', barW);
+      }, 50 + i * 20);
+      
+      // Hover event
+      rect.addEventListener('mouseover', (e) => {
+        rect.setAttribute('opacity', '0.98');
+        showTooltip(e, `
+          <div class="tooltip-header">${firm.name}</div>
+          <div class="tooltip-row"><span>Ad-to-Sales Ratio:</span><span class="tooltip-val" style="color: ${barColor};">${firm.ad.toFixed(2)}%</span></div>
+          <div class="tooltip-row"><span>Gross Profit Margin:</span><span class="tooltip-val">${firm.gpm.toFixed(1)}%</span></div>
+          <div class="tooltip-row"><span>Strategy:</span><span class="tooltip-val" style="color: ${barColor};">${isProactive ? 'Proactive' : 'Defensive'}</span></div>
+        `);
+      });
+      rect.addEventListener('mousemove', moveTooltip);
+      rect.addEventListener('mouseout', () => {
+        rect.setAttribute('opacity', '0.8');
+        hideTooltip();
+      });
+    });
+  }
+
+  // ── TAB INITIALIZER & RE-RENDER SWITCHER ───────────────────
+  function initDashboard() {
+    // Render initially active tab
+    drawMacroChart();
+    
+    // Bind Tab Click Handlers
+    document.querySelectorAll('.dashboard-tab-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const activeTab = e.target.getAttribute('data-db-tab');
+        
+        // Remove active state from all buttons and panels
+        document.querySelectorAll('.dashboard-tab-btn').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.dashboard-panel').forEach(p => p.classList.remove('active'));
+        
+        // Activate current
+        btn.classList.add('active');
+        document.getElementById(activeTab).classList.add('active');
+        
+        // Trigger specific chart renders on display to ensure correct viewport sizes
+        if (activeTab === 'db-macro') drawMacroChart();
+        else if (activeTab === 'db-adspend') drawAdspendChart();
+        else if (activeTab === 'db-scatter') drawScatterChart();
+        else if (activeTab === 'db-benchmark') drawBenchmarkChart();
+      });
+    });
+  }
+
+  // Run Dashboard Initialisation on load
+  initDashboard();
 
   // Nav scroll effect
   const nav = document.getElementById('nav');
