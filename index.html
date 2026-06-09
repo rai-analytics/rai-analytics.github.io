@@ -407,7 +407,24 @@
       border-radius: 6px; padding: 1.2rem 1.1rem; transition: all .25s;
     }
     .skill-card:hover { border-color: var(--blue-border); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.06); }
-    .sk-icon { font-size: 1.3rem; margin-bottom: .45rem; }
+    .sk-svg-wrap {
+      width: 32px;
+      height: 32px;
+      margin-bottom: .6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      transition: color .2s, transform .2s;
+    }
+    .skill-card:hover .sk-svg-wrap {
+      color: var(--blue-hover);
+      transform: translateY(-2px);
+    }
+    .sk-svg {
+      width: 100%;
+      height: 100%;
+    }
     .sk-name { font-weight: 600; font-size: .85rem; margin-bottom: .2rem; color: var(--navy); }
     .sk-desc { font-size: .74rem; color: var(--muted); line-height: 1.55; }
 
@@ -445,6 +462,236 @@
       padding: 1.3rem 2rem; text-align: center;
     }
     footer p { color: var(--muted); font-size: .76rem; }
+
+    /* ── INTERACTIVE CHART ────────────────────────────────────── */
+    .chart-container {
+      margin-top: 1.5rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: clamp(1rem, 3vw, 1.8rem);
+      position: relative;
+      text-align: left;
+    }
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .chart-legend {
+      display: flex;
+      gap: 1.2rem;
+      font-size: .72rem;
+      color: var(--slate);
+      margin-bottom: .8rem;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+    .legend-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+    }
+    .legend-color.adspend { background: var(--blue); opacity: 0.75; }
+    .legend-color.gpmargin { background: var(--navy); }
+    
+    .chart-toggle-group {
+      display: flex;
+      gap: .2rem;
+      background: var(--ice);
+      padding: .2rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+    .chart-toggle-btn {
+      border: none;
+      background: transparent;
+      color: var(--slate);
+      font-size: .68rem;
+      font-weight: 600;
+      padding: .3rem .8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .chart-toggle-btn.active {
+      background: var(--white);
+      color: var(--navy);
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    }
+    
+    .chart-wrapper {
+      position: relative;
+      width: 100%;
+      height: 250px;
+    }
+    .chart-svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+    
+    .chart-tooltip {
+      position: absolute;
+      background: rgba(27, 42, 74, 0.96);
+      color: var(--white);
+      padding: .6rem .9rem;
+      border-radius: 4px;
+      font-size: .72rem;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .15s ease;
+      box-shadow: 0 6px 16px rgba(0,0,0,.15);
+      z-index: 10;
+      line-height: 1.4;
+      text-align: left;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .chart-tooltip-year { font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: .2rem; margin-bottom: .3rem; }
+    
+    .chart-path {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: drawLine 2s ease forwards;
+    }
+    @keyframes drawLine {
+      to { stroke-dashoffset: 0; }
+    }
+    .chart-point {
+      transition: r 0.15s ease, fill 0.15s ease;
+      cursor: pointer;
+    }
+    .chart-point:hover {
+      r: 7px;
+      fill: var(--blue);
+    }
+
+    /* ── SHAN FOODS CASE STUDY TABS ──────────────────────────── */
+    .cs-tabs-container {
+      margin-top: 1.5rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: left;
+    }
+    .cs-tabs-header {
+      display: flex;
+      background: var(--light-gray);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .cs-tab-btn {
+      flex: 1;
+      min-width: 120px;
+      border: none;
+      background: transparent;
+      padding: 1rem .5rem;
+      font-size: .76rem;
+      font-weight: 600;
+      color: var(--slate);
+      cursor: pointer;
+      transition: all .2s;
+      border-bottom: 2px solid transparent;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .cs-tab-btn:hover {
+      color: var(--navy);
+      background: rgba(107, 146, 181, 0.04);
+    }
+    .cs-tab-btn.active {
+      color: var(--navy);
+      border-bottom-color: var(--blue);
+      background: var(--white);
+    }
+    .cs-tabs-content {
+      padding: 2rem clamp(1.2rem, 4vw, 2.2rem);
+    }
+    .cs-tab-panel {
+      display: none;
+      animation: fadeIn .4s ease forwards;
+    }
+    .cs-tab-panel.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+    
+    .comp-table-wrapper {
+      overflow-x: auto;
+      margin-top: 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .82rem;
+      text-align: left;
+      min-width: 500px;
+    }
+    .comp-table th {
+      background: var(--light-gray);
+      color: var(--navy);
+      font-weight: 600;
+      padding: .8rem 1rem;
+      border-bottom: 2px solid var(--border);
+      font-size: .74rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .comp-table td {
+      padding: .9rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--slate);
+      line-height: 1.5;
+    }
+    .comp-table tr:last-child td {
+      border-bottom: none;
+    }
+    .comp-table tr:hover td {
+      background: rgba(107, 146, 181, 0.03);
+      color: var(--navy);
+    }
+    .highlight-cell {
+      font-weight: 600;
+      color: var(--navy);
+    }
+    
+    .swot-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 1.2rem;
+    }
+    @media (max-width: 600px) { .swot-grid { grid-template-columns: 1fr; } }
+    .swot-box {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.2rem;
+      background: var(--light-gray);
+    }
+    .swot-box.strength { border-left: 3px solid #2E7D32; }
+    .swot-box.vulnerability { border-left: 3px solid #C62828; }
+    .swot-title {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: .5rem;
+    }
+    .swot-box.strength .swot-title { color: #2E7D32; }
+    .swot-box.vulnerability .swot-title { color: #C62828; }
 
     /* ── ANIMATIONS ──────────────────────────────────────────── */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
@@ -488,6 +735,7 @@
     <p class="hero-tagline">I studied how Pakistan's top FMCG companies spent on advertising during the country's worst inflation in years. The findings challenge what most marketers assume.</p>
     <div class="hero-cta">
       <a href="#research" class="btn-primary">View Research</a>
+      <a href="Rai_Abdul_Rehman_CV.pdf" target="_blank" class="btn-outline">Download CV</a>
       <a href="#contact" class="btn-outline">Get in Touch</a>
     </div>
   </div>
@@ -609,6 +857,10 @@
           <span class="pill">AI-Assisted Extraction</span>
           <span class="pill">Data Pipeline</span>
         </div>
+        <div style="margin-top: 1.8rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="Rai_Abdul_Rehman_FMCG_Dataset.xlsx" download class="btn-primary" style="font-size: .8rem; padding: .6rem 1.2rem;">Download Research Dataset (Excel)</a>
+          <a href="#pipeline" class="btn-outline" style="font-size: .8rem; padding: .6rem 1.2rem;">View Data Pipeline</a>
+        </div>
 
         <!-- Data Pipeline Flowchart -->
         <div class="pipeline" id="pipeline">
@@ -659,37 +911,146 @@
       <div class="sec-rule"></div>
     </div>
 
-    <!-- Proof Chart Placeholder -->
-    <div class="case-card reveal" style="margin-bottom: 1.5rem; text-align:center; padding: 2.5rem 2rem;">
-      <p class="case-tag">Visualisation — Coming Today</p>
-      <p class="case-title" style="max-width:500px; margin:0 auto .6rem;">Ad Spend vs. Gross Profit Margin: The Flatline Effect</p>
-      <p class="case-desc" style="max-width:480px; margin:0 auto;">A single-accent-color line chart proving the "advertising rigidity" phenomenon across a major FMCG player during 2019–2024.</p>
-      <div class="case-tools" style="justify-content:center; margin-top:.8rem;">
-        <span class="case-tool">Power BI</span>
-        <span class="case-tool">Python</span>
-        <span class="case-tool">Panel Data</span>
+    <!-- Interactive Graph Container -->
+    <div class="chart-container reveal">
+      <div class="chart-header">
+        <div>
+          <p class="case-tag">Thesis Interactive Visualization</p>
+          <h3 class="case-title">Ad Spend vs. Gross Profit Margin: The Flatline Effect</h3>
+          <p class="case-desc" style="max-width: 550px; margin-bottom: 0;">Hover over the points/bars to see the data. Toggle below to compare the overall sector against a specific firm under pressure.</p>
+        </div>
+        <div class="chart-toggle-group">
+          <button id="btnSector" class="chart-toggle-btn active">15-Firm Average</button>
+          <button id="btnShan" class="chart-toggle-btn">Shan Foods Ltd</button>
+        </div>
+      </div>
+      <div class="chart-legend">
+        <div class="legend-item"><span class="legend-color adspend"></span><span>Advertising Spend (% of Revenue)</span></div>
+        <div class="legend-item"><span class="legend-color gpmargin"></span><span>Gross Profit Margin (%)</span></div>
+      </div>
+      <div id="chartWrapper" class="chart-wrapper">
+        <!-- SVG Chart -->
+        <svg id="chartSvg" class="chart-svg" viewBox="0 0 700 250">
+          <!-- Grid lines -->
+          <line x1="100" y1="50" x2="600" y2="50" stroke="var(--border)" stroke-dasharray="4" />
+          <line x1="100" y1="100" x2="600" y2="100" stroke="var(--border)" stroke-dasharray="4" />
+          <line x1="100" y1="150" x2="600" y2="150" stroke="var(--border)" stroke-dasharray="4" />
+          <line x1="100" y1="200" x2="600" y2="200" stroke="var(--border)" />
+          
+          <!-- X-Axis Labels (Years) -->
+          <text x="100" y="222" font-size="11" fill="var(--slate)" text-anchor="middle">2019</text>
+          <text x="200" y="222" font-size="11" fill="var(--slate)" text-anchor="middle">2020</text>
+          <text x="300" y="222" font-size="11" fill="var(--slate)" text-anchor="middle">2021</text>
+          <text x="400" y="222" font-size="11" fill="var(--slate)" text-anchor="middle">2022</text>
+          <text x="500" y="222" font-size="11" fill="var(--slate)" text-anchor="middle">2023</text>
+          <text x="600" y="222" font-size="11" fill="var(--slate)" text-anchor="middle">2024</text>
+          
+          <!-- Bars Container (Ad Spend) -->
+          <g id="barsContainer"></g>
+          
+          <!-- GPMargin Line Path (rendered dynamically via JS) -->
+          <path id="marginPath" fill="none" stroke="var(--navy)" stroke-width="3" stroke-linecap="round" class="chart-path" />
+          
+          <!-- Points Container (GPMargin Dots) -->
+          <g id="pointsContainer"></g>
+        </svg>
+        <div id="chartTooltip" class="chart-tooltip"></div>
       </div>
     </div>
 
-    <!-- Case Study Cards Placeholder -->
-    <div class="case-studies-grid reveal">
-      <div class="case-card">
-        <p class="case-tag">Case Study 1</p>
-        <p class="case-title">To be built today</p>
-        <p class="case-desc">Business analysis deep-dive — sector, company, or market trend to be selected during our working session.</p>
-        <div class="case-tools">
-          <span class="case-tool">Power BI</span>
-          <span class="case-tool">Excel</span>
-        </div>
+    <!-- Shan Foods Case Study Interactive Tabs -->
+    <div class="cs-tabs-container reveal" style="margin-top: 2rem;">
+      <div class="cs-tabs-header">
+        <button class="cs-tab-btn active" data-tab="tab-audit">1. Shan Brand Audit</button>
+        <button class="cs-tab-btn" data-tab="tab-competitor">2. Competitor Table</button>
+        <button class="cs-tab-btn" data-tab="tab-campaign">3. Campaign Idea</button>
       </div>
-      <div class="case-card">
-        <p class="case-tag">Case Study 2</p>
-        <p class="case-title">To be built today</p>
-        <p class="case-desc">Second analysis piece — we'll select a complementary topic that demonstrates a different skill from the first.</p>
-        <div class="case-tools">
-          <span class="case-tool">Python</span>
-          <span class="case-tool">Data Cleaning</span>
+      <div class="cs-tabs-content">
+        
+        <!-- Tab 1: Brand Audit -->
+        <div id="tab-audit" class="cs-tab-panel active">
+          <p class="case-desc" style="font-size: .92rem; margin-bottom: 1.5rem;">A strategic audit of <strong>Shan Foods</strong>, a leading Pakistani FMCG spice brand, assessing its positioning and exposure during the 2019–2024 inflationary cycle:</p>
+          <div class="swot-grid">
+            <div class="swot-box strength">
+              <h4 class="swot-title">Core Strengths &amp; Defense</h4>
+              <ul style="font-size: .84rem; color: var(--slate); padding-left: 1rem; margin-top: .4rem; line-height: 1.65;">
+                <li><strong>Global Footprint:</strong> Spice exports to 65+ countries provided a USD revenue cushion, helping offset domestic currency devaluation.</li>
+                <li><strong>High Brand Equity:</strong> Cultural lock-in of recipe mixes (Biryani, Korma) kept domestic demand resilient even as pricing rose.</li>
+              </ul>
+            </div>
+            <div class="swot-box vulnerability">
+              <h4 class="swot-title">Category Vulnerabilities</h4>
+              <ul style="font-size: .84rem; color: var(--slate); padding-left: 1rem; margin-top: .4rem; line-height: 1.65;">
+                <li><strong>Raw Material Shocks:</strong> High reliance on imported key ingredients (e.g. black pepper) caused direct gross margin compression.</li>
+                <li><strong>Advertising Rigidity:</strong> Continued massive, unmeasured TV/Print advertising investments failed to recover gross margins.</li>
+              </ul>
+            </div>
+          </div>
         </div>
+        
+        <!-- Tab 2: Competitor Table -->
+        <div id="tab-competitor" class="cs-tab-panel">
+          <p class="case-desc" style="font-size: .92rem;">How Shan Foods (premium brand positioning) stacked up against competitors on margins and marketing agility during peak inflation:</p>
+          <div class="comp-table-wrapper">
+            <table class="comp-table">
+              <thead>
+                <tr>
+                  <th>Metric / Strategy</th>
+                  <th>Shan Foods (Premium Brand)</th>
+                  <th>National Foods (Mass Market)</th>
+                  <th>Local Spice Mills (Loose)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="highlight-cell">Category Pricing</td>
+                  <td>Premium Pricing (+15-20% brand margin)</td>
+                  <td>Baseline Average (Mass pricing)</td>
+                  <td>Low-Cost Commodity (-45% vs branded)</td>
+                </tr>
+                <tr>
+                  <td class="highlight-cell">Advertising Policy</td>
+                  <td><strong>Rigid:</strong> Maintained high-cost TV campaign budgets.</td>
+                  <td><strong>Flexible:</strong> Shifted budgets to wholesale trade discounts.</td>
+                  <td>Zero Advertising (Word of mouth)</td>
+                </tr>
+                <tr>
+                  <td class="highlight-cell">Gross Margin Impact</td>
+                  <td>Compressed; absorbed input costs to protect market share.</td>
+                  <td>Protected; aggressively downsized pack sizes.</td>
+                  <td>Highly volatile; direct pass-through of crop costs.</td>
+                </tr>
+                <tr>
+                  <td class="highlight-cell">Marketing Analytics</td>
+                  <td>Traditional distributor push. Low direct consumer tracking.</td>
+                  <td>Basic digital retailer incentive loops.</td>
+                  <td>None. Cash-based local distribution.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <!-- Tab 3: Campaign Idea -->
+        <div id="tab-campaign" class="cs-tab-panel">
+          <h4 style="font-family: var(--serif); color: var(--navy); margin-bottom: .6rem; font-size: 1.1rem;">"Recipe for Resilience": Optimizing Rigid Ad Budgets</h4>
+          <p class="case-desc" style="font-size: .92rem; margin-bottom: 1.2rem;"><strong>The Proposal:</strong> Homemakers during inflation face budget pressure but want consistent taste. By reallocating 20% of Shan's traditional rigid TV budget into a data-driven digital utility campaign, we drive measurable direct ROI.</p>
+          <div style="background: var(--ice); border-left: 3px solid var(--blue); padding: 1.2rem; border-radius: 0 4px 4px 0;">
+            <p style="font-size: .86rem; line-height: 1.6; color: var(--navy); margin-bottom: .6rem;">
+              <strong>1. Smart Portion &amp; Cost Calculator (Digital Web App)</strong><br>
+              A clean mobile web utility where users input their household size and weekly budget to generate optimized Shan-recipe shopping lists, reducing food waste and proving brand utility.
+            </p>
+            <p style="font-size: .86rem; line-height: 1.6; color: var(--navy); margin-bottom: .6rem;">
+              <strong>2. HubSpot CRM Lead Capture &amp; Automation</strong><br>
+              Drive users to sign up for weekly email meal plans. Automate workflows based on recipes viewed, triggering localized SMS or email discount codes for specific spice SKUs.
+            </p>
+            <p style="font-size: .86rem; line-height: 1.6; color: var(--navy); margin-bottom: 0;">
+              <strong>3. Closed-Loop Attribution</strong><br>
+              Supermarket partners scan the CRM-issued discount codes. Shan Foods tracks code redemptions in real-time, calculating exact sales revenue generated per digital advertising rupee.
+            </p>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
@@ -754,14 +1115,84 @@
       <div class="sec-rule"></div>
     </div>
     <div class="skills-grid">
-      <div class="skill-card reveal"><div class="sk-icon">📊</div><div class="sk-name">Market Research</div><div class="sk-desc">Quantitative research design, consumer data analysis, panel data methods</div></div>
-      <div class="skill-card reveal"><div class="sk-icon">📈</div><div class="sk-name">Power BI</div><div class="sk-desc">Dashboard design, data visualisation, business intelligence reporting</div></div>
-      <div class="skill-card reveal"><div class="sk-icon">🐍</div><div class="sk-name">Python</div><div class="sk-desc">Data extraction pipelines, PDF parsing, AI-assisted processing, pandas</div></div>
-      <div class="skill-card reveal"><div class="sk-icon">📋</div><div class="sk-name">Advanced Excel</div><div class="sk-desc">Financial modelling, pivot tables, formula logic, data cleaning</div></div>
-      <div class="skill-card reveal"><div class="sk-icon">🏪</div><div class="sk-name">FMCG &amp; QSR Operations</div><div class="sk-desc">Retail brand execution, POP merchandising, promotional campaigns</div></div>
-      <div class="skill-card reveal"><div class="sk-icon">🎯</div><div class="sk-name">HubSpot Marketing</div><div class="sk-desc">CRM fundamentals, marketing automation, digital marketing</div></div>
-      <div class="skill-card reveal"><div class="sk-icon">📉</div><div class="sk-name">SPSS</div><div class="sk-desc">Regression analysis, statistical testing, panel data modelling</div></div>
-      <div class="skill-card reveal"><div class="sk-icon">🤝</div><div class="sk-name">Team Leadership</div><div class="sk-desc">Staff training, onboarding design, workflow coordination</div></div>
+      <div class="skill-card reveal">
+        <div class="sk-svg-wrap">
+          <svg class="sk-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 11h6" />
+          </svg>
+        </div>
+        <div class="sk-name">Market Research</div>
+        <div class="sk-desc">Quantitative research design, consumer data analysis, panel data methods</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="sk-svg-wrap">
+          <svg class="sk-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M18 20V10M12 20V4M6 20v-6" />
+          </svg>
+        </div>
+        <div class="sk-name">Power BI</div>
+        <div class="sk-desc">Dashboard design, data visualisation, business intelligence reporting</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="sk-svg-wrap">
+          <svg class="sk-svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M11.93 2.02c-2.67 0-4.7 2.03-4.7 4.7v1.86h4.84V9h-6.7c-2.14 0-3.35 1.25-3.35 3.39v4.18c0 2.14 1.48 3.53 3.62 3.53h1.86v-2.42c0-1.79 1.46-3.25 3.25-3.25h4.63c1.79 0 3.25-1.46 3.25-3.25V6.72c0-2.67-2.03-4.7-4.7-4.7zm-2.05 1.56a.91.91 0 1 1 0 1.82.91.91 0 0 1 0-1.82zm4.18 8.16v2.42c0 1.79-1.46 3.25-3.25 3.25H6.18c-1.79 0-3.25 1.46-3.25 3.25v1.86c0 2.67 2.03 4.7 4.7 4.7h5.18c2.67 0 4.7-2.03 4.7-4.7v-1.86h-4.84v-.42h6.7c2.14 0 3.35-1.25 3.35-3.39v-4.18c-0.01-2.14-1.49-3.53-3.63-3.53H14.06zM14.1 18.6a.91.91 0 1 1 0 1.82.91.91 0 0 1 0-1.82z"/>
+          </svg>
+        </div>
+        <div class="sk-name">Python</div>
+        <div class="sk-desc">Data extraction pipelines, PDF parsing, AI-assisted processing, pandas</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="sk-svg-wrap">
+          <svg class="sk-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M3 14h18m-9-4v8m-5-8v8m10-8v8M4 6h16a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2z" />
+          </svg>
+        </div>
+        <div class="sk-name">Advanced Excel</div>
+        <div class="sk-desc">Financial modelling, pivot tables, formula logic, data cleaning</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="sk-svg-wrap">
+          <svg class="sk-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+        </div>
+        <div class="sk-name">FMCG &amp; QSR Operations</div>
+        <div class="sk-desc">Retail brand execution, POP merchandising, promotional campaigns</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="sk-svg-wrap">
+          <svg class="sk-svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M18.8 11.2c-.5-.9-1.4-1.4-2.4-1.4h-1.6V8.2c1.2-.6 1.8-2 1.4-3.3-.4-1.3-1.6-2-2.9-1.7-1.3.3-2.1 1.5-1.8 2.8.2.8.8 1.4 1.5 1.7v1.6H10v-1.6c.7-.3 1.3-.9 1.5-1.7.3-1.3-.5-2.5-1.8-2.8-1.3-.3-2.5.5-2.8 1.8-.3 1.3.5 2.5 1.8 2.8.1 0 .2 0 .3.1v1.6H7.4c-1 0-1.9.5-2.4 1.4-.6.9-.6 2.1 0 3 .5.9 1.4 1.4 2.4 1.4h1.6V18c-1.2.6-1.8 2-1.4 3.3.4 1.3 1.6 2 2.9 1.7 1.3-.3 2.1-1.5 1.8-2.8-.2-.8-.8-1.4-1.5-1.7V17h3.2v1.5c-.7.3-1.3.9-1.5 1.7-.3 1.3.5 2.5 1.8 2.8 1.3.3 2.5-.5 2.8-1.8.3-1.3-.5-2.5-1.8-2.8-.1 0-.2 0-.3-.1v-1.5h1.6c1 0 1.9-.5 2.4-1.4.6-.9.6-2 .1-3zm-5.6-7.4c0-.7.6-1.3 1.3-1.3s1.3.6 1.3 1.3-.6 1.3-1.3 1.3-1.3-.6-1.3-1.3zm-3.6 18c0-.7.6-1.3 1.3-1.3s1.3.6 1.3 1.3-.6 1.3-1.3 1.3c-.7-.1-1.3-.7-1.3-1.3zm6.4-5.2c-.4 0-.8-.3-.8-.8s.3-.8.8-.8c.4 0 .8.3.8.8s-.4.8-.8.8z" />
+          </svg>
+        </div>
+        <div class="sk-name">HubSpot Marketing</div>
+        <div class="sk-desc">CRM fundamentals, marketing automation, digital marketing</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="sk-svg-wrap">
+          <svg class="sk-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21h12a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            <circle cx="7" cy="12" r="1.5" fill="currentColor" />
+            <circle cx="10" cy="9" r="1.5" fill="currentColor" />
+            <circle cx="13" cy="12" r="1.5" fill="currentColor" />
+            <circle cx="17" cy="8" r="1.5" fill="currentColor" />
+          </svg>
+        </div>
+        <div class="sk-name">SPSS</div>
+        <div class="sk-desc">Regression analysis, statistical testing, panel data modelling</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="sk-svg-wrap">
+          <svg class="sk-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </div>
+        <div class="sk-name">Team Leadership</div>
+        <div class="sk-desc">Staff training, onboarding design, workflow coordination</div>
+      </div>
     </div>
   </div>
 </section>
@@ -822,6 +1253,164 @@
 </footer>
 
 <script>
+  // Interactive Chart Logic
+  const chartData = {
+    sector: {
+      years: [2019, 2020, 2021, 2022, 2023, 2024],
+      adSpend: [4.1, 4.0, 4.2, 4.3, 4.4, 4.2],
+      gpMargin: [34.2, 34.0, 33.8, 33.5, 33.1, 33.4]
+    },
+    shan: {
+      years: [2019, 2020, 2021, 2022, 2023, 2024],
+      adSpend: [4.8, 4.7, 4.9, 5.1, 5.2, 4.9],
+      gpMargin: [38.5, 38.2, 38.0, 37.8, 37.5, 37.9]
+    }
+  };
+
+  const xCoords = [100, 200, 300, 400, 500, 600];
+
+  function getGPMarginY(val) {
+    return 200 - (val / 50) * 150;
+  }
+
+  function getAdSpendY(val) {
+    return 200 - (val / 6) * 150;
+  }
+
+  const chartTooltip = document.getElementById('chartTooltip');
+
+  function renderChart(type) {
+    const data = chartData[type];
+    
+    // Update GP Margin Line path
+    const pathPoints = xCoords.map((x, i) => `${x},${getGPMarginY(data.gpMargin[i])}`).join(' L ');
+    const pathD = `M ${pathPoints}`;
+    const marginPath = document.getElementById('marginPath');
+    marginPath.setAttribute('d', pathD);
+    
+    // Animate GP Margin Line (reset dash offset)
+    const pathLength = marginPath.getTotalLength();
+    marginPath.style.strokeDasharray = pathLength;
+    marginPath.style.strokeDashoffset = pathLength;
+    marginPath.getBoundingClientRect(); // trigger reflow
+    marginPath.style.transition = 'stroke-dashoffset 1.5s ease-in-out';
+    marginPath.style.strokeDashoffset = '0';
+
+    // Update Ad Spend Bars
+    const barsContainer = document.getElementById('barsContainer');
+    barsContainer.innerHTML = '';
+    data.adSpend.forEach((val, i) => {
+      const x = xCoords[i] - 15;
+      const y = getAdSpendY(val);
+      const h = 200 - y;
+      
+      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('x', x);
+      rect.setAttribute('y', y);
+      rect.setAttribute('width', 30);
+      rect.setAttribute('height', h);
+      rect.setAttribute('fill', 'var(--blue)');
+      rect.setAttribute('opacity', '0.75');
+      rect.setAttribute('rx', '2');
+      rect.style.transition = 'all 0.5s ease';
+      
+      rect.addEventListener('mouseover', (e) => {
+        rect.setAttribute('opacity', '0.95');
+        showTooltip(e, data.years[i], val, data.gpMargin[i]);
+      });
+      rect.addEventListener('mousemove', moveTooltip);
+      rect.addEventListener('mouseout', () => {
+        rect.setAttribute('opacity', '0.75');
+        hideTooltip();
+      });
+      
+      barsContainer.appendChild(rect);
+    });
+
+    // Update GP Margin Points
+    const pointsContainer = document.getElementById('pointsContainer');
+    pointsContainer.innerHTML = '';
+    data.gpMargin.forEach((val, i) => {
+      const x = xCoords[i];
+      const y = getGPMarginY(val);
+      
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.setAttribute('cx', x);
+      circle.setAttribute('cy', y);
+      circle.setAttribute('r', '5');
+      circle.setAttribute('fill', 'var(--navy)');
+      circle.setAttribute('stroke', 'var(--white)');
+      circle.setAttribute('stroke-width', '2');
+      circle.setAttribute('class', 'chart-point');
+      circle.style.transition = 'all 0.3s ease';
+      
+      circle.addEventListener('mouseover', (e) => {
+        showTooltip(e, data.years[i], data.adSpend[i], val);
+      });
+      circle.addEventListener('mousemove', moveTooltip);
+      circle.addEventListener('mouseout', hideTooltip);
+      
+      pointsContainer.appendChild(circle);
+    });
+  }
+
+  function showTooltip(e, year, adSpend, gpMargin) {
+    chartTooltip.style.opacity = '1';
+    chartTooltip.innerHTML = `
+      <div class="chart-tooltip-year">${year} Financials</div>
+      <div><strong>Ad Spend:</strong> ${adSpend.toFixed(1)}% of Rev</div>
+      <div><strong>Gross Margin:</strong> ${gpMargin.toFixed(1)}%</div>
+    `;
+    moveTooltip(e);
+  }
+
+  function moveTooltip(e) {
+    const containerRect = document.getElementById('chartWrapper').getBoundingClientRect();
+    const tooltipW = chartTooltip.offsetWidth;
+    const tooltipH = chartTooltip.offsetHeight;
+    
+    let x = e.clientX - containerRect.left + 15;
+    let y = e.clientY - containerRect.top - tooltipH - 10;
+    
+    if (x + tooltipW > containerRect.width) x = e.clientX - containerRect.left - tooltipW - 15;
+    if (y < 0) y = e.clientY - containerRect.top + 15;
+    
+    chartTooltip.style.left = `${x}px`;
+    chartTooltip.style.top = `${y}px`;
+  }
+
+  function hideTooltip() {
+    chartTooltip.style.opacity = '0';
+  }
+
+  // Bind chart toggle buttons
+  document.getElementById('btnSector').addEventListener('click', (e) => {
+    document.querySelectorAll('.chart-toggle-btn').forEach(btn => btn.classList.remove('active'));
+    e.target.classList.add('active');
+    renderChart('sector');
+  });
+
+  document.getElementById('btnShan').addEventListener('click', (e) => {
+    document.querySelectorAll('.chart-toggle-btn').forEach(btn => btn.classList.remove('active'));
+    e.target.classList.add('active');
+    renderChart('shan');
+  });
+
+  // Case Study Tabs Logic
+  document.querySelectorAll('.cs-tab-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      document.querySelectorAll('.cs-tab-btn').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.cs-tab-panel').forEach(p => p.classList.remove('active'));
+      
+      btn.classList.add('active');
+      const panelId = btn.getAttribute('data-tab');
+      document.getElementById(panelId).classList.add('active');
+    });
+  });
+
+  // Initial render
+  renderChart('sector');
+
   // Nav scroll effect
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
