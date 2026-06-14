@@ -34,6 +34,40 @@
       --sans:        'Inter', system-ui, sans-serif;
     }
 
+    [data-theme="dark"] {
+      --white:       #111215;       /* Rich Dark background */
+      --ice:         #1A1C20;       /* Slate cards / panels background */
+      --light-gray:  #151619;       /* Section background */
+      --border:      #272B33;       /* Muted borders */
+      --border-l:    #1E2127;       /* Separator borders */
+      --slate:       #94A3B8;       /* Muted grey body text */
+      --muted:       #64748B;       /* Muted metadata */
+      --text:        #E2E8F0;       /* Bright body text */
+      --navy:        #F8FAFC;       /* Off-white headings */
+      --blue-hover:  #89AED1;       /* Light blue for hover */
+      --blue-light:  rgba(107,146,181,.15);
+      --blue-border: rgba(107,146,181,.4);
+    }
+
+    /* Theme Toggle Button */
+    .theme-btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.35rem;
+      color: var(--slate);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .theme-btn:hover {
+      color: var(--navy);
+      border-color: var(--blue-border);
+      background: var(--ice);
+    }
+
     html { scroll-behavior: smooth; }
 
     body {
@@ -370,9 +404,10 @@
 
     /* ── CASE STUDIES (Placeholder) ─────────────────────────── */
     .case-studies-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;
       margin-top: 1.5rem;
     }
+    @media (max-width: 900px) { .case-studies-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 640px) { .case-studies-grid { grid-template-columns: 1fr; } }
     .case-card {
       background: var(--white); border: 1px solid var(--border);
@@ -851,7 +886,17 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#hero" class="nav-logo">AR.</a>
+  <div style="display: flex; align-items: center; gap: 1.2rem;">
+    <a href="#hero" class="nav-logo">AR.</a>
+    <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
+      <svg class="sun-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" />
+      </svg>
+      <svg class="moon-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width: 16px; height: 16px; display: none;">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 0 0 12 21a9.003 9.003 0 0 0 8.354-5.646z" />
+      </svg>
+    </button>
+  </div>
   <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
     <li><a href="#research">Research</a></li>
@@ -1269,15 +1314,51 @@
       </div>
     </div>
 
-    <!-- Future Brand Audits Placeholder -->
-    <div class="placeholder-card reveal">
-      <div class="placeholder-icon">
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width: 30px; height: 30px;">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z" />
-        </svg>
+    <!-- Growth Operations & Strategy Case Studies -->
+    <div class="reveal" style="margin-top: 3.5rem;">
+      <h3 style="font-family: var(--serif); font-size: 1.4rem; color: var(--navy); margin-bottom: 0.4rem; text-align: center;">Growth Operations &amp; Strategy Case Studies</h3>
+      <p style="font-size: 0.88rem; color: var(--slate); text-align: center; max-width: 550px; margin: 0 auto 2.2rem; line-height: 1.6;">Applying quantitative analytics and marketing systems to resolve real-world startup acquisition and retention bottlenecks.</p>
+      
+      <div class="case-studies-grid">
+        <!-- Case Study 1 -->
+        <div class="case-card reveal">
+          <p class="case-tag">Growth Operations</p>
+          <h4 class="case-title">Metric App — PLG Funnel &amp; GA4 Tracking Scheme</h4>
+          <p class="case-desc">Diagnosed onboarding drop-off by implementing a custom GA4 event tracking schema and an automated HubSpot lifecycle nurture workflow triggered on step delays.</p>
+          <div class="case-tools">
+            <span class="case-tool">GA4</span>
+            <span class="case-tool">GTM</span>
+            <span class="case-tool">HubSpot CRM</span>
+            <span class="case-tool">Funnel Audit</span>
+          </div>
+        </div>
+
+        <!-- Case Study 2 -->
+        <div class="case-card reveal">
+          <p class="case-tag">SEO &amp; Content Strategy</p>
+          <h4 class="case-title">FitXpert — Search Intent Clustering &amp; SEO Architecture</h4>
+          <p class="case-desc">Built a B2B keyword cluster targeting Arabic-speaking personal trainers to drive organic customer acquisition and bypass competitive Google Ads CPC.</p>
+          <div class="case-tools">
+            <span class="case-tool">Keyword Research</span>
+            <span class="case-tool">On-Page SEO</span>
+            <span class="case-tool">Content Strategy</span>
+            <span class="case-tool">Arabic Clustering</span>
+          </div>
+        </div>
+
+        <!-- Case Study 3 -->
+        <div class="case-card reveal">
+          <p class="case-tag">Demand Gen &amp; Operations</p>
+          <h4 class="case-title">SiFi — Enterprise Lead Scoring &amp; ABM Workflows</h4>
+          <p class="case-desc">Developed a quantitative lead prioritization matrix in Excel and automated CRM lead routing variables in HubSpot to optimize enterprise sales team time.</p>
+          <div class="case-tools">
+            <span class="case-tool">ABM</span>
+            <span class="case-tool">Excel Modeling</span>
+            <span class="case-tool">Lead Scoring</span>
+            <span class="case-tool">CRM Automation</span>
+          </div>
+        </div>
       </div>
-      <h4 class="placeholder-title">Strategic Brand Audits &amp; Funnel Teardowns</h4>
-      <p class="placeholder-desc">I am currently preparing custom quantitative brand teardowns and funnel optimization audits for Pakistani FMCG companies. These case studies will explore real-world digital applications of this panel data.</p>
     </div>
   </div>
 </section>
@@ -1946,6 +2027,34 @@
 
   // Run Dashboard Initialisation on load
   initDashboard();
+
+  // Light/Dark Theme Toggle
+  const themeToggleBtn = document.getElementById('themeToggle');
+  const sunIcon = themeToggleBtn.querySelector('.sun-icon');
+  const moonIcon = themeToggleBtn.querySelector('.moon-icon');
+
+  // Check stored theme preference
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  if (savedTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    sunIcon.style.display = 'none';
+    moonIcon.style.display = 'block';
+  }
+
+  themeToggleBtn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      document.documentElement.removeAttribute('data-theme');
+      sunIcon.style.display = 'block';
+      moonIcon.style.display = 'none';
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      sunIcon.style.display = 'none';
+      moonIcon.style.display = 'block';
+      localStorage.setItem('theme', 'dark');
+    }
+  });
 
   // Nav scroll effect
   const nav = document.getElementById('nav');
