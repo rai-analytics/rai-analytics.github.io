@@ -19,6 +19,7 @@
     :root {
       --white:       #FFFFFF;
       --ice:         #F8FAFC;
+      --card-bg:     rgba(255, 255, 255, 0.45);
       --light-gray:  #F1F5F9;
       --border:      #E2E8F0;
       --border-l:    #F1F5F9;
@@ -39,6 +40,7 @@
     [data-theme="dark"] {
       --white:       #0B0F19;
       --ice:         #111827;
+      --card-bg:     rgba(17, 24, 39, 0.45);
       --light-gray:  #0E1626;
       --border:      rgba(107, 146, 181, 0.12);
       --border-l:    rgba(107, 146, 181, 0.08);
@@ -292,7 +294,7 @@
     }
     .sec-rule { width: 38px; height: 2px; background: var(--blue); margin-bottom: 2.2rem; }
 
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.visible { opacity: 1; transform: none; }
 
     section.alt { background: var(--light-gray); }
@@ -431,11 +433,12 @@
     }
     
     .case-card {
-      background: var(--ice); border: 1px solid var(--border);
-      border-radius: 0px; padding: 4rem 3.5rem;
+      background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 4rem 3.5rem;
       display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start;
       cursor: pointer; position: relative; min-height: 350px; height: 100%;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.1);
       transition: all 0.75s cubic-bezier(0.16, 1, 0.3, 1);
     }
     
@@ -487,7 +490,7 @@
       padding: 0.25rem 0.6rem; border-radius: 20px;
     }
     .case-title {
-      font-family: var(--serif); font-size: 1.15rem; font-weight: 600;
+      font-family: var(--serif); font-size: 1.8rem; font-weight: 600;
       color: var(--navy); line-height: 1.35; margin-bottom: .5rem;
     }
     .case-desc { font-size: .82rem; color: var(--slate); line-height: 1.65; margin-bottom: .8rem; }
@@ -1452,8 +1455,8 @@
   </div>
   <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#research">Research</a></li>
-    <li><a href="#case-studies">Case Studies</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -1473,7 +1476,7 @@
     </div>
     <p class="hero-tagline">BBA Marketing graduate bridging retail operations with web analytics and CRM databases to coordinate campaigns. Experienced in retail SKU audits, visual planogram execution, and client dashboard reporting.</p>
     <div class="hero-cta">
-      <a href="#case-studies" class="btn-primary">View Case Studies</a>
+      <a href="#projects" class="btn-primary">View Projects</a>
       <a href="Rai_Abdul_Rehman_CV.pdf" download="Rai_Abdul_Rehman_CV.pdf" class="btn-outline">Download CV</a>
       <a href="#contact" class="btn-outline">Get in Touch</a>
     </div>
@@ -1566,154 +1569,14 @@
   </div>
 </section>
 
-<!-- RESEARCH -->
-<section id="research">
-  <div class="container">
-    <div class="reveal">
-      <p class="sec-label">Capstone Research — 2026</p>
-      <h2 class="sec-title">Featured Project</h2>
-      <div class="sec-rule"></div>
-    </div>
-    <div class="research-card reveal">
-      <div class="research-inner">
-        <div class="r-tags">
-          <span class="r-tag">FMCG Sector</span>
-          <span class="r-tag">Pakistan</span>
-          <span class="r-tag">2019–2024</span>
-          <span class="r-tag">Panel Data</span>
-          <span class="r-tag">Inflation Analysis</span>
-        </div>
-        <h3 class="r-title">Advertising Spend During Peak Inflation: An Analysis of Market Leaders in the Pakistani FMCG Sector (2019–2024)</h3>
-        <p class="r-desc">An independent study examining how 15 of Pakistan's top PSX-listed FMCG companies allocated advertising budgets during one of the country's most severe inflationary periods. I built a Python data-extraction pipeline using AI-assisted parsing (Gemini API) to collect structured financial data from six years of annual reports, constructed a balanced panel dataset, and applied SPSS regression to test long-held assumptions about advertising effectiveness.</p>
-        <div class="r-stats">
-          <div class="r-stat">
-            <span class="r-stat-n">15</span>
-            <span class="r-stat-l">PSX-Listed Firms</span>
-          </div>
-          <div class="r-stat">
-            <span class="r-stat-n">6</span>
-            <span class="r-stat-l">Years (2019–24)</span>
-          </div>
-          <div class="r-stat">
-            <span class="r-stat-n">90</span>
-            <span class="r-stat-l">Observations</span>
-          </div>
-          <div class="r-stat">
-            <span class="r-stat-n">PSX</span>
-            <span class="r-stat-l">Data Source</span>
-          </div>
-        </div>
-        <div class="finding">
-          <p class="finding-lbl">Key Finding</p>
-          <p>Advertising expenditure showed <strong>no statistically significant effect on gross profit margin</strong> during Pakistan's 2019–2024 inflationary cycle. Firms exhibited "advertising rigidity" (maintaining budgets regardless of macro pressure), a finding that directly challenges conventional FMCG marketing assumptions.</p>
-        </div>
-        <div class="implication">
-          <p class="implication-lbl">Business Implication</p>
-          <p>FMCG firms should consider reallocating rigid advertising budgets toward targeted price-promotions and trade marketing during inflationary periods, where measurable ROI is more directly achievable.</p>
-        </div>
-        <div class="pills">
-          <span class="pill">Python</span>
-          <span class="pill">SPSS</span>
-          <span class="pill">Power BI</span>
-          <span class="pill">Advanced Excel</span>
-          <span class="pill">Panel Regression</span>
-          <span class="pill">AI-Assisted Extraction</span>
-          <span class="pill">Data Pipeline</span>
-        </div>
-        <div style="margin-top: 1.8rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; gap: 1rem; flex-wrap: wrap;">
-          <a href="Rai_Abdul_Rehman_FMCG_Dataset.xlsx" download class="btn-primary" style="font-size: .8rem; padding: .6rem 1.2rem;">Download Research Dataset (Excel)</a>
-          <a href="#pipeline" class="btn-outline" style="font-size: .8rem; padding: .6rem 1.2rem;">View Data Pipeline</a>
-        </div>
 
-        <!-- Data Pipeline Flowchart -->
-        <div class="pipeline" id="pipeline">
-          <p class="pipeline-label">How The Data Was Built</p>
-          <div class="pipeline-flow">
-            <div class="pipe-step">
-              <div class="pipe-step-icon">
-                <svg class="pipe-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                  <line x1="16" y1="13" x2="8" y2="13"></line>
-                  <line x1="16" y1="17" x2="8" y2="17"></line>
-                  <polyline points="10 9 9 9 8 9"></polyline>
-                </svg>
-              </div>
-              <div class="pipe-step-name">PDF Annual<br>Reports</div>
-              <div class="pipe-step-tool">90 documents</div>
-            </div>
-            <div class="pipe-arrow">→</div>
-            <div class="pipe-step">
-              <div class="pipe-step-icon">
-                <svg class="pipe-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-                  <rect x="9" y="9" width="6" height="6"></rect>
-                  <line x1="9" y1="1" x2="9" y2="4"></line>
-                  <line x1="15" y1="1" x2="15" y2="4"></line>
-                  <line x1="9" y1="20" x2="9" y2="23"></line>
-                  <line x1="15" y1="20" x2="15" y2="23"></line>
-                  <line x1="20" y1="9" x2="23" y2="9"></line>
-                  <line x1="20" y1="15" x2="23" y2="15"></line>
-                  <line x1="1" y1="9" x2="4" y2="9"></line>
-                  <line x1="1" y1="15" x2="4" y2="15"></line>
-                </svg>
-              </div>
-              <div class="pipe-step-name">AI-Assisted<br>Extraction</div>
-              <div class="pipe-step-tool">Python + Gemini API</div>
-            </div>
-            <div class="pipe-arrow">→</div>
-            <div class="pipe-step">
-              <div class="pipe-step-icon">
-                <svg class="pipe-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                  <path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-                  <path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"></path>
-                  <path d="M17 12l2 2 4-4"></path>
-                </svg>
-              </div>
-              <div class="pipe-step-name">Data Cleaning<br>&amp; Normalisation</div>
-              <div class="pipe-step-tool">Excel + pandas</div>
-            </div>
-            <div class="pipe-arrow">→</div>
-            <div class="pipe-step">
-              <div class="pipe-step-icon">
-                <svg class="pipe-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="18" y1="20" x2="18" y2="10"></line>
-                  <line x1="12" y1="20" x2="12" y2="4"></line>
-                  <line x1="6" y1="20" x2="6" y2="14"></line>
-                  <line x1="2" y1="20" x2="22" y2="20"></line>
-                  <path d="M3 12l6-4 6 8 6-12"></path>
-                </svg>
-              </div>
-              <div class="pipe-step-name">Statistical<br>Analysis</div>
-              <div class="pipe-step-tool">SPSS Regression</div>
-            </div>
-            <div class="pipe-arrow">→</div>
-            <div class="pipe-step">
-              <div class="pipe-step-icon">
-                <svg class="pipe-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                  <line x1="9" y1="3" x2="9" y2="21"></line>
-                  <line x1="9" y1="9" x2="21" y2="9"></line>
-                  <line x1="15" y1="9" x2="15" y2="21"></line>
-                </svg>
-              </div>
-              <div class="pipe-step-name">Dashboard<br>&amp; Insights</div>
-              <div class="pipe-step-tool">Power BI</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- CASE STUDIES -->
-<section id="case-studies" class="alt">
+<!-- PROJECTS -->
+<section id="projects" class="alt">
   <div class="container">
     <div class="reveal">
       <p class="sec-label">Applied Analysis</p>
-      <h2 class="sec-title">Case Studies</h2>
+      <h2 class="sec-title">Projects</h2>
       <div class="sec-rule"></div>
     </div>
 
@@ -1910,6 +1773,148 @@
             <span class="case-tool">Looker Studio</span>
             <span class="case-tool">ERP Data</span>
             <span class="case-tool">Pivot Tables</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="container">
+    <div class="reveal">
+      <p class="sec-label">Capstone Research — 2026</p>
+      <h2 class="sec-title">Featured Project</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="research-card reveal">
+      <div class="research-inner">
+        <div class="r-tags">
+          <span class="r-tag">FMCG Sector</span>
+          <span class="r-tag">Pakistan</span>
+          <span class="r-tag">2019–2024</span>
+          <span class="r-tag">Panel Data</span>
+          <span class="r-tag">Inflation Analysis</span>
+        </div>
+        <h3 class="r-title">Advertising Spend During Peak Inflation: An Analysis of Market Leaders in the Pakistani FMCG Sector (2019–2024)</h3>
+        <p class="r-desc">An independent study examining how 15 of Pakistan's top PSX-listed FMCG companies allocated advertising budgets during one of the country's most severe inflationary periods. I built a Python data-extraction pipeline using AI-assisted parsing (Gemini API) to collect structured financial data from six years of annual reports, constructed a balanced panel dataset, and applied SPSS regression to test long-held assumptions about advertising effectiveness.</p>
+        <div class="r-stats">
+          <div class="r-stat">
+            <span class="r-stat-n">15</span>
+            <span class="r-stat-l">PSX-Listed Firms</span>
+          </div>
+          <div class="r-stat">
+            <span class="r-stat-n">6</span>
+            <span class="r-stat-l">Years (2019–24)</span>
+          </div>
+          <div class="r-stat">
+            <span class="r-stat-n">90</span>
+            <span class="r-stat-l">Observations</span>
+          </div>
+          <div class="r-stat">
+            <span class="r-stat-n">PSX</span>
+            <span class="r-stat-l">Data Source</span>
+          </div>
+        </div>
+        <div class="finding">
+          <p class="finding-lbl">Key Finding</p>
+          <p>Advertising expenditure showed <strong>no statistically significant effect on gross profit margin</strong> during Pakistan's 2019–2024 inflationary cycle. Firms exhibited "advertising rigidity" (maintaining budgets regardless of macro pressure), a finding that directly challenges conventional FMCG marketing assumptions.</p>
+        </div>
+        <div class="implication">
+          <p class="implication-lbl">Business Implication</p>
+          <p>FMCG firms should consider reallocating rigid advertising budgets toward targeted price-promotions and trade marketing during inflationary periods, where measurable ROI is more directly achievable.</p>
+        </div>
+        <div class="pills">
+          <span class="pill">Python</span>
+          <span class="pill">SPSS</span>
+          <span class="pill">Power BI</span>
+          <span class="pill">Advanced Excel</span>
+          <span class="pill">Panel Regression</span>
+          <span class="pill">AI-Assisted Extraction</span>
+          <span class="pill">Data Pipeline</span>
+        </div>
+        <div style="margin-top: 1.8rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="Rai_Abdul_Rehman_FMCG_Dataset.xlsx" download class="btn-primary" style="font-size: .8rem; padding: .6rem 1.2rem;">Download Research Dataset (Excel)</a>
+          <a href="#pipeline" class="btn-outline" style="font-size: .8rem; padding: .6rem 1.2rem;">View Data Pipeline</a>
+        </div>
+
+        <!-- Data Pipeline Flowchart -->
+        <div class="pipeline" id="pipeline">
+          <p class="pipeline-label">How The Data Was Built</p>
+          <div class="pipeline-flow">
+            <div class="pipe-step">
+              <div class="pipe-step-icon">
+                <svg class="pipe-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <div class="pipe-step-name">PDF Annual<br>Reports</div>
+              <div class="pipe-step-tool">90 documents</div>
+            </div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-step">
+              <div class="pipe-step-icon">
+                <svg class="pipe-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                  <rect x="9" y="9" width="6" height="6"></rect>
+                  <line x1="9" y1="1" x2="9" y2="4"></line>
+                  <line x1="15" y1="1" x2="15" y2="4"></line>
+                  <line x1="9" y1="20" x2="9" y2="23"></line>
+                  <line x1="15" y1="20" x2="15" y2="23"></line>
+                  <line x1="20" y1="9" x2="23" y2="9"></line>
+                  <line x1="20" y1="15" x2="23" y2="15"></line>
+                  <line x1="1" y1="9" x2="4" y2="9"></line>
+                  <line x1="1" y1="15" x2="4" y2="15"></line>
+                </svg>
+              </div>
+              <div class="pipe-step-name">AI-Assisted<br>Extraction</div>
+              <div class="pipe-step-tool">Python + Gemini API</div>
+            </div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-step">
+              <div class="pipe-step-icon">
+                <svg class="pipe-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                  <path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                  <path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"></path>
+                  <path d="M17 12l2 2 4-4"></path>
+                </svg>
+              </div>
+              <div class="pipe-step-name">Data Cleaning<br>&amp; Normalisation</div>
+              <div class="pipe-step-tool">Excel + pandas</div>
+            </div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-step">
+              <div class="pipe-step-icon">
+                <svg class="pipe-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                  <line x1="2" y1="20" x2="22" y2="20"></line>
+                  <path d="M3 12l6-4 6 8 6-12"></path>
+                </svg>
+              </div>
+              <div class="pipe-step-name">Statistical<br>Analysis</div>
+              <div class="pipe-step-tool">SPSS Regression</div>
+            </div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-step">
+              <div class="pipe-step-icon">
+                <svg class="pipe-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="9" y1="3" x2="9" y2="21"></line>
+                  <line x1="9" y1="9" x2="21" y2="9"></line>
+                  <line x1="15" y1="9" x2="15" y2="21"></line>
+                </svg>
+              </div>
+              <div class="pipe-step-name">Dashboard<br>&amp; Insights</div>
+              <div class="pipe-step-tool">Power BI</div>
+            </div>
           </div>
         </div>
       </div>
@@ -2754,7 +2759,7 @@
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 100);
+        setTimeout(() => e.target.classList.add('visible'), i * 40);
         io.unobserve(e.target);
       }
     });
