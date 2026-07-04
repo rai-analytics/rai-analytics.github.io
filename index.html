@@ -209,6 +209,7 @@
     }
     .btn-primary {
       display: inline-block;
+      position: relative; z-index: 10;
       background: var(--blue); color: #fff;
       padding: .72rem 1.8rem; border-radius: 3px;
       text-decoration: none; font-weight: 600; font-size: .84rem;
@@ -220,6 +221,7 @@
     }
     .btn-outline {
       display: inline-block;
+      position: relative; z-index: 10;
       border: 1px solid var(--border); color: var(--navy);
       padding: .72rem 1.8rem; border-radius: 3px;
       text-decoration: none; font-weight: 500; font-size: .84rem;
@@ -2689,14 +2691,18 @@
   // 3. Magnetic Buttons
   const magnets = document.querySelectorAll('.btn-primary, .btn-outline');
   magnets.forEach(magnet => {
+    magnet.addEventListener('mouseenter', () => {
+      magnet.style.transition = 'transform 0.05s ease-out, background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, color 0.25s ease';
+    });
     magnet.addEventListener('mousemove', (e) => {
       const rect = magnet.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
-      magnet.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+      magnet.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
     });
     magnet.addEventListener('mouseleave', () => {
-      magnet.style.transform = 'translate(0px, 0px)';
+      magnet.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, color 0.25s ease';
+      magnet.style.transform = '';
     });
   });
 
