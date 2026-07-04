@@ -208,20 +208,22 @@
       opacity: 0; animation: fadeUp .7s .7s ease forwards;
     }
     .btn-primary {
+      display: inline-block;
       background: var(--blue); color: #fff;
       padding: .72rem 1.8rem; border-radius: 3px;
       text-decoration: none; font-weight: 600; font-size: .84rem;
-      letter-spacing: .03em; transition: all .25s; border: none; cursor: pointer;
+      letter-spacing: .03em; transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease; border: none; cursor: pointer;
     }
     .btn-primary:hover {
       background: var(--blue-hover); transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(107,146,181,.3);
     }
     .btn-outline {
+      display: inline-block;
       border: 1px solid var(--border); color: var(--navy);
       padding: .72rem 1.8rem; border-radius: 3px;
       text-decoration: none; font-weight: 500; font-size: .84rem;
-      transition: all .25s; background: transparent; cursor: pointer;
+      transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease; background: transparent; cursor: pointer;
     }
     .btn-outline:hover {
       border-color: var(--blue); color: var(--blue);
@@ -1465,7 +1467,7 @@
     <p class="hero-tagline">BBA Marketing graduate bridging retail operations with web analytics and CRM databases to coordinate campaigns. Experienced in retail SKU audits, visual planogram execution, and client dashboard reporting.</p>
     <div class="hero-cta">
       <a href="#case-studies" class="btn-primary">View Case Studies</a>
-      <a href="Rai_Abdul_Rehman_CV.pdf" target="_blank" class="btn-outline">Download CV</a>
+      <a href="Rai_Abdul_Rehman_CV.pdf" download="Rai_Abdul_Rehman_CV.pdf" class="btn-outline">Download CV</a>
       <a href="#contact" class="btn-outline">Get in Touch</a>
     </div>
   </div>
