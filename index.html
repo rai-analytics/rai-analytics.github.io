@@ -32,40 +32,59 @@
       --blue-border: rgba(107,146,181,.3);
       --serif:       'Source Serif 4', Georgia, serif;
       --sans:        'Inter', system-ui, sans-serif;
+      --nav-bg:      rgba(255,255,255,.85);
+      --nav-mobile:  rgba(255,255,255,.98);
     }
 
     [data-theme="dark"] {
-      --white:       #111215;       /* Rich Dark background */
-      --ice:         #1A1C20;       /* Slate cards / panels background */
-      --light-gray:  #151619;       /* Section background */
-      --border:      #272B33;       /* Muted borders */
-      --border-l:    #1E2127;       /* Separator borders */
-      --slate:       #94A3B8;       /* Muted grey body text */
+      --white:       #0B0F19;       /* Deep stargazing midnight background */
+      --ice:         #111827;       /* Frosted card/panel background */
+      --light-gray:  #0E1626;       /* Alternate section background */
+      --border:      rgba(107, 146, 181, 0.12);
+      --border-l:    rgba(107, 146, 181, 0.08);
+      --slate:       #94A3B8;       /* Slate body text */
       --muted:       #64748B;       /* Muted metadata */
       --text:        #E2E8F0;       /* Bright body text */
       --navy:        #F8FAFC;       /* Off-white headings */
-      --blue-hover:  #89AED1;       /* Light blue for hover */
-      --blue-light:  rgba(107,146,181,.15);
-      --blue-border: rgba(107,146,181,.4);
+      --blue:        #8EAFCE;       /* Brighter brand blue for readability */
+      --blue-hover:  #AEC8E2;       /* Hover state for blue */
+      --blue-light:  rgba(142, 175, 206, 0.08);
+      --blue-border: rgba(142, 175, 206, 0.2);
+      --nav-bg:      rgba(11, 15, 25, 0.85);
+      --nav-mobile:  rgba(17, 24, 39, 0.98);
     }
 
-    /* Theme Toggle Button */
+    /* Ambient Canvas behind the website content */
+    #magicalCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    section, nav, footer, .stats-bar {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Theme Toggle Button (Borderless & Spinning Hover) */
     .theme-btn {
       background: none;
-      border: 1px solid var(--border);
-      border-radius: 4px;
+      border: none;
       padding: 0.35rem;
-      color: var(--slate);
+      color: var(--blue);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s;
+      transition: color 0.2s ease, transform 0.3s ease;
     }
     .theme-btn:hover {
       color: var(--navy);
-      border-color: var(--blue-border);
-      background: var(--ice);
+      transform: rotate(15deg);
     }
 
     html { scroll-behavior: smooth; }
@@ -84,7 +103,7 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 1.1rem 2.5rem;
       display: flex; align-items: center; justify-content: space-between;
-      background: rgba(255,255,255,.85);
+      background: var(--nav-bg);
       backdrop-filter: blur(12px);
       transition: all .3s ease;
     }
@@ -119,7 +138,7 @@
       .nav-links.open {
         display: flex; flex-direction: column;
         position: absolute; top: 100%; left: 0; right: 0;
-        background: rgba(255,255,255,.98);
+        background: var(--nav-mobile);
         padding: 1.5rem 2rem; gap: 1.4rem;
         border-bottom: 1px solid var(--border);
         box-shadow: 0 4px 16px rgba(0,0,0,.06);
@@ -402,38 +421,517 @@
       .pipe-arrow { transform: rotate(90deg); }
     }
 
-    /* ── CASE STUDIES (Placeholder) ─────────────────────────── */
+    /* ── CASE STUDIES (Interactive Morphs) ─────────────────── */
     .case-studies-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;
-      margin-top: 1.5rem;
+      margin-top: 1.8rem;
     }
     @media (max-width: 900px) { .case-studies-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 640px) { .case-studies-grid { grid-template-columns: 1fr; } }
+    
     .case-card {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 8px; padding: 1.8rem 1.5rem;
-      transition: all .25s; position: relative; overflow: hidden;
+      background: var(--ice); border: 1px solid var(--border);
+      border-radius: 12px; padding: 2rem 1.8rem;
+      display: flex; flex-direction: column; justify-content: space-between;
+      cursor: pointer; position: relative; height: 260px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01), 0 0 20px rgba(107,146,181,0.02);
+      transition: all 0.75s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .case-card:hover { border-color: var(--blue-border); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.06); }
-    .case-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: var(--blue); opacity: 0; transition: opacity .25s;
+    
+    .case-card:hover:not(.expanded) {
+      border-color: var(--blue-border);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 0 30px rgba(107,146,181,0.1);
+      transform: translateY(-4px);
     }
-    .case-card:hover::before { opacity: 1; }
+
+    .case-card.expanded {
+      position: fixed;
+      width: 92%;
+      max-width: 1120px;
+      height: 85vh;
+      max-height: 740px;
+      z-index: 1000;
+      cursor: default;
+      transform: none !important;
+      background: var(--white);
+      box-shadow: 0 0 80px rgba(107, 146, 181, 0.18), 0 40px 80px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .card-initial-content {
+      opacity: 1;
+      transition: opacity 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .case-card.expanded .card-initial-content {
+      opacity: 0;
+      pointer-events: none;
+      display: none;
+    }
+
     .case-tag {
       font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
       color: var(--blue); font-weight: 600; margin-bottom: .5rem;
     }
     .case-title {
-      font-family: var(--serif); font-size: 1.05rem; font-weight: 600;
+      font-family: var(--serif); font-size: 1.15rem; font-weight: 600;
       color: var(--navy); line-height: 1.35; margin-bottom: .5rem;
     }
     .case-desc { font-size: .82rem; color: var(--slate); line-height: 1.65; margin-bottom: .8rem; }
-    .case-tools { display: flex; gap: .35rem; flex-wrap: wrap; }
-    .case-tool {
-      font-size: .62rem; color: var(--muted); background: var(--ice);
-      padding: .15rem .5rem; border-radius: 10px; font-weight: 500;
+    
+    .card-action {
+      font-size: 0.78rem; font-weight: 600; color: var(--blue);
+      border-bottom: 1px solid var(--blue-border); align-self: flex-start;
+      padding-bottom: 2px; transition: color 0.2s;
     }
+    .case-card:hover .card-action {
+      color: var(--blue-hover);
+      border-bottom-color: var(--blue);
+    }
+
+    /* Expanded UI Container */
+    .expanded-showcase {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.5s ease 0.4s;
+    }
+    .case-card.expanded .expanded-showcase {
+      display: flex;
+      opacity: 1;
+    }
+
+    .portal-header {
+      padding: 0.9rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      background: var(--light-gray);
+      height: 60px;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .status-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--blue);
+      background: var(--blue-light);
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--blue-border);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+      animation: pulseBlue 1.5s infinite;
+    }
+    @keyframes pulseBlue {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    .timeline-progress-track {
+      flex: 1;
+      width: 180px;
+      height: 2px;
+      background: var(--border);
+      position: relative;
+      overflow: hidden;
+      margin: 0 1.5rem;
+    }
+    .timeline-progress-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background: var(--blue);
+      transition: width 0.1s linear;
+    }
+    .skip-btn {
+      background: var(--white);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.4rem 1.1rem;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    .skip-btn:hover {
+      background: var(--ice);
+      border-color: var(--blue);
+    }
+
+    /* Simulation Workspace */
+    .workspace-layout {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .logging-terminal {
+      width: 32%;
+      border-right: 1px solid var(--border);
+      background: var(--light-gray);
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      overflow: hidden;
+      position: relative;
+    }
+    .terminal-title {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      color: var(--slate);
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4rem;
+      font-weight: 700;
+    }
+    .terminal-history {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      line-height: 1.55;
+    }
+    .log-line {
+      opacity: 0;
+      transform: translateY(5px);
+      animation: logFadeIn 0.3s ease forwards;
+    }
+    @keyframes logFadeIn {
+      to { opacity: 1; transform: none; }
+    }
+    .log-time { color: var(--muted); }
+    .log-info { color: var(--text); }
+    .log-warn { color: #DC2626; }
+    .log-success { color: #16A34A; }
+    
+    [data-theme="dark"] .log-warn { color: #F87171; }
+    [data-theme="dark"] .log-success { color: #4ADE80; }
+
+    .mockup-workspace {
+      width: 68%;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      gap: 1rem;
+      background: var(--white);
+    }
+    
+    .editor-pane {
+      flex: 1.1;
+      border-radius: 8px;
+      background: var(--light-gray);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      height: 50%;
+    }
+    .pane-titlebar {
+      height: 28px;
+      background: var(--ice);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      gap: 6px;
+      font-size: 0.62rem;
+      color: var(--slate);
+      font-weight: 600;
+    }
+    .pane-tab {
+      margin-left: 1rem;
+      background: var(--light-gray);
+      padding: 3px 10px;
+      border-radius: 4px 4px 0 0;
+      border: 1px solid var(--border);
+      border-bottom: none;
+    }
+    .pane-body {
+      flex: 1;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 0.72rem;
+      line-height: 1.6;
+      overflow-y: auto;
+      color: var(--text);
+    }
+
+    .browser-pane {
+      flex: 0.9;
+      border-radius: 8px;
+      background: var(--light-gray);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      height: 50%;
+      position: relative;
+    }
+    .browser-url-bar {
+      height: 28px;
+      background: var(--ice);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 0.8rem;
+      gap: 10px;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot-red { background: #EF4444; }
+    .dot-yellow { background: #F59E0B; }
+    .dot-green { background: #10B981; }
+    .browser-address {
+      flex: 1;
+      background: var(--light-gray);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      font-size: 0.6rem;
+      color: var(--slate);
+    }
+    .browser-body {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: var(--white);
+    }
+
+    .app-screen-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .funnel-simulation {
+      display: none;
+      width: 220px;
+      height: 100%;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.5rem;
+      position: relative;
+    }
+    .funnel-bar {
+      height: 24px;
+      background: var(--light-gray);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+      font-size: 0.68rem;
+      color: var(--text);
+    }
+    .funnel-bar.alert {
+      border-color: #EF4444;
+      background: rgba(239, 68, 68, 0.08);
+      color: #EF4444;
+    }
+    .dropoff-alert {
+      position: absolute;
+      right: -130px;
+      top: 25%;
+      background: #DC2626;
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px solid #FF5555;
+      box-shadow: 0 6px 15px rgba(220, 38, 38, 0.25);
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .dropoff-alert.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    .mock-cursor {
+      position: absolute; width: 14px; height: 14px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231B2A4A'%3E%3Cpath d='M4.5 3v15.2l3.8-3.8 2.9 6.8 2.6-1.1-2.9-6.8 5.3-.5L4.5 3z'/%3E%3C/svg%3E") no-repeat;
+      z-index: 100; pointer-events: none;
+      top: 60%; left: 60%;
+      transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    [data-theme="dark"] .mock-cursor {
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M4.5 3v15.2l3.8-3.8 2.9 6.8 2.6-1.1-2.9-6.8 5.3-.5L4.5 3z'/%3E%3C/svg%3E") no-repeat;
+    }
+
+    .crm-builder-flow {
+      display: none;
+      width: 90%;
+      height: 90%;
+      flex-direction: column;
+      gap: 0.6rem;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .flow-node {
+      background: var(--light-gray);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.68rem;
+      color: var(--text);
+      align-self: center;
+      position: relative;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.5s ease;
+    }
+    .flow-arrow {
+      height: 15px;
+      width: 1px;
+      background: var(--border);
+      align-self: center;
+      position: relative;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .flow-arrow::after {
+      content: '▼';
+      position: absolute;
+      bottom: -4px;
+      left: -3px;
+      font-size: 5px;
+      color: var(--border);
+    }
+
+    .chart-rendering-view {
+      display: none;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .glow-circle {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(107, 146, 181, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .svg-canvas {
+      width: 320px;
+      height: 120px;
+      overflow: visible;
+    }
+    .chart-curve {
+      stroke: var(--blue);
+      stroke-width: 3;
+      fill: none;
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+    }
+    .glow-dot {
+      fill: var(--white);
+      stroke: var(--blue);
+      stroke-width: 2.5;
+      opacity: 0;
+      transform: scale(0.5);
+      transform-origin: center;
+      transition: all 0.5s ease;
+    }
+
+    .browser-console {
+      height: 35px;
+      background: var(--ice);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      font-family: monospace;
+      font-size: 0.65rem;
+      color: var(--slate);
+    }
+    .console-indicator {
+      color: #EF4444;
+      font-weight: bold;
+      margin-right: 6px;
+    }
+    .console-indicator.success {
+      color: #10B981;
+    }
+
+    .resting-tab-layout {
+      display: none;
+      flex-direction: column;
+      height: 100%;
+      animation: explorerSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes explorerSlideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: none; }
+    }
+    .explorer-navbar { display: flex; border-bottom: 1px solid var(--border); background: var(--light-gray); }
+    .tab-btn {
+      padding: 1.2rem 2.2rem; border: none; background: transparent;
+      color: var(--slate); font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;
+      border-bottom: 2px solid transparent; transition: all 0.3s;
+    }
+    .tab-btn.active { color: var(--navy); border-bottom-color: var(--blue); background: var(--white); }
+    .explorer-viewport { flex: 1; padding: 2.5rem 3rem; overflow-y: auto; background: var(--white); }
+    .panel-view { display: none; }
+    .panel-view.active { display: block; }
+
+    .table-container {
+      width: 100%; border: 1px solid var(--border); border-radius: 8px;
+      overflow: hidden; margin-top: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    }
+    .schema-grid-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; text-align: left; }
+    .schema-grid-table th { background: var(--light-gray); padding: 1rem 1.2rem; font-weight: 600; color: var(--blue); border-bottom: 1px solid var(--border); }
+    .schema-grid-table td { padding: 1rem 1.2rem; border-bottom: 1px solid var(--border); color: var(--slate); }
+    .schema-grid-table tr:last-child td { border-bottom: none; }
+    .schema-grid-table tr:hover td { background: var(--ice); color: var(--text); }
+
+    /* Custom highlight coloring inside code editor */
+    .keyword { color: #D97706; }
+    .variable { color: #2563EB; }
+    .string { color: #059669; }
+    .comment { color: var(--slate); font-style: italic; }
+    [data-theme="dark"] .keyword { color: #FB923C; }
+    [data-theme="dark"] .variable { color: #60A5FA; }
+    [data-theme="dark"] .string { color: #34D399; }
     .case-coming {
       font-size: .65rem; color: var(--muted); font-style: italic;
       text-align: center; padding: 2rem 1rem;
@@ -725,7 +1223,7 @@
     .chart-tooltip {
       position: absolute;
       background: rgba(27, 42, 74, 0.97);
-      color: var(--white);
+      color: #FFFFFF;
       padding: .7rem 1rem;
       border-radius: 4px;
       font-size: .72rem;
@@ -745,7 +1243,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.2);
       padding-bottom: .25rem;
       margin-bottom: .4rem;
-      color: var(--ice);
+      color: #F0F5FA;
     }
     .tooltip-row {
       display: flex;
@@ -758,7 +1256,7 @@
     }
     .tooltip-val {
       font-weight: 600;
-      color: var(--white);
+      color: #FFFFFF;
     }
 
     /* ── TAB 5 EXECUTIVE INSIGHTS ────────────────────────────── */
@@ -884,6 +1382,9 @@
 </head>
 <body>
 
+<!-- Ambient Particles Canvas -->
+<canvas id="magicalCanvas"></canvas>
+
 <!-- NAV -->
 <nav id="nav">
   <div style="display: flex; align-items: center; gap: 1.2rem;">
@@ -913,14 +1414,14 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-content">
-    <p class="hero-eyebrow">Marketing &amp; Research Analytics · Lahore, Pakistan</p>
+    <p class="hero-eyebrow">Marketing Operations &amp; Analytics · Lahore, Pakistan</p>
     <h1 class="hero-name">Abdul <span>Rehman</span></h1>
     <div class="hero-avatar-wrap">
       <img src="rehman_headshot.png" alt="Abdul Rehman" class="hero-avatar">
     </div>
-    <p class="hero-tagline">Marketing analyst with a research edge. I use financial data and consumer insights to help brands make sharper decisions, and I built a panel dataset of 15 Pakistani companies to prove it.</p>
+    <p class="hero-tagline">BBA Marketing graduate bridging retail operations with web analytics and CRM databases to coordinate campaigns. Experienced in retail SKU audits, visual planogram execution, and client dashboard reporting.</p>
     <div class="hero-cta">
-      <a href="#research" class="btn-primary">View Research</a>
+      <a href="#case-studies" class="btn-primary">View Case Studies</a>
       <a href="Rai_Abdul_Rehman_CV.pdf" target="_blank" class="btn-outline">Download CV</a>
       <a href="#contact" class="btn-outline">Get in Touch</a>
     </div>
@@ -1314,48 +1815,35 @@
       </div>
     </div>
 
-    <!-- Growth Operations & Strategy Case Studies -->
+    <!-- Current Portfolio Builds -->
     <div class="reveal" style="margin-top: 3.5rem;">
-      <h3 style="font-family: var(--serif); font-size: 1.4rem; color: var(--navy); margin-bottom: 0.4rem; text-align: center;">Growth Operations &amp; Strategy Case Studies</h3>
-      <p style="font-size: 0.88rem; color: var(--slate); text-align: center; max-width: 550px; margin: 0 auto 2.2rem; line-height: 1.6;">Applying quantitative analytics and marketing systems to resolve real-world startup acquisition and retention bottlenecks.</p>
+      <h3 style="font-family: var(--serif); font-size: 1.4rem; color: var(--navy); margin-bottom: 0.4rem; text-align: center;">Current Portfolio Builds (In Progress)</h3>
+      <p style="font-size: 0.88rem; color: var(--slate); text-align: center; max-width: 550px; margin: 0 auto 2.2rem; line-height: 1.6;">Actively building hands-on analytical pipelines and operational dashboards to demonstrate technical capability.</p>
       
       <div class="case-studies-grid">
         <!-- Case Study 1 -->
-        <div class="case-card reveal">
-          <p class="case-tag">Growth Operations</p>
-          <h4 class="case-title">Metric App — PLG Funnel &amp; GA4 Tracking Scheme</h4>
-          <p class="case-desc">Diagnosed onboarding drop-off by implementing a custom GA4 event tracking schema and an automated HubSpot lifecycle nurture workflow triggered on step delays.</p>
+        <div class="case-card reveal" style="cursor: default;">
+          <p class="case-tag">Web Analytics & Automation</p>
+          <h4 class="case-title">Autonomous B2B Web Tracking Auditor</h4>
+          <p class="case-desc">Developing a Python-based diagnostic script to crawl target domains, audit Google Tag Manager, GA4, and Meta Pixel installations, and generate structured health reports.</p>
           <div class="case-tools">
+            <span class="case-tool">Python</span>
             <span class="case-tool">GA4</span>
             <span class="case-tool">GTM</span>
-            <span class="case-tool">HubSpot CRM</span>
-            <span class="case-tool">Funnel Audit</span>
+            <span class="case-tool">BeautifulSoup</span>
           </div>
         </div>
 
         <!-- Case Study 2 -->
-        <div class="case-card reveal">
-          <p class="case-tag">SEO &amp; Content Strategy</p>
-          <h4 class="case-title">FitXpert — Search Intent Clustering &amp; SEO Architecture</h4>
-          <p class="case-desc">Built a B2B keyword cluster targeting Arabic-speaking personal trainers to drive organic customer acquisition and bypass competitive Google Ads CPC.</p>
+        <div class="case-card reveal" style="cursor: default;">
+          <p class="case-tag">Operational Analytics</p>
+          <h4 class="case-title">ERP-Driven Retail Inventory Reconciliation</h4>
+          <p class="case-desc">Building an end-to-end analytical dashboard modeling physical inventory counts against ERP point-of-sale data to visualize shrinkage, stockouts, and demand forecasting.</p>
           <div class="case-tools">
-            <span class="case-tool">Keyword Research</span>
-            <span class="case-tool">On-Page SEO</span>
-            <span class="case-tool">Content Strategy</span>
-            <span class="case-tool">Arabic Clustering</span>
-          </div>
-        </div>
-
-        <!-- Case Study 3 -->
-        <div class="case-card reveal">
-          <p class="case-tag">Demand Gen &amp; Operations</p>
-          <h4 class="case-title">SiFi — Enterprise Lead Scoring &amp; ABM Workflows</h4>
-          <p class="case-desc">Developed a quantitative lead prioritization matrix in Excel and automated CRM lead routing variables in HubSpot to optimize enterprise sales team time.</p>
-          <div class="case-tools">
-            <span class="case-tool">ABM</span>
             <span class="case-tool">Excel Modeling</span>
-            <span class="case-tool">Lead Scoring</span>
-            <span class="case-tool">CRM Automation</span>
+            <span class="case-tool">Looker Studio</span>
+            <span class="case-tool">ERP Data</span>
+            <span class="case-tool">Pivot Tables</span>
           </div>
         </div>
       </div>
