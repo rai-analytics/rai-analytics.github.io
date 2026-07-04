@@ -2755,6 +2755,9 @@
       skewElements.forEach(el => el.style.transform = `skewY(0deg)`);
     }
     requestAnimationFrame(renderSkew);
+  };
+  renderSkew();
+
   // ── INTERSECTION OBSERVER FOR SCROLL REVEALS ──
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
