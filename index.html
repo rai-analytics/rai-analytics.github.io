@@ -1378,9 +1378,39 @@
       .reveal { opacity: 1; transform: none; }
       body { font-size: 11pt; }
     }
+    /* ── DESIGN SPELLS ───────────────────────────────────────── */
+    @media (pointer: fine) {
+      body, a, button, .case-card, .btn-primary, .btn-outline { cursor: none !important; }
+      .cursor-dot, .cursor-outline {
+        position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+        border-radius: 50%; z-index: 9999; pointer-events: none;
+      }
+      .cursor-dot { width: 8px; height: 8px; background-color: var(--blue); transition: opacity 0.2s; }
+      .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(43, 108, 176, 0.5); transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s; }
+      .cursor-hover .cursor-dot { opacity: 0; }
+      .cursor-hover .cursor-outline { width: 60px; height: 60px; background-color: rgba(43, 108, 176, 0.1); border-color: rgba(43, 108, 176, 0.8); }
+    }
+    @media (pointer: coarse) {
+      .cursor-dot, .cursor-outline { display: none; }
+    }
+
+    .case-card {
+      position: relative; overflow: hidden;
+    }
+    .case-card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(600px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(43, 108, 176, 0.06), transparent 40%);
+      opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 0;
+    }
+    .case-card:hover::before { opacity: 1; }
+    .case-card > * { position: relative; z-index: 1; }
   </style>
 </head>
 <body>
+
+<!-- DESIGN SPELLS: Custom Cursor -->
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
 
 <!-- Ambient Particles Canvas -->
 <canvas id="magicalCanvas"></canvas>
@@ -2580,6 +2610,64 @@
     });
   }, { threshold: 0.06 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  // ── DESIGN SPELLS ──────────────────────────────────────────
+  
+  // 1. Custom Morphing Cursor
+  const cursorDot = document.querySelector('.cursor-dot');
+  const cursorOutline = document.querySelector('.cursor-outline');
+  
+  if (window.matchMedia("(pointer: fine)").matches && cursorDot && cursorOutline) {
+    let mouseX = 0, mouseY = 0;
+    let outlineX = 0, outlineY = 0;
+    
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursorDot.style.left = `${mouseX}px`;
+      cursorDot.style.top = `${mouseY}px`;
+    });
+    
+    const animateCursor = () => {
+      outlineX += (mouseX - outlineX) * 0.15;
+      outlineY += (mouseY - outlineY) * 0.15;
+      cursorOutline.style.left = `${outlineX}px`;
+      cursorOutline.style.top = `${outlineY}px`;
+      requestAnimationFrame(animateCursor);
+    };
+    animateCursor();
+    
+    const clickables = document.querySelectorAll('a, button, .case-card');
+    clickables.forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+  }
+
+  // 2. Flashlight Glow on Cards
+  const caseCards = document.querySelectorAll('.case-card');
+  caseCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+
+  // 3. Magnetic Buttons
+  const magnets = document.querySelectorAll('.btn-primary, .btn-outline');
+  magnets.forEach(magnet => {
+    magnet.addEventListener('mousemove', (e) => {
+      const rect = magnet.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      magnet.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+    });
+    magnet.addEventListener('mouseleave', () => {
+      magnet.style.transform = 'translate(0px, 0px)';
+    });
+  });
 </script>
 </body>
 </html>
