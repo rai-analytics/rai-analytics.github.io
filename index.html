@@ -2627,16 +2627,7 @@
     a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
   );
 
-  // Scroll reveal with stagger
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.06 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
   // ── DESIGN SPELLS ──────────────────────────────────────────
   
   // 1. Custom Morphing Cursor
