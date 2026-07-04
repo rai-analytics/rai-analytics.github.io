@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live GA4 E-Commerce Dashboard | Rai Abdul Rehman</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #2b6cb0;
+            --navy: #1a365d;
+            --slate: #4a5568;
+            --bg: #f7fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+        }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--bg);
+            color: var(--slate);
+        }
+        .nav-header {
+            background: var(--white);
+            padding: 1.2rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .nav-header h1 {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--navy);
+        }
+        .btn-back {
+            text-decoration: none;
+            color: var(--blue);
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.2s ease;
+        }
+        .btn-back:hover {
+            color: var(--navy);
+        }
+        .dashboard-container {
+            width: 100%;
+            height: calc(100vh - 70px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: var(--bg);
+        }
+        .placeholder-box {
+            background: var(--white);
+            border: 1px dashed #cbd5e0;
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            text-align: center;
+            max-width: 600px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+        .placeholder-box h2 {
+            color: var(--navy);
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+        .placeholder-box p {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .code-snippet {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            text-align: left;
+            overflow-x: auto;
+        }
+        /* The actual iframe class once the link is added */
+        .live-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: none; /* Hidden until URL is added */
+        }
+    </style>
+</head>
+<body>
+
+    <header class="nav-header">
+        <h1>Live GA4 E-Commerce Performance Dashboard</h1>
+        <a href="index.html" class="btn-back">&larr; Back to Portfolio</a>
+    </header>
+
+    <main class="dashboard-container">
+        
+        <!-- PLACEHOLDER INSTRUCTIONS (Remove this entire div once you have the iframe) -->
+        <div class="placeholder-box">
+            <h2>Dashboard Integration Pending</h2>
+            <p>Your Looker Studio dashboard will be embedded right here, taking up the full screen natively.</p>
+            <p><strong>To activate this:</strong> Go to Looker Studio &rarr; File &rarr; Embed Report &rarr; Enable Embedding &rarr; Copy the <strong>Embed URL</strong>.</p>
+            <div class="code-snippet">
+                &lt;iframe class="live-iframe" style="display:block;" <br>
+                &nbsp;&nbsp;src="PASTE_YOUR_EMBED_URL_HERE" <br>
+                &nbsp;&nbsp;allowfullscreen&gt;<br>
+                &lt;/iframe&gt;
+            </div>
+        </div>
+
+        <!-- ACTUAL IFRAME (Uncomment and paste URL here) -->
+        <!-- <iframe class="live-iframe" src="YOUR_EMBED_URL_HERE" allowfullscreen></iframe> -->
+
+    </main>
+
+</body>
+</html>
