@@ -159,14 +159,14 @@
     .hero-eyebrow {
       font-size: .7rem; letter-spacing: .22em; text-transform: uppercase;
       color: var(--blue); margin-bottom: 1rem; font-weight: 600;
-      opacity: 0; visibility: hidden;
+      opacity: 0; animation: fadeUp .7s .2s ease forwards;
     }
     .hero-name {
       font-family: var(--sans);
       font-size: clamp(4rem, 12vw, 8.5rem);
       font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 1.5rem;
       color: var(--navy); text-transform: uppercase;
-      opacity: 0; visibility: hidden;
+      opacity: 0; animation: fadeUp .7s .35s ease forwards;
     }
     .hero-name span { color: var(--blue); }
     .hero-avatar-wrap {
@@ -182,7 +182,7 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      opacity: 0; visibility: hidden;
+      opacity: 0; animation: fadeUp .7s .45s ease forwards;
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .hero-avatar-wrap:hover {
@@ -200,11 +200,11 @@
       font-size: clamp(.92rem, 2.2vw, 1.08rem);
       color: var(--slate); max-width: 560px;
       margin: 0 auto 2.4rem; font-weight: 300; line-height: 1.85;
-      opacity: 0; visibility: hidden;
+      opacity: 0; animation: fadeUp .7s .55s ease forwards;
     }
     .hero-cta {
       display: flex; gap: .9rem; justify-content: center; flex-wrap: wrap;
-      opacity: 0; visibility: hidden;
+      opacity: 0; animation: fadeUp .7s .7s ease forwards;
     }
     .btn-primary {
       display: inline-block;
@@ -233,7 +233,7 @@
     .hero-scroll {
       position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: .4rem;
-      opacity: 0; visibility: hidden;
+      opacity: 0; animation: fadeUp .7s 1s ease forwards;
     }
     .hero-scroll span { font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
     .scroll-line {
@@ -292,7 +292,8 @@
     }
     .sec-rule { width: 38px; height: 2px; background: var(--blue); margin-bottom: 2.2rem; }
 
-    .reveal { opacity: 0; visibility: hidden; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
 
     section.alt { background: var(--light-gray); }
 
@@ -2749,59 +2750,16 @@
       skewElements.forEach(el => el.style.transform = `skewY(0deg)`);
     }
     requestAnimationFrame(renderSkew);
-  };
-  renderSkew();
-</script>
-<!-- GSAP & ScrollTrigger -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- Lenis Smooth Scroll -->
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-<script>
-  // Initialize Lenis
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smooth: true
-  });
-
-  // Sync Lenis with GSAP ScrollTrigger
-  lenis.on('scroll', ScrollTrigger.update);
-
-  gsap.ticker.add((time)=>{
-    lenis.raf(time * 1000);
-  });
-  gsap.ticker.lagSmoothing(0);
-
-  // Register GSAP ScrollTrigger
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Apply GSAP ScrollTrigger to all .reveal elements
-  gsap.utils.toArray('.reveal').forEach(elem => {
-    gsap.fromTo(elem, 
-      { autoAlpha: 0, y: 60 }, 
-      { 
-        autoAlpha: 1, 
-        y: 0, 
-        duration: 1.2, 
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: elem,
-          start: "top 85%",
-          toggleActions: "play none none reverse"
-        }
+  // ── INTERSECTION OBSERVER FOR SCROLL REVEALS ──
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 100);
+        io.unobserve(e.target);
       }
-    );
-  });
-
-  // GSAP Initial Hero Load Timeline
-  const tl = gsap.timeline();
-  tl.fromTo('.hero-eyebrow', { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 1, ease: "power4.out" }, 0.2)
-    .fromTo('.hero-name', { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 1.2, ease: "power4.out" }, 0.3)
-    .fromTo('.hero-avatar-wrap', { autoAlpha: 0, scale: 0.8 }, { autoAlpha: 1, scale: 1, duration: 1.2, ease: "back.out(1.7)" }, 0.4)
-    .fromTo('.hero-tagline', { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 1, ease: "power4.out" }, 0.5)
-    .fromTo('.hero-cta', { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 1, ease: "power4.out" }, 0.6)
-    .fromTo('.hero-scroll', { autoAlpha: 0 }, { autoAlpha: 1, duration: 1.5, ease: "power2.out" }, 1.0);
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 </body>
 </html>
