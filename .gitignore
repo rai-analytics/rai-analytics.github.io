@@ -22,3 +22,7 @@ rehman_linkedin_banner.png
 .gemini/
 Thumbs.db
 .DS_Store
+
+# Local-only working files (not part of the site)
+.claude/
+rework_screens/
