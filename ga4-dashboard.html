@@ -49,9 +49,17 @@
         .btn-back:hover {
             color: var(--navy);
         }
+        .data-note {
+            margin: 0;
+            padding: 0.6rem 2rem;
+            font-size: 0.85rem;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+        }
+        .data-note a { color: var(--blue); }
         .dashboard-container {
             width: 100%;
-            height: calc(100vh - 70px);
+            height: calc(100vh - 110px);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -99,9 +107,10 @@
 <body>
 
     <header class="nav-header">
-        <h1>Live GA4 E-Commerce Performance Dashboard</h1>
-        <a href="index.html" class="btn-back">&larr; Back to Portfolio</a>
+        <h1>GA4 E-Commerce Dashboard</h1>
+        <a href="index.html#projects" class="btn-back">&larr; Back to portfolio</a>
     </header>
+    <p class="data-note">Built in Looker Studio on Google's public GA4 demo account (Google Merchandise Store). Not client data. If the report does not load below, <a href="https://lookerstudio.google.com/reporting/3288760a-bf41-462f-9072-c723a4bafa06/page/odu2F" target="_blank" rel="noopener">open it in Looker Studio</a>.</p>
 
     <main class="dashboard-container">
         

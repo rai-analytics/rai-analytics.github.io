@@ -3,1624 +3,659 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Abdul Rehman — FMCG Marketing & Research Analyst, Lahore. Data-driven marketing research on Pakistan's consumer goods sector.">
-  <title>Abdul Rehman — FMCG Marketing & Research Analyst</title>
+  <title>Abdul Rehman | Business Reporting and Marketing Analytics, Lahore</title>
+  <meta name="description" content="Abdul Rehman, Lahore. I turn messy business data into reports people act on. Business reporting and marketing analytics in Excel, Power BI and SQL. Open to Reporting, MIS and Marketing Analyst roles and small freelance projects.">
+  <link rel="canonical" href="https://rai-analytics.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rai-analytics.github.io/">
+  <meta property="og:title" content="Abdul Rehman | Business Reporting and Marketing Analytics">
+  <meta property="og:description" content="I turn messy business data into reports people act on. Lahore, Pakistan. Open to Reporting, MIS and Marketing Analyst roles and small freelance projects.">
+  <meta property="og:image" content="https://rai-analytics.github.io/rehman_headshot_sm.jpg">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231D4ED8'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EAR%3C/text%3E%3C/svg%3E">
+  <script>
+    /* Theme before first paint: light unless the visitor chose dark before. */
+    (function () {
+      var t = 'light';
+      try { t = localStorage.getItem('theme') || 'light'; } catch (e) {}
+      if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      document.documentElement.classList.add('js');
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* ═══════════════════════════════════════════════════════════
-       DESIGN SYSTEM — Abdul Rehman Brand
-       Palette: Powder Blue · Navy · White · Slate
-       Derived from: his wardrobe, his references, his instinct
-    ═══════════════════════════════════════════════════════════ */
+    /* ===== Tokens ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --white:       #FFFFFF;
-      --ice:         #F8FAFC;
-      --card-bg:     rgba(255, 255, 255, 0.45);
-      --light-gray:  #F1F5F9;
+      color-scheme: light;
+      --bg:          #FFFFFF;
+      --bg-alt:      #F8FAFC;
+      --card:        #FFFFFF;
       --border:      #E2E8F0;
-      --border-l:    #F1F5F9;
-      --slate:       #475569;
-      --muted:       #94A3B8;
+      --border-soft: #EEF2F6;
       --text:        #0F172A;
-      --navy:        #0B0F19;
-      --blue:        #3B82F6;
-      --blue-hover:  #2563EB;
-      --blue-light:  rgba(59, 130, 246, 0.08);
-      --blue-border: #93C5FD;
-      --serif:       'Source Serif 4', Georgia, serif;
-      --sans:        'Inter', system-ui, sans-serif;
-      --nav-bg:      rgba(255,255,255,0.95);
-      --nav-mobile:  rgba(255,255,255,1);
+      --heading:     #0B1220;
+      --body:        #334155;
+      --muted:       #64748B;
+      --accent:      #1D4ED8;
+      --accent-text: #1D4ED8;
+      --accent-soft: rgba(29, 78, 216, 0.07);
+      --accent-line: #BFD3F8;
+      --on-accent:   #FFFFFF;
+      --coral:       #D9482F;
+      --nav-bg:      rgba(255, 255, 255, 0.92);
+      --shadow:      0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.04);
+
+      --serif: 'Source Serif 4', Georgia, serif;
+      --sans:  'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+      /* spacing scale */
+      --s1: .5rem; --s2: 1rem; --s3: 1.5rem; --s4: 2rem; --s5: 3rem; --s6: 5rem;
+      /* type scale */
+      --t-xs: .75rem; --t-sm: .875rem; --t-md: 1rem; --t-lg: 1.125rem; --t-xl: 1.375rem;
+      --radius: 10px;
     }
 
     [data-theme="dark"] {
-      --white:       #0B0F19;
-      --ice:         #111827;
-      --card-bg:     rgba(17, 24, 39, 0.45);
-      --light-gray:  #0E1626;
-      --border:      rgba(107, 146, 181, 0.12);
-      --border-l:    rgba(107, 146, 181, 0.08);
-      --slate:       #94A3B8;
-      --muted:       #64748B;
+      color-scheme: dark;
+      --bg:          #0B1120;
+      --bg-alt:      #111827;
+      --card:        #0F172A;
+      --border:      #1F2A3C;
+      --border-soft: #182234;
       --text:        #E2E8F0;
-      --navy:        #F8FAFC;
-      --blue:        #8EAFCE;
-      --blue-hover:  #AEC8E2;
-      --blue-light:  rgba(142, 175, 206, 0.08);
-      --blue-border: rgba(142, 175, 206, 0.2);
-      --nav-bg:      rgba(11, 15, 25, 0.85);
-      --nav-mobile:  rgba(17, 24, 39, 0.98);
+      --heading:     #F8FAFC;
+      --body:        #CBD5E1;
+      --muted:       #94A3B8;
+      --accent:      #8AB4F8;
+      --accent-text: #9EC1FA;
+      --accent-soft: rgba(138, 180, 248, 0.10);
+      --accent-line: rgba(138, 180, 248, 0.35);
+      --on-accent:   #0B1120;
+      --coral:       #F28B74;
+      --nav-bg:      rgba(11, 17, 32, 0.9);
+      --shadow:      0 1px 2px rgba(0, 0, 0, 0.3);
     }
 
-    /* Ambient Canvas behind the website content */
-    #magicalCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    section, nav, footer, .stats-bar {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Theme Toggle Button (Borderless & Spinning Hover) */
-    .theme-btn {
-      background: none;
-      border: none;
-      padding: 0.35rem;
-      color: var(--blue);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: color 0.2s ease, transform 0.3s ease;
-    }
-    .theme-btn:hover {
-      color: var(--navy);
-      transform: rotate(15deg);
-    }
-
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
     body {
-      background: var(--white);
+      background: var(--bg);
       color: var(--text);
       font-family: var(--sans);
-      font-weight: 400;
-      line-height: 1.7;
+      font-size: var(--t-md);
+      line-height: 1.65;
       overflow-x: hidden;
     }
+    a { color: var(--accent-text); }
+    img { max-width: 100%; display: block; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
-    /* ── NAV ─────────────────────────────────────────────────── */
+    .skip-link {
+      position: absolute; left: -999px; top: var(--s1);
+      background: var(--accent); color: var(--on-accent);
+      padding: var(--s1) var(--s2); border-radius: 6px; z-index: 200; text-decoration: none;
+    }
+    .skip-link:focus { left: var(--s1); }
+
+    /* ===== Nav ===== */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 1.1rem 2.5rem;
+      height: 64px; padding: 0 var(--s4);
       display: flex; align-items: center; justify-content: space-between;
       background: var(--nav-bg);
-      backdrop-filter: blur(12px);
-      transition: all .3s ease;
+      backdrop-filter: saturate(140%) blur(10px);
+      -webkit-backdrop-filter: saturate(140%) blur(10px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s ease;
     }
-    nav.scrolled {
-      border-bottom: 1px solid var(--border);
-      padding: .85rem 2.5rem;
-      box-shadow: 0 1px 8px rgba(0,0,0,.04);
-    }
+    nav.scrolled { border-bottom-color: var(--border); }
+    .nav-left { display: flex; align-items: center; gap: var(--s2); }
     .nav-logo {
-      font-family: var(--serif); font-weight: 700; font-size: 1.1rem;
-      color: var(--navy); text-decoration: none; letter-spacing: .02em;
+      font-family: var(--serif); font-weight: 700; font-size: 1.15rem;
+      color: var(--heading); text-decoration: none;
     }
-    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .theme-btn {
+      background: none; border: 1px solid var(--border); border-radius: 50%;
+      width: 34px; height: 34px; color: var(--body); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: color .2s, border-color .2s;
+    }
+    .theme-btn:hover { color: var(--accent-text); border-color: var(--accent-line); }
+    .theme-btn svg { width: 16px; height: 16px; }
+    .theme-btn .moon-icon { display: none; }
+    [data-theme="dark"] .theme-btn .sun-icon { display: none; }
+    [data-theme="dark"] .theme-btn .moon-icon { display: block; }
+
+    .nav-links { display: flex; gap: var(--s3); list-style: none; }
     .nav-links a {
-      color: var(--muted); text-decoration: none;
-      font-size: .78rem; font-weight: 500;
-      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--body); text-decoration: none;
+      font-size: var(--t-sm); font-weight: 500;
       transition: color .2s;
     }
-    .nav-links a:hover { color: var(--navy); }
-
+    .nav-links a:hover { color: var(--accent-text); }
     .hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      cursor: pointer; padding: 4px; background: none; border: none;
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      width: 40px; height: 40px; cursor: pointer; background: none; border: none; padding: 9px;
     }
-    .hamburger span { width: 22px; height: 2px; background: var(--navy); transition: all .3s; }
+    .hamburger span { display: block; height: 2px; background: var(--heading); border-radius: 2px; }
 
-    @media (max-width: 640px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
+    @media (max-width: 860px) {
+      nav { padding: 0 var(--s2); }
       .hamburger { display: flex; }
-      .nav-links.open {
-        display: flex; flex-direction: column;
-        position: absolute; top: 100%; left: 0; right: 0;
-        background: var(--nav-mobile);
-        padding: 1.5rem 2rem; gap: 1.4rem;
-        border-bottom: 1px solid var(--border);
-        box-shadow: 0 4px 16px rgba(0,0,0,.06);
+      .nav-links {
+        display: none; flex-direction: column; gap: 0;
+        position: absolute; top: 64px; left: 0; right: 0;
+        background: var(--bg); border-bottom: 1px solid var(--border);
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+        padding: var(--s1) var(--s2) var(--s2);
       }
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; padding: .7rem var(--s1); font-size: var(--t-md); }
     }
 
-    /* ── HERO ────────────────────────────────────────────────── */
-    #hero {
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      padding: 7rem 2rem 4rem;
-      position: relative;
-      background: var(--white);
-    }
-    .hero-content {
-      position: relative; max-width: 740px; text-align: center;
-    }
-    .hero-eyebrow {
-      font-size: .7rem; letter-spacing: .22em; text-transform: uppercase;
-      color: var(--blue); margin-bottom: 1rem; font-weight: 600;
-      opacity: 0; animation: fadeUp .7s .2s ease forwards;
-    }
-    .hero-name {
-      font-family: var(--sans);
-      font-size: clamp(4rem, 12vw, 8.5rem);
-      font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 1.5rem;
-      color: var(--navy); text-transform: uppercase;
-      opacity: 0; animation: fadeUp .7s .35s ease forwards;
-    }
-    .hero-name span { color: var(--blue); }
-    .hero-avatar-wrap {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      background: #E8EFF7;
-      border: 1px solid var(--border);
-      box-shadow: 0 4px 16px rgba(0,0,0,.06);
-      margin: 1.5rem auto;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      opacity: 0; animation: fadeUp .7s .45s ease forwards;
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    .hero-avatar-wrap:hover {
-      transform: scale(1.03);
-      border-color: var(--blue-border);
-      box-shadow: 0 6px 24px rgba(107,146,181,.15);
-    }
-    .hero-avatar {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-    .hero-tagline {
-      font-size: clamp(.92rem, 2.2vw, 1.08rem);
-      color: var(--slate); max-width: 560px;
-      margin: 0 auto 2.4rem; font-weight: 300; line-height: 1.85;
-      opacity: 0; animation: fadeUp .7s .55s ease forwards;
-    }
-    .hero-cta {
-      display: flex; gap: .9rem; justify-content: center; flex-wrap: wrap;
-      opacity: 0; animation: fadeUp .7s .7s ease forwards;
-    }
-    .btn-primary {
-      display: inline-block;
-      position: relative; z-index: 10;
-      background: var(--blue); color: #fff;
-      padding: .72rem 1.8rem; border-radius: 3px;
-      text-decoration: none; font-weight: 600; font-size: .84rem;
-      letter-spacing: .03em; transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease; border: none; cursor: pointer;
-    }
-    .btn-primary:hover {
-      background: var(--blue-hover); transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(107,146,181,.3);
-    }
-    .btn-outline {
-      display: inline-block;
-      position: relative; z-index: 10;
-      border: 1px solid var(--border); color: var(--navy);
-      padding: .72rem 1.8rem; border-radius: 3px;
-      text-decoration: none; font-weight: 500; font-size: .84rem;
-      transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease; background: transparent; cursor: pointer;
-    }
-    .btn-outline:hover {
-      border-color: var(--blue); color: var(--blue);
-      transform: translateY(-2px);
-    }
-    .hero-scroll {
-      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: .4rem;
-      opacity: 0; animation: fadeUp .7s 1s ease forwards;
-    }
-    .hero-scroll span { font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
-    .scroll-line {
-      width: 1px; height: 45px;
-      background: linear-gradient(to bottom, var(--blue), transparent);
-      animation: pulse 2.2s 1.5s ease-in-out infinite;
+    /* ===== Layout ===== */
+    section { padding: var(--s6) var(--s3); scroll-margin-top: 64px; }
+    section.alt { background: var(--bg-alt); border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft); }
+    .container { max-width: 960px; margin: 0 auto; }
+    @media (max-width: 640px) {
+      section { padding: var(--s5) var(--s2); }
     }
 
-    /* ── STATS BAR ───────────────────────────────────────────── */
-    .stats-bar {
-      display: flex;
-      border-top: 1px solid var(--border-l);
-      border-bottom: 1px solid var(--border-l);
-      background: var(--light-gray);
-    }
-    .stat-item {
-      flex: 1; padding: 1.15rem .8rem; text-align: center;
-      border-right: 1px solid var(--border-l);
-    }
-    .stat-item:last-child { border-right: none; }
-    .stat-ico {
-      width: 20px;
-      height: 20px;
-      margin: 0 auto .6rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--blue);
-    }
-    .stat-ico svg {
-      width: 100%;
-      height: 100%;
-    }
-    .stat-num {
-      font-family: var(--serif); font-size: clamp(1.1rem, 3vw, 1.8rem); font-weight: 700;
-      color: var(--navy); display: block; line-height: 1.1;
-    }
-    .stat-lbl {
-      font-size: .65rem; color: var(--muted);
-      letter-spacing: .07em; text-transform: uppercase;
-      margin-top: .3rem; display: block;
-    }
-
-    /* ── SHARED ──────────────────────────────────────────────── */
-    section { padding: 12rem 2rem; }
-    .container { max-width: 820px; margin: 0 auto; }
+    .sec-head { margin-bottom: var(--s4); max-width: 640px; }
     .sec-label {
-      font-size: .68rem; letter-spacing: .22em; text-transform: uppercase;
-      color: var(--blue); margin-bottom: .4rem; font-weight: 600;
+      font-size: var(--t-xs); letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent-text); font-weight: 600; margin-bottom: var(--s1);
     }
     .sec-title {
       font-family: var(--sans);
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 2rem;
-      color: var(--navy); text-transform: uppercase;
+      font-size: clamp(1.75rem, 4.2vw, 2.5rem);
+      font-weight: 800; line-height: 1.15; letter-spacing: -0.02em;
+      color: var(--heading);
     }
-    .sec-rule { width: 38px; height: 2px; background: var(--blue); margin-bottom: 2.2rem; }
+    .sec-intro { margin-top: var(--s2); color: var(--body); font-size: var(--t-md); }
 
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-    .reveal.visible { opacity: 1; transform: none; }
+    /* Reveal on scroll: only hidden when JS is running, so content never stays invisible. */
+    .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+    .js .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .js .reveal { opacity: 1; transform: none; transition: none; }
+    }
 
-    section.alt { background: var(--light-gray); }
+    /* ===== Buttons ===== */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+      min-height: 44px; padding: .65rem 1.3rem; border-radius: 8px;
+      font-family: var(--sans); font-weight: 600; font-size: var(--t-sm);
+      text-decoration: none; cursor: pointer; transition: background .2s, border-color .2s, color .2s;
+    }
+    .btn-primary { background: var(--accent); color: var(--on-accent); border: 1px solid var(--accent); }
+    .btn-primary:hover { background: #1E40AF; border-color: #1E40AF; }
+    [data-theme="dark"] .btn-primary:hover { background: #B4CEFB; border-color: #B4CEFB; }
+    .btn-outline { background: transparent; color: var(--heading); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent-text); }
+    .btn-sm { min-height: 38px; padding: .45rem .95rem; font-size: .8rem; }
 
-    /* ── ABOUT ───────────────────────────────────────────────── */
-    .about-grid {
-      display: grid; grid-template-columns: 1fr 320px;
-      gap: 3.5rem; align-items: start;
+    /* ===== Hero ===== */
+    #hero {
+      padding: calc(64px + var(--s6)) var(--s3) var(--s6);
+      text-align: center;
     }
-    @media (max-width: 740px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
-    .about-text p { color: var(--slate); margin-bottom: 1rem; font-size: .95rem; line-height: 1.85; }
-    .about-text p strong { color: var(--navy); font-weight: 600; }
-    .about-right { display: flex; flex-direction: column; gap: 1.2rem; }
-    @media (max-width: 740px) {
-      .about-right { align-items: center; }
+    .hero-content { max-width: 720px; margin: 0 auto; }
+    .hero-avatar {
+      width: 112px; height: 112px; border-radius: 50%; object-fit: cover;
+      margin: 0 auto var(--s3); border: 1px solid var(--border); background: #E8EFF7;
     }
-    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
-    .about-stat-card {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 6px; padding: 1.3rem 1rem; text-align: center;
-      transition: border-color .2s;
+    .hero-eyebrow {
+      font-size: var(--t-xs); letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent-text); font-weight: 600; margin-bottom: var(--s2);
     }
-    .about-stat-card:hover { border-color: var(--blue-border); }
-    .about-stat-num { font-family: var(--serif); font-size: 1.9rem; font-weight: 700; color: var(--navy); display: block; line-height: 1; }
-    .about-stat-lbl { font-size: .68rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-top: .3rem; display: block; }
+    .hero-name {
+      font-size: clamp(2.75rem, 9vw, 5.25rem);
+      font-weight: 800; line-height: 1; letter-spacing: -0.035em;
+      color: var(--heading); margin-bottom: var(--s3);
+    }
+    .hero-name span { color: var(--accent-text); }
+    .hero-lede {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(1.25rem, 3vw, 1.6rem); line-height: 1.35;
+      color: var(--heading); margin-bottom: var(--s2);
+    }
+    .hero-sub { color: var(--body); max-width: 600px; margin: 0 auto var(--s2); }
+    .hero-open {
+      display: inline-block; font-size: var(--t-sm); color: var(--body);
+      background: var(--accent-soft); border: 1px solid var(--accent-line);
+      border-radius: 999px; padding: .35rem .9rem; margin-bottom: var(--s4);
+    }
+    .hero-cta { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+    .hero-content > * { animation: fadeUp .6s ease both; }
+    .hero-content > *:nth-child(2) { animation-delay: .05s; }
+    .hero-content > *:nth-child(3) { animation-delay: .1s; }
+    .hero-content > *:nth-child(4) { animation-delay: .15s; }
+    .hero-content > *:nth-child(5) { animation-delay: .2s; }
+    .hero-content > *:nth-child(6) { animation-delay: .25s; }
+    .hero-content > *:nth-child(7) { animation-delay: .3s; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .hero-content > * { animation: none; } }
 
-    /* ── RESEARCH ────────────────────────────────────────────── */
-    .research-card {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 8px; overflow: hidden; position: relative;
+    /* ===== Facts strip ===== */
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      background: var(--bg-alt);
     }
-    section.alt .research-card { background: var(--white); }
-    .research-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--blue), var(--navy));
+    .stat-item { padding: var(--s3) var(--s2); text-align: center; border-right: 1px solid var(--border); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: var(--heading); display: block; line-height: 1.2; }
+    .stat-lbl { font-size: var(--t-xs); color: var(--muted); display: block; margin-top: .25rem; line-height: 1.4; }
+    @media (max-width: 640px) {
+      .stats-bar { grid-template-columns: 1fr 1fr; }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
+      .stat-num { font-size: 1.25rem; }
     }
-    .research-inner { padding: clamp(1.5rem, 4vw, 2.4rem); }
-    .r-tags { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 1.3rem; }
-    .r-tag {
-      font-size: .66rem; letter-spacing: .08em; text-transform: uppercase;
-      color: var(--blue); border: 1px solid var(--blue-border);
-      padding: .2rem .65rem; border-radius: 2px; font-weight: 500;
+
+    /* ===== About ===== */
+    .about-grid { display: grid; grid-template-columns: 1fr 300px; gap: var(--s5); align-items: start; }
+    .about-text p { color: var(--body); margin-bottom: var(--s2); }
+    .about-text p strong { color: var(--heading); font-weight: 600; }
+    .facts {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: var(--s3); box-shadow: var(--shadow);
     }
-    .r-title {
-      font-family: var(--serif); font-size: clamp(1.15rem, 2.8vw, 1.55rem);
-      font-weight: 600; line-height: 1.35; margin-bottom: .9rem; color: var(--navy);
+    .facts h3 { font-size: var(--t-xs); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: var(--s2); }
+    .facts dl { display: grid; gap: .85rem; }
+    .facts dt { font-size: var(--t-xs); color: var(--muted); }
+    .facts dd { font-size: var(--t-sm); color: var(--heading); font-weight: 500; line-height: 1.45; }
+    @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; gap: var(--s4); } }
+
+    /* ===== Cards (Now, Projects, How I work) ===== */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--s3); }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: var(--s3); box-shadow: var(--shadow);
+      display: flex; flex-direction: column; gap: .6rem;
     }
-    .r-desc { color: var(--slate); line-height: 1.85; margin-bottom: 1.8rem; font-size: .92rem; }
-    .r-stats {
-      display: flex; border: 1px solid var(--border); border-radius: 4px;
-      overflow: hidden; margin-bottom: 1.8rem; flex-wrap: wrap;
+    .card-kicker { font-size: var(--t-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--accent-text); font-weight: 600; }
+    .card h3 { font-family: var(--serif); font-size: var(--t-xl); font-weight: 600; line-height: 1.3; color: var(--heading); }
+    .card p { color: var(--body); font-size: var(--t-sm); }
+    .card ul { list-style: none; display: grid; gap: .4rem; }
+    .card li { color: var(--body); font-size: var(--t-sm); padding-left: 1rem; position: relative; }
+    .card li::before { content: ''; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    .status {
+      margin-top: auto; padding-top: .75rem; border-top: 1px dashed var(--border);
+      font-size: var(--t-xs); color: var(--muted); line-height: 1.5;
     }
-    .r-stat {
-      flex: 1; min-width: 100px; padding: 1rem .6rem; text-align: center;
-      border-right: 1px solid var(--border);
+    .status strong { color: var(--heading); font-weight: 600; }
+    .badge {
+      display: inline-block; font-size: .7rem; font-weight: 600; letter-spacing: .02em;
+      padding: .15rem .55rem; border-radius: 999px; vertical-align: middle;
+      border: 1px solid var(--accent-line); color: var(--accent-text); background: var(--accent-soft);
     }
-    .r-stat:last-child { border-right: none; }
-    .r-stat-n { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; color: var(--navy); display: block; line-height: 1; }
-    .r-stat-l { font-size: .62rem; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; margin-top: .25rem; display: block; }
+    .badge-muted { border-color: var(--border); color: var(--muted); background: transparent; }
+    .tools { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .tool { font-size: .72rem; color: var(--body); border: 1px solid var(--border); border-radius: 999px; padding: .15rem .6rem; }
+    .now-date { font-size: var(--t-sm); color: var(--muted); margin-top: .35rem; }
+
+    /* How I work */
+    .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s3); counter-reset: p; }
+    .principle { border-top: 2px solid var(--accent); padding-top: var(--s2); }
+    .principle h3 { font-size: var(--t-lg); font-weight: 700; color: var(--heading); line-height: 1.35; margin-bottom: .4rem; }
+    .principle h3::before { counter-increment: p; content: counter(p) ". "; color: var(--accent-text); }
+    .principle p { font-size: var(--t-sm); color: var(--body); }
+    @media (max-width: 760px) { .principles { grid-template-columns: 1fr; gap: var(--s3); } }
+
+    /* ===== Research dashboard ===== */
+    .dashboard {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--shadow); margin-bottom: var(--s4);
+    }
+    .dashboard-header { padding: var(--s3); border-bottom: 1px solid var(--border); }
+    .dashboard-eyebrow { font-size: var(--t-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--accent-text); font-weight: 600; margin-bottom: .3rem; }
+    .dashboard-title { font-family: var(--serif); font-size: var(--t-xl); font-weight: 600; color: var(--heading); line-height: 1.3; }
+    .dashboard-subtitle { font-size: var(--t-sm); color: var(--body); margin-top: .4rem; max-width: 680px; }
+    .dashboard-nav { display: flex; overflow-x: auto; border-bottom: 1px solid var(--border); background: var(--bg-alt); scrollbar-width: thin; }
+    .dashboard-tab-btn {
+      flex: 1 0 auto; border: none; background: transparent; cursor: pointer;
+      padding: .85rem 1rem; font: 600 .78rem var(--sans); color: var(--muted);
+      border-bottom: 2px solid transparent; white-space: nowrap; min-height: 44px;
+    }
+    .dashboard-tab-btn:hover { color: var(--heading); }
+    .dashboard-tab-btn[aria-selected="true"] { color: var(--heading); border-bottom-color: var(--accent); background: var(--card); }
+    .dashboard-content { padding: var(--s3); position: relative; }
+    .dashboard-panel { display: none; }
+    .dashboard-panel.active { display: block; }
+    .panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--s2); flex-wrap: wrap; margin-bottom: var(--s2); }
+    .panel-title { font-family: var(--serif); font-size: var(--t-lg); font-weight: 600; color: var(--heading); }
+    .panel-desc { font-size: var(--t-sm); color: var(--body); max-width: 560px; }
+    .legend { display: flex; gap: var(--s2); flex-wrap: wrap; font-size: var(--t-xs); color: var(--body); }
+    .legend-item { display: flex; align-items: center; gap: .4rem; }
+    .sw { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
+    .sw-accent { background: var(--accent); opacity: .85; }
+    .sw-coral { background: var(--coral); }
+    .sw-coral-ring { border: 2px solid var(--coral); border-radius: 50%; }
+    .sw-heading-ring { border: 2px solid var(--heading); border-radius: 50%; }
+    .sw-hollow { border: 2px dashed var(--coral); border-radius: 50%; }
+    .sw-dot { background: var(--heading); border-radius: 50%; }
+    .chart-scroll { width: 100%; overflow-x: auto; margin-bottom: var(--s2); }
+    .chart-wrapper { position: relative; min-width: 560px; }
+    .chart-svg { width: 100%; height: auto; display: block; overflow: visible; }
+    .swipe-hint { display: none; font-size: var(--t-xs); color: var(--muted); margin-bottom: .4rem; }
+    @media (max-width: 600px) { .swipe-hint { display: block; } }
+    @media (max-width: 600px) {
+      .chart-wrapper.fit { min-width: 0; }
+      .fit .axis-text, .fit .axis-title, .fit .note-text { font-size: 18px; }
+      .fit .pt { r: 7; }
+    }
+
+    .axis-line { stroke: var(--border); stroke-width: 1; }
+    .grid-line { stroke: var(--border-soft); stroke-width: 1; stroke-dasharray: 4 4; }
+    .axis-text { font-size: 11px; fill: var(--muted); font-family: var(--sans); }
+    .axis-title { font-size: 11px; font-weight: 600; fill: var(--body); font-family: var(--sans); }
+    .note-text { font-size: 11px; fill: var(--coral); font-family: var(--sans); font-weight: 600; }
+    .line-coral { fill: none; stroke: var(--coral); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .line-heading { fill: none; stroke: var(--heading); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .pt { cursor: pointer; stroke: var(--card); stroke-width: 1.5; transition: r .15s; }
+    .pt:hover, .pt:focus { r: 7; outline: none; }
+    .pt-coral { fill: var(--coral); }
+    .pt-heading { fill: var(--heading); }
+    .pt-firm { fill: var(--accent); fill-opacity: .7; }
+    .pt-hollow { fill: var(--card); stroke: var(--coral); stroke-width: 2; stroke-dasharray: 3 2; }
+    .bar { cursor: pointer; }
+    .bar-accent { fill: var(--accent); fill-opacity: .8; }
+    .bar-coral { fill: var(--coral); fill-opacity: .8; }
+    .bar:hover, .bar:focus { fill-opacity: 1; outline: none; }
+
+    .chart-tooltip {
+      position: absolute; top: 0; left: 0; z-index: 50; pointer-events: none;
+      background: #0F172A; color: #F8FAFC; border: 1px solid rgba(255,255,255,.12);
+      padding: .6rem .8rem; border-radius: 6px; font-size: .75rem; line-height: 1.45;
+      box-shadow: 0 8px 20px rgba(0,0,0,.18); width: max-content; max-width: 240px;
+      opacity: 0; visibility: hidden; transition: opacity .12s ease;
+    }
+    .chart-tooltip.show { opacity: 1; visibility: visible; }
+    .tt-head { font-weight: 700; border-bottom: 1px solid rgba(255,255,255,.2); padding-bottom: .25rem; margin-bottom: .35rem; }
+    .tt-row { display: flex; justify-content: space-between; gap: 1rem; }
+    .tt-row b { font-weight: 600; }
 
     .finding {
-      background: var(--ice); border-left: 3px solid var(--blue);
-      padding: 1.1rem 1.4rem; border-radius: 0 4px 4px 0; margin-bottom: .6rem;
+      background: var(--bg-alt); border-left: 3px solid var(--accent);
+      padding: var(--s2) 1.25rem; border-radius: 0 8px 8px 0;
     }
-    .finding-lbl { font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; color: var(--blue); font-weight: 700; margin-bottom: .35rem; }
-    .finding p { color: var(--navy); font-size: .92rem; line-height: 1.7; }
-    .finding p strong { color: var(--blue-hover); font-weight: 600; }
+    .finding-lbl { font-size: var(--t-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--accent-text); font-weight: 700; margin-bottom: .3rem; }
+    .finding p { color: var(--text); font-size: var(--t-sm); }
+    .finding p + p { margin-top: .5rem; }
+    .finding strong { font-weight: 600; color: var(--heading); }
 
-    .implication {
-      background: transparent; border-left: 3px solid var(--navy);
-      padding: 1rem 1.4rem; border-radius: 0 4px 4px 0; margin-bottom: 1.8rem;
-    }
-    .implication-lbl { font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; color: var(--navy); font-weight: 700; margin-bottom: .35rem; }
-    .implication p { color: var(--slate); font-size: .88rem; line-height: 1.7; font-style: italic; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s2); margin-bottom: var(--s3); }
+    .kpi-card { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: var(--s2); text-align: center; }
+    .kpi-value { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; color: var(--heading); display: block; line-height: 1.15; }
+    .kpi-label { font-size: var(--t-xs); color: var(--muted); display: block; margin-top: .2rem; }
+    @media (max-width: 700px) { .kpi-grid { grid-template-columns: 1fr 1fr; } }
+    .takeaways { list-style: none; display: grid; gap: .7rem; }
+    .takeaways li { color: var(--body); font-size: var(--t-sm); padding-left: 1.1rem; position: relative; }
+    .takeaways li::before { content: ''; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    .takeaways strong { color: var(--heading); font-weight: 600; }
 
-    .pills { display: flex; gap: .45rem; flex-wrap: wrap; }
-    .pill {
-      background: var(--ice); border: 1px solid var(--border);
-      color: var(--slate); font-size: .72rem; padding: .25rem .75rem;
-      border-radius: 20px; font-weight: 500; transition: all .2s;
+    .research-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--s4); box-shadow: var(--shadow); }
+    @media (max-width: 640px) { .research-card { padding: var(--s3); } .dashboard-content, .dashboard-header { padding: var(--s2); } }
+    .r-tags { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: var(--s2); }
+    .r-title { font-family: var(--serif); font-size: clamp(1.2rem, 2.6vw, 1.5rem); font-weight: 600; line-height: 1.35; color: var(--heading); margin-bottom: var(--s2); }
+    .r-desc { color: var(--body); margin-bottom: var(--s3); font-size: .95rem; }
+    .r-stats { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border); border-radius: 8px; margin-bottom: var(--s3); }
+    .r-stat { padding: var(--s2) .5rem; text-align: center; border-right: 1px solid var(--border); }
+    .r-stat:last-child { border-right: none; }
+    .r-stat-n { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; color: var(--heading); display: block; line-height: 1.1; }
+    .r-stat-l { font-size: var(--t-xs); color: var(--muted); display: block; margin-top: .2rem; }
+    @media (max-width: 560px) {
+      .r-stats { grid-template-columns: 1fr 1fr; }
+      .r-stat:nth-child(2) { border-right: none; }
+      .r-stat:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
     }
-    .pill:hover { background: var(--blue-light); border-color: var(--blue-border); color: var(--blue-hover); }
+    .research-card .finding { margin-bottom: var(--s2); }
+    .actions { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: var(--s3); }
 
-    /* ── DATA PIPELINE ──────────────────────────────────────── */
-    .pipeline {
-      margin: 2.5rem 0 0;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
-    }
-    .pipeline-label {
-      font-size: .65rem; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--blue); font-weight: 700; margin-bottom: 1.5rem; text-align: center;
-    }
-    .pipeline-flow {
-      display: flex; align-items: center; justify-content: center;
-      gap: 0; flex-wrap: wrap;
-    }
-    .pipe-step {
-      background: var(--ice); border: 1px solid var(--border);
-      border-radius: 6px; padding: .8rem 1rem; text-align: center;
-      min-width: 110px; transition: all .2s;
-    }
-    .pipe-step:hover { border-color: var(--blue-border); background: var(--blue-light); }
-    .pipe-step-icon {
-      width: 24px;
-      height: 24px;
-      margin: 0 auto .5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--blue);
-      transition: color .2s;
-    }
-    .pipe-step:hover .pipe-step-icon {
-      color: var(--blue-hover);
-    }
-    .pipe-svg {
-      width: 100%;
-      height: 100%;
-    }
-    .pipe-step-name { font-size: .7rem; font-weight: 600; color: var(--navy); line-height: 1.3; }
-    .pipe-step-tool { font-size: .6rem; color: var(--muted); margin-top: .15rem; }
-    .pipe-arrow {
-      color: var(--blue); font-size: .9rem; padding: 0 .4rem;
-      flex-shrink: 0;
-    }
-    @media (max-width: 640px) {
-      .pipeline-flow { flex-direction: column; gap: .3rem; }
-      .pipe-arrow { transform: rotate(90deg); }
-    }
+    .pipeline { margin-top: var(--s4); padding-top: var(--s3); border-top: 1px solid var(--border); }
+    .pipeline-label { font-size: var(--t-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: var(--s2); }
+    .pipeline-flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: .6rem; }
+    .pipe-step { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: .8rem .7rem; position: relative; }
+    .pipe-n { font-size: var(--t-xs); color: var(--accent-text); font-weight: 700; }
+    .pipe-step-name { font-size: .82rem; font-weight: 600; color: var(--heading); line-height: 1.3; margin-top: .15rem; }
+    .pipe-step-tool { font-size: .74rem; color: var(--muted); margin-top: .2rem; line-height: 1.35; }
+    @media (max-width: 760px) { .pipeline-flow { grid-template-columns: 1fr; } }
 
-    /* ── CASE STUDIES (Interactive Morphs) ─────────────────── */
-    .case-studies-grid {
-      display: grid; grid-template-columns: 1fr; gap: 4rem;
-      margin-top: 3rem;
-    }
-    
-    .case-card {
-      background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border);
-      border-radius: 12px; padding: 4rem 3.5rem;
-      display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start;
-      cursor: pointer; position: relative; min-height: 350px; height: 100%;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      transition: all 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    
-    .case-card:hover:not(.expanded) {
-      border-color: var(--blue-border);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 0 30px rgba(107,146,181,0.1);
-      transform: translateY(-4px);
-    }
-
-    .case-card.expanded {
-      position: fixed;
-      width: 92%;
-      max-width: 1120px;
-      height: 85vh;
-      max-height: 740px;
-      z-index: 1000;
-      cursor: default;
-      transform: none !important;
-      background: var(--white);
-      box-shadow: 0 0 80px rgba(107, 146, 181, 0.18), 0 40px 80px rgba(0, 0, 0, 0.3);
-      overflow: hidden;
-      padding: 0;
-    }
-
-    .card-initial-content {
-      opacity: 1;
-      transition: opacity 0.3s ease;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .case-card.expanded .card-initial-content {
-      opacity: 0;
-      pointer-events: none;
-      display: none;
-    }
-
-    .case-tag {
-      font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--blue); font-weight: 600; margin-bottom: .5rem;
-    }
-    .case-tools {
-      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;
-    }
-    .case-tool {
-      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.05em;
-      color: var(--blue); background: var(--blue-light); border: 1px solid var(--blue-border);
-      padding: 0.25rem 0.6rem; border-radius: 20px;
-    }
-    .case-title {
-      font-family: var(--serif); font-size: 1.8rem; font-weight: 600;
-      color: var(--navy); line-height: 1.35; margin-bottom: .5rem;
-    }
-    .case-desc { font-size: .82rem; color: var(--slate); line-height: 1.65; margin-bottom: .8rem; }
-    
-    .card-action {
-      font-size: 0.78rem; font-weight: 600; color: var(--blue);
-      border-bottom: 1px solid var(--blue-border); align-self: flex-start;
-      padding-bottom: 2px; transition: color 0.2s;
-    }
-    .case-card:hover .card-action {
-      color: var(--blue-hover);
-      border-bottom-color: var(--blue);
-    }
-
-    /* Expanded UI Container */
-    .expanded-showcase {
-      display: none;
-      flex-direction: column;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.5s ease 0.4s;
-    }
-    .case-card.expanded .expanded-showcase {
-      display: flex;
-      opacity: 1;
-    }
-
-    .portal-header {
-      padding: 0.9rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border);
-      background: var(--light-gray);
-      height: 60px;
-    }
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .status-badge {
-      font-size: 0.65rem;
-      font-weight: 700;
-      color: var(--blue);
-      background: var(--blue-light);
-      padding: 3px 8px;
-      border-radius: 4px;
-      border: 1px solid var(--blue-border);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--blue);
-      animation: pulseBlue 1.5s infinite;
-    }
-    @keyframes pulseBlue {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
-    }
-    .timeline-progress-track {
-      flex: 1;
-      width: 180px;
-      height: 2px;
-      background: var(--border);
-      position: relative;
-      overflow: hidden;
-      margin: 0 1.5rem;
-    }
-    .timeline-progress-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 100%;
-      background: var(--blue);
-      transition: width 0.1s linear;
-    }
-    .skip-btn {
-      background: var(--white);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 0.4rem 1.1rem;
-      border-radius: 20px;
-      font-size: 0.72rem;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.3s;
-    }
-    .skip-btn:hover {
-      background: var(--ice);
-      border-color: var(--blue);
-    }
-
-    /* Simulation Workspace */
-    .workspace-layout {
-      flex: 1;
-      display: flex;
-      overflow: hidden;
-      background: var(--white);
-    }
-
-    .logging-terminal {
-      width: 32%;
-      border-right: 1px solid var(--border);
-      background: var(--light-gray);
-      display: flex;
-      flex-direction: column;
-      padding: 1.5rem;
-      font-family: var(--sans);
-      font-size: 0.75rem;
-      overflow: hidden;
-      position: relative;
-    }
-    .terminal-title {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      color: var(--slate);
-      letter-spacing: 0.1em;
-      margin-bottom: 1rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0.4rem;
-      font-weight: 700;
-    }
-    .terminal-history {
-      flex: 1;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      line-height: 1.55;
-    }
-    .log-line {
-      opacity: 0;
-      transform: translateY(5px);
-      animation: logFadeIn 0.3s ease forwards;
-    }
-    @keyframes logFadeIn {
-      to { opacity: 1; transform: none; }
-    }
-    .log-time { color: var(--muted); }
-    .log-info { color: var(--text); }
-    .log-warn { color: #DC2626; }
-    .log-success { color: #16A34A; }
-    
-    [data-theme="dark"] .log-warn { color: #F87171; }
-    [data-theme="dark"] .log-success { color: #4ADE80; }
-
-    .mockup-workspace {
-      width: 68%;
-      display: flex;
-      flex-direction: column;
-      padding: 1.5rem;
-      gap: 1rem;
-      background: var(--white);
-    }
-    
-    .editor-pane {
-      flex: 1.1;
-      border-radius: 8px;
-      background: var(--light-gray);
-      border: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      height: 50%;
-    }
-    .pane-titlebar {
-      height: 28px;
-      background: var(--ice);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      padding: 0 1rem;
-      gap: 6px;
-      font-size: 0.62rem;
-      color: var(--slate);
-      font-weight: 600;
-    }
-    .pane-tab {
-      margin-left: 1rem;
-      background: var(--light-gray);
-      padding: 3px 10px;
-      border-radius: 4px 4px 0 0;
-      border: 1px solid var(--border);
-      border-bottom: none;
-    }
-    .pane-body {
-      flex: 1;
-      padding: 1rem;
-      font-family: monospace;
-      font-size: 0.72rem;
-      line-height: 1.6;
-      overflow-y: auto;
-      color: var(--text);
-    }
-
-    .browser-pane {
-      flex: 0.9;
-      border-radius: 8px;
-      background: var(--light-gray);
-      border: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      height: 50%;
-      position: relative;
-    }
-    .browser-url-bar {
-      height: 28px;
-      background: var(--ice);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      padding: 0 0.8rem;
-      gap: 10px;
-    }
-    .dot { width: 8px; height: 8px; border-radius: 50%; }
-    .dot-red { background: #EF4444; }
-    .dot-yellow { background: #F59E0B; }
-    .dot-green { background: #10B981; }
-    .browser-address {
-      flex: 1;
-      background: var(--light-gray);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      height: 18px;
-      display: flex;
-      align-items: center;
-      padding: 0 8px;
-      font-size: 0.6rem;
-      color: var(--slate);
-    }
-    .browser-body {
-      flex: 1;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      background: var(--white);
-    }
-
-    .app-screen-container {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .funnel-simulation {
-      display: none;
-      width: 220px;
-      height: 100%;
-      flex-direction: column;
-      justify-content: center;
-      gap: 0.5rem;
-      position: relative;
-    }
-    .funnel-bar {
-      height: 24px;
-      background: var(--light-gray);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 10px;
-      font-size: 0.68rem;
-      color: var(--text);
-    }
-    .funnel-bar.alert {
-      border-color: #EF4444;
-      background: rgba(239, 68, 68, 0.08);
-      color: #EF4444;
-    }
-    .dropoff-alert {
-      position: absolute;
-      right: -130px;
-      top: 25%;
-      background: #DC2626;
-      color: white;
-      font-size: 0.65rem;
-      font-weight: 700;
-      padding: 6px 12px;
-      border-radius: 4px;
-      border: 1px solid #FF5555;
-      box-shadow: 0 6px 15px rgba(220, 38, 38, 0.25);
-      opacity: 0;
-      transform: scale(0.8);
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .dropoff-alert.show {
-      opacity: 1;
-      transform: scale(1);
-    }
-    
-    .mock-cursor {
-      position: absolute; width: 14px; height: 14px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231B2A4A'%3E%3Cpath d='M4.5 3v15.2l3.8-3.8 2.9 6.8 2.6-1.1-2.9-6.8 5.3-.5L4.5 3z'/%3E%3C/svg%3E") no-repeat;
-      z-index: 100; pointer-events: none;
-      top: 60%; left: 60%;
-      transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-    [data-theme="dark"] .mock-cursor {
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M4.5 3v15.2l3.8-3.8 2.9 6.8 2.6-1.1-2.9-6.8 5.3-.5L4.5 3z'/%3E%3C/svg%3E") no-repeat;
-    }
-
-    .crm-builder-flow {
-      display: none;
-      width: 90%;
-      height: 90%;
-      flex-direction: column;
-      gap: 0.6rem;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .flow-node {
-      background: var(--light-gray);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 6px 12px;
-      font-size: 0.68rem;
-      color: var(--text);
-      align-self: center;
-      position: relative;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: all 0.5s ease;
-    }
-    .flow-arrow {
-      height: 15px;
-      width: 1px;
-      background: var(--border);
-      align-self: center;
-      position: relative;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .flow-arrow::after {
-      content: '▼';
-      position: absolute;
-      bottom: -4px;
-      left: -3px;
-      font-size: 5px;
-      color: var(--border);
-    }
-
-    .chart-rendering-view {
-      display: none;
-      width: 100%;
-      height: 100%;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    .glow-circle {
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      background: radial-gradient(circle, rgba(107, 146, 181, 0.15) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .svg-canvas {
-      width: 320px;
-      height: 120px;
-      overflow: visible;
-    }
-    .chart-curve {
-      stroke: var(--blue);
-      stroke-width: 3;
-      fill: none;
-      stroke-dasharray: 400;
-      stroke-dashoffset: 400;
-    }
-    .glow-dot {
-      fill: var(--white);
-      stroke: var(--blue);
-      stroke-width: 2.5;
-      opacity: 0;
-      transform: scale(0.5);
-      transform-origin: center;
-      transition: all 0.5s ease;
-    }
-
-    .browser-console {
-      height: 35px;
-      background: var(--ice);
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      padding: 0 1rem;
-      font-family: monospace;
-      font-size: 0.65rem;
-      color: var(--slate);
-    }
-    .console-indicator {
-      color: #EF4444;
-      font-weight: bold;
-      margin-right: 6px;
-    }
-    .console-indicator.success {
-      color: #10B981;
-    }
-
-    .resting-tab-layout {
-      display: none;
-      flex-direction: column;
-      height: 100%;
-      animation: explorerSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    @keyframes explorerSlideIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: none; }
-    }
-    .explorer-navbar { display: flex; border-bottom: 1px solid var(--border); background: var(--light-gray); }
-    .tab-btn {
-      padding: 1.2rem 2.2rem; border: none; background: transparent;
-      color: var(--slate); font-size: 0.8rem; font-weight: 600;
-      letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;
-      border-bottom: 2px solid transparent; transition: all 0.3s;
-    }
-    .tab-btn.active { color: var(--navy); border-bottom-color: var(--blue); background: var(--white); }
-    .explorer-viewport { flex: 1; padding: 2.5rem 3rem; overflow-y: auto; background: var(--white); }
-    .panel-view { display: none; }
-    .panel-view.active { display: block; }
-
-    .table-container {
-      width: 100%; border: 1px solid var(--border); border-radius: 8px;
-      overflow: hidden; margin-top: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-    }
-    .schema-grid-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; text-align: left; }
-    .schema-grid-table th { background: var(--light-gray); padding: 1rem 1.2rem; font-weight: 600; color: var(--blue); border-bottom: 1px solid var(--border); }
-    .schema-grid-table td { padding: 1rem 1.2rem; border-bottom: 1px solid var(--border); color: var(--slate); }
-    .schema-grid-table tr:last-child td { border-bottom: none; }
-    .schema-grid-table tr:hover td { background: var(--ice); color: var(--text); }
-
-    /* Custom highlight coloring inside code editor */
-    .keyword { color: #D97706; }
-    .variable { color: #2563EB; }
-    .string { color: #059669; }
-    .comment { color: var(--slate); font-style: italic; }
-    [data-theme="dark"] .keyword { color: #FB923C; }
-    [data-theme="dark"] .variable { color: #60A5FA; }
-    [data-theme="dark"] .string { color: #34D399; }
-    .case-coming {
-      font-size: .65rem; color: var(--muted); font-style: italic;
-      text-align: center; padding: 2rem 1rem;
-      border: 1px dashed var(--border); border-radius: 8px;
-      margin-top: 1.5rem;
-    }
-
-    /* ── EXPERIENCE ──────────────────────────────────────────── */
-    .timeline { position: relative; padding-left: 1.5rem; }
-    .timeline::before {
-      content: ''; position: absolute;
-      left: 0; top: 8px; bottom: 0; width: 1px;
-      background: linear-gradient(to bottom, var(--blue), var(--border));
-    }
-    .exp-item { position: relative; padding-bottom: 2.4rem; padding-left: 1.6rem; }
+    /* ===== Experience ===== */
+    .timeline { position: relative; padding-left: 1.25rem; border-left: 1px solid var(--border); margin-left: .3rem; }
+    .exp-item { position: relative; padding-bottom: var(--s4); }
     .exp-item:last-child { padding-bottom: 0; }
-    .exp-dot {
-      position: absolute; left: -1.98rem; top: 6px;
-      width: 10px; height: 10px; border-radius: 50%;
-      background: var(--blue); border: 2px solid var(--light-gray);
-      box-shadow: 0 0 0 3px var(--blue-light);
+    .exp-item::before {
+      content: ''; position: absolute; left: calc(-1.25rem - 5px); top: .45rem;
+      width: 9px; height: 9px; border-radius: 50%; background: var(--accent);
+      box-shadow: 0 0 0 4px var(--bg-alt);
     }
-    .exp-date { font-size: .72rem; color: var(--blue); letter-spacing: .08em; text-transform: uppercase; font-weight: 600; margin-bottom: .2rem; }
-    .exp-role { font-family: var(--serif); font-size: 1.12rem; font-weight: 600; margin-bottom: .1rem; color: var(--navy); }
-    .exp-co { color: var(--muted); font-size: .85rem; margin-bottom: .7rem; }
-    .exp-co strong { color: var(--blue-hover); font-weight: 500; }
-    .exp-list { list-style: none; display: flex; flex-direction: column; gap: .35rem; }
-    .exp-list li { color: var(--slate); font-size: .88rem; line-height: 1.65; padding-left: 1rem; position: relative; }
-    .exp-list li::before { content: '—'; position: absolute; left: 0; color: var(--blue); font-size: .75rem; top: .1rem; }
+    .exp-date { font-size: var(--t-xs); color: var(--accent-text); letter-spacing: .06em; text-transform: uppercase; font-weight: 600; }
+    .exp-role { font-family: var(--serif); font-size: var(--t-lg); font-weight: 600; color: var(--heading); line-height: 1.35; margin-top: .15rem; }
+    .exp-co { color: var(--muted); font-size: var(--t-sm); margin-bottom: .5rem; }
+    .exp-list { list-style: none; display: grid; gap: .35rem; }
+    .exp-list li { color: var(--body); font-size: .92rem; padding-left: 1rem; position: relative; }
+    .exp-list li::before { content: ''; position: absolute; left: 0; top: .7em; width: 6px; height: 1.5px; background: var(--accent); }
+    .sub-head { font-size: var(--t-xs); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: var(--s5) 0 var(--s2); }
 
-    /* ── SKILLS ──────────────────────────────────────────────── */
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: .9rem; }
-    .skill-card {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 6px; padding: 1.2rem 1.1rem; transition: all .25s;
-    }
-    .skill-card:hover { border-color: var(--blue-border); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.06); }
-    .sk-svg-wrap {
-      width: 32px;
-      height: 32px;
-      margin-bottom: .6rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--blue);
-      transition: color .2s, transform .2s;
-    }
-    .skill-card:hover .sk-svg-wrap {
-      color: var(--blue-hover);
-      transform: translateY(-2px);
-    }
-    .sk-svg {
-      width: 100%;
-      height: 100%;
-    }
-    .sk-name { font-weight: 600; font-size: .85rem; margin-bottom: .2rem; color: var(--navy); }
-    .sk-desc { font-size: .74rem; color: var(--muted); line-height: 1.55; }
+    /* ===== Skills ===== */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: var(--s2); }
+    .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.2rem; }
+    .sk-name { font-weight: 600; font-size: .95rem; color: var(--heading); margin-bottom: .2rem; display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+    .sk-desc { font-size: .84rem; color: var(--body); line-height: 1.5; }
+    .level { font-size: .68rem; font-weight: 600; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: .05rem .5rem; }
 
-    /* ── CERTS ───────────────────────────────────────────────── */
-    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: .9rem; }
-    .cert-card {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 6px; padding: 1.2rem; display: flex; gap: .9rem;
-      align-items: flex-start; transition: border-color .25s;
-    }
-    .cert-card:hover { border-color: var(--blue-border); }
-    .cert-ico {
-      width: 34px; height: 34px; border-radius: 6px;
-      background: var(--ice);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--blue); flex-shrink: 0;
-      transition: color .2s;
-    }
-    .cert-card:hover .cert-ico {
-      color: var(--blue-hover);
-    }
-    .cert-name { font-weight: 600; font-size: .84rem; margin-bottom: .15rem; color: var(--navy); }
-    .cert-issuer { font-size: .74rem; color: var(--muted); }
-    .badge {
-      display: inline-block; margin-top: .35rem;
-      font-size: .65rem; padding: .12rem .45rem; border-radius: 2px; font-weight: 600; letter-spacing: .03em;
-    }
-    .badge-active { background: rgba(107,146,181,.1); color: var(--blue); }
-    .badge-soon   { background: rgba(27,42,74,.08); color: var(--navy); }
+    /* ===== Certifications ===== */
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--s2); }
+    .cert-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.2rem; }
+    .cert-name { font-weight: 600; font-size: .95rem; color: var(--heading); line-height: 1.35; }
+    .cert-issuer { font-size: var(--t-sm); color: var(--muted); margin: .15rem 0 .5rem; }
 
-    /* ── CONTACT ─────────────────────────────────────────────── */
+    /* ===== Contact ===== */
     #contact { text-align: center; }
-    .contact-sub { color: var(--slate); max-width: 440px; margin: 0 auto 2rem; line-height: 1.8; font-size: .95rem; }
-    .contact-links { display: flex; gap: .9rem; justify-content: center; flex-wrap: wrap; }
+    #contact .sec-head { margin: 0 auto var(--s3); }
+    .contact-sub { color: var(--body); max-width: 520px; margin: 0 auto var(--s3); }
+    .contact-links { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+    .contact-mail { margin-top: var(--s2); font-size: var(--t-sm); color: var(--muted); }
+    .contact-mail a { color: var(--accent-text); }
 
-    /* ── FOOTER ──────────────────────────────────────────────── */
-    footer {
-      background: var(--light-gray); border-top: 1px solid var(--border);
-      padding: 1.3rem 2rem; text-align: center;
-    }
-    footer p { color: var(--muted); font-size: .76rem; }
+    footer { border-top: 1px solid var(--border); background: var(--bg-alt); padding: var(--s3) var(--s2); text-align: center; }
+    footer p { color: var(--muted); font-size: var(--t-xs); }
 
-    /* ── INTERACTIVE CHART ────────────────────────────────────── */
-    /* ── INTERACTIVE DASHBOARD ───────────────────────────────── */
-    .dashboard-container {
-      margin-top: 1.8rem;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,.02);
-      text-align: left;
-    }
-    .dashboard-header {
-      background: var(--light-gray);
-      border-bottom: 1px solid var(--border);
-      padding: 1.5rem clamp(1.2rem, 4vw, 2.2rem);
-    }
-    .dashboard-title-wrap {
-      margin-bottom: 1.2rem;
-    }
-    .dashboard-eyebrow {
-      font-size: .65rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--blue);
-      font-weight: 700;
-      margin-bottom: .3rem;
-    }
-    .dashboard-title {
-      font-family: var(--serif);
-      font-size: clamp(1.2rem, 3vw, 1.6rem);
-      font-weight: 600;
-      color: var(--navy);
-      line-height: 1.3;
-    }
-    .dashboard-subtitle {
-      font-size: .84rem;
-      color: var(--slate);
-      line-height: 1.6;
-      margin-top: .4rem;
-      max-width: 650px;
-    }
-    
-    .dashboard-nav {
-      display: flex;
-      flex-wrap: wrap;
-      background: var(--light-gray);
-      border-bottom: 1px solid var(--border);
-      gap: 0;
-    }
-    .dashboard-tab-btn {
-      flex: 1;
-      min-width: 130px;
-      border: none;
-      background: transparent;
-      padding: .9rem .5rem;
-      font-size: .7rem;
-      font-weight: 600;
-      color: var(--slate);
-      cursor: pointer;
-      transition: all .2s;
-      border-bottom: 2px solid transparent;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      text-align: center;
-    }
-    .dashboard-tab-btn:hover {
-      color: var(--navy);
-      background: rgba(107, 146, 181, 0.04);
-    }
-    .dashboard-tab-btn.active {
-      color: var(--navy);
-      border-bottom-color: var(--blue);
-      background: var(--white);
-    }
-
-    .dashboard-content {
-      padding: 2rem clamp(1.2rem, 4vw, 2.2rem);
-      position: relative;
-    }
-    .dashboard-panel {
-      display: none;
-      animation: dashboardFadeIn .4s ease forwards;
-    }
-    .dashboard-panel.active {
-      display: block;
-    }
-    @keyframes dashboardFadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: none; }
-    }
-
-    .dashboard-panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .dashboard-panel-title-wrap {
-      max-width: 500px;
-    }
-    .dashboard-panel-title {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--navy);
-      margin-bottom: .2rem;
-    }
-    .dashboard-panel-desc {
-      font-size: .8rem;
-      color: var(--slate);
-      line-height: 1.5;
-    }
-    
-    .dashboard-legend {
-      display: flex;
-      gap: 1.2rem;
-      font-size: .72rem;
-      color: var(--slate);
-      flex-wrap: wrap;
-      align-items: center;
-      margin-top: .4rem;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: .4rem;
-    }
-    .legend-color {
-      width: 12px;
-      height: 12px;
-      border-radius: 2px;
-    }
-    .legend-color.navy-fill { background: var(--navy); }
-    .legend-color.blue-fill { background: var(--blue); }
-    .legend-color.coral-fill { background: #E05A47; }
-    .legend-color.coral-stroke { border: 2px solid #E05A47; background: var(--white); }
-    .legend-color.navy-stroke { border: 2px solid var(--navy); background: var(--white); }
-
-    .chart-outer-wrap {
-      width: 100%;
-      overflow-x: auto;
-      margin-bottom: 1.5rem;
-    }
-    .chart-wrapper {
-      position: relative;
-      width: 100%;
-      min-width: 620px;
-      height: 280px;
-    }
-    .chart-svg {
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-    }
-    
-    /* ── SCATTER & BARS ──────────────────────────────────────── */
-    .axis-line { stroke: var(--border); stroke-width: 1; }
-    .grid-line { stroke: var(--border-l); stroke-width: 1; stroke-dasharray: 4; }
-    .axis-text { font-size: 10px; fill: var(--slate); font-family: var(--sans); }
-    .axis-title { font-size: 10px; font-weight: 600; fill: var(--navy); font-family: var(--sans); letter-spacing: .05em; text-transform: uppercase; }
-    
-    .chart-path-navy { fill: none; stroke: var(--navy); stroke-width: 2.5; stroke-linecap: round; }
-    .chart-path-coral { fill: none; stroke: #E05A47; stroke-width: 2.5; stroke-linecap: round; }
-    
-    .chart-bar {
-      transition: fill .2s ease, opacity .2s ease;
-      cursor: pointer;
-    }
-    .chart-bar:hover {
-      opacity: 0.95;
-    }
-    .chart-dot {
-      transition: r .2s ease, fill .2s ease, stroke-width .2s ease;
-      cursor: pointer;
-    }
-    .chart-dot:hover {
-      r: 7.5px;
-      stroke-width: 3px;
-    }
-    .trend-line {
-      stroke-dasharray: 6 4;
-      animation: trendLineDraw 1.5s ease forwards;
-    }
-    @keyframes trendLineDraw {
-      from { stroke-dashoffset: 200; }
-      to { stroke-dashoffset: 0; }
-    }
-
-    /* ── TOOLTIPS ────────────────────────────────────────────── */
-    .chart-tooltip {
-      position: absolute;
-      background: rgba(27, 42, 74, 0.97);
-      color: #FFFFFF;
-      padding: .7rem 1rem;
-      border-radius: 4px;
-      font-size: .72rem;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity .15s ease;
-      box-shadow: 0 6px 18px rgba(0,0,0,.15);
-      z-index: 9999;
-      line-height: 1.45;
-      text-align: left;
-      border: 1px solid rgba(255,255,255,0.1);
-      width: max-content;
-      max-width: 260px;
-    }
-    .tooltip-header {
-      font-weight: 700;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-      padding-bottom: .25rem;
-      margin-bottom: .4rem;
-      color: #F0F5FA;
-    }
-    .tooltip-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 1.5rem;
-      margin-bottom: .15rem;
-    }
-    .tooltip-row:last-child {
-      margin-bottom: 0;
-    }
-    .tooltip-val {
-      font-weight: 600;
-      color: #FFFFFF;
-    }
-
-    /* ── TAB 5 EXECUTIVE INSIGHTS ────────────────────────────── */
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    @media (max-width: 768px) {
-      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 480px) {
-      .kpi-grid { grid-template-columns: 1fr; }
-    }
-    .kpi-card {
-      background: var(--light-gray);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.2rem 1rem;
-      text-align: center;
-      transition: transform .25s ease, border-color .25s ease;
-    }
-    .kpi-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--blue-border);
-    }
-    .kpi-value {
-      font-family: var(--serif);
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--navy);
-      line-height: 1.1;
-      display: block;
-      margin-bottom: .3rem;
-    }
-    .kpi-label {
-      font-size: .65rem;
-      color: var(--muted);
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      display: block;
-    }
-
-    .findings-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: .8rem;
-    }
-    .findings-list li {
-      color: var(--slate);
-      font-size: .88rem;
-      line-height: 1.7;
-      padding-left: 1.3rem;
-      position: relative;
-    }
-    .findings-list li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: .5rem;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--blue);
-    }
-    .findings-list li strong {
-      color: var(--navy);
-      font-weight: 600;
-    }
-
-    /* ── PLACEHOLDER FOR BRAND AUDITS ───────────────────────── */
-    .placeholder-card {
-      margin-top: 2rem;
-      border: 1px dashed var(--blue-border);
-      background: var(--white);
-      border-radius: 8px;
-      padding: 2rem;
-      text-align: center;
-      transition: border-color .2s;
-    }
-    .placeholder-card:hover {
-      border-color: var(--blue);
-    }
-    .placeholder-icon {
-      color: var(--blue);
-      width: 36px;
-      height: 36px;
-      margin: 0 auto 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0.85;
-    }
-    .placeholder-title {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--navy);
-      margin-bottom: .4rem;
-    }
-    .placeholder-desc {
-      font-size: .82rem;
-      color: var(--slate);
-      max-width: 460px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    /* ── ANIMATIONS ──────────────────────────────────────────── */
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-    @keyframes pulse { 0%,100% { opacity: .3; } 50% { opacity: 1; } }
-
-    /* ── PRINT ───────────────────────────────────────────────── */
     @media print {
-      nav, .hero-scroll { display: none; }
-      section { padding: 2rem 0; }
-      .reveal { opacity: 1; transform: none; }
-      body { font-size: 11pt; }
-    }
-    /* ── DESIGN SPELLS ───────────────────────────────────────── */
-    @media (pointer: fine) {
-      body, a, button, .case-card, .btn-primary, .btn-outline { cursor: none !important; }
-      .cursor-dot, .cursor-outline {
-        position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
-        border-radius: 50%; z-index: 9999; pointer-events: none;
-      }
-      .cursor-dot { width: 8px; height: 8px; background-color: var(--blue); transition: opacity 0.2s; }
-      .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(43, 108, 176, 0.5); transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s; }
-      .cursor-hover .cursor-dot { opacity: 0; }
-      .cursor-hover .cursor-outline { width: 60px; height: 60px; background-color: rgba(43, 108, 176, 0.1); border-color: rgba(43, 108, 176, 0.8); }
-    }
-    @media (pointer: coarse) {
-      .cursor-dot, .cursor-outline { display: none; }
-    }
-
-    .case-card {
-      position: relative; overflow: hidden;
-    }
-    .case-card::before {
-      content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(600px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(43, 108, 176, 0.06), transparent 40%);
-      opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 0;
-    }
-    .case-card:hover::before { opacity: 1; }
-    .case-card > * { position: relative; z-index: 1; }
-
-    /* Kinetic Typography */
-    .char {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(20px) rotateX(-90deg);
-      transform-origin: bottom center;
-      transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    .visible .char {
-      opacity: 1;
-      transform: translateY(0) rotateX(0deg);
+      nav, .theme-btn, .hero-cta, .dashboard-nav { display: none; }
+      .js .reveal { opacity: 1 !important; transform: none !important; }
+      section { padding: 1.5rem 0; }
     }
   </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<!-- DESIGN SPELLS: Custom Cursor -->
-<div class="cursor-dot"></div>
-<div class="cursor-outline"></div>
-
-<!-- Ambient Particles Canvas -->
-<canvas id="magicalCanvas"></canvas>
-
-<!-- NAV -->
-<nav id="nav">
-  <div style="display: flex; align-items: center; gap: 1.2rem;">
-    <a href="#hero" class="nav-logo">AR.</a>
-    <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
-      <svg class="sun-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" />
-      </svg>
-      <svg class="moon-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width: 16px; height: 16px; display: none;">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 0 0 12 21a9.003 9.003 0 0 0 8.354-5.646z" />
-      </svg>
+<nav id="nav" aria-label="Main">
+  <div class="nav-left">
+    <a href="#hero" class="nav-logo" aria-label="Abdul Rehman, back to top">AR.</a>
+    <button id="themeToggle" class="theme-btn" type="button" aria-label="Switch to dark theme">
+      <svg class="sun-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>
+      <svg class="moon-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 0 0 12 21a9.003 9.003 0 0 0 8.354-5.646z"/></svg>
     </button>
   </div>
   <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
+    <li><a href="#now">Now</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#research">Research</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="hamburger" id="hbg" onclick="toggleNav()" aria-label="Toggle navigation">
+  <button class="hamburger" id="hbg" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
+<main id="main">
+
 <!-- HERO -->
 <section id="hero">
   <div class="hero-content">
-    <p class="hero-eyebrow">Marketing Operations &amp; Analytics · Lahore, Pakistan</p>
+    <img src="rehman_headshot_sm.jpg" width="112" height="112" alt="Portrait of Abdul Rehman" class="hero-avatar">
+    <p class="hero-eyebrow">Business reporting and marketing analytics &middot; Lahore, Pakistan</p>
     <h1 class="hero-name">Abdul <span>Rehman</span></h1>
-    <div class="hero-avatar-wrap">
-      <img src="rehman_headshot.png" alt="Abdul Rehman" class="hero-avatar">
-    </div>
-    <p class="hero-tagline">BBA Marketing graduate bridging retail operations with web analytics and CRM databases to coordinate campaigns. Experienced in retail SKU audits, visual planogram execution, and client dashboard reporting.</p>
+    <p class="hero-lede">I turn messy business data into reports people act on.</p>
+    <p class="hero-sub">BBA Marketing graduate (May 2026) with two years of retail and restaurant floor work behind me. I build reports in Excel, Power BI and SQL, and I check every number against its source before it goes out.</p>
+    <p class="hero-open">Open to Reporting, MIS and Marketing Analyst roles in Lahore, and small freelance reporting projects.</p>
     <div class="hero-cta">
-      <a href="#projects" class="btn-primary">View Projects</a>
-      <a href="Rai_Abdul_Rehman_CV.pdf" download="Rai_Abdul_Rehman_CV.pdf" class="btn-outline">Download CV</a>
-      <a href="#contact" class="btn-outline">Get in Touch</a>
+      <a href="#now" class="btn btn-primary">See current work</a>
+      <a href="mailto:raiabdul.analytics@gmail.com" class="btn btn-outline">Email me</a>
+      <a href="https://www.linkedin.com/in/rai-abdul-rehman-aa2295315" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
     </div>
   </div>
 </section>
 
-<!-- STATS BAR -->
-<div class="stats-bar">
+<!-- FACTS STRIP -->
+<div class="stats-bar" aria-label="Key facts">
   <div class="stat-item">
-    <div class="stat-ico">
-      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-      </svg>
-    </div>
-    <span class="stat-num">2+ Years</span>
-    <span class="stat-lbl">QSR &amp; Retail Ops</span>
+    <span class="stat-num">2 years</span>
+    <span class="stat-lbl">Retail and QSR floor operations</span>
   </div>
   <div class="stat-item">
-    <div class="stat-ico">
-      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-        <path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-        <path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"></path>
-      </svg>
-    </div>
-    <span class="stat-num">15</span>
-    <span class="stat-lbl">FMCG Brands Analysed</span>
+    <span class="stat-num">15 firms</span>
+    <span class="stat-lbl">PSX FMCG thesis, 90 firm-years</span>
   </div>
   <div class="stat-item">
-    <div class="stat-ico">
-      <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 489 511.8">
-        <path fill="#FF7A59" fill-rule="nonzero" d="M375.25 168.45V107.5c16.43-7.68 26.97-24.15 27.08-42.29V63.8c0-25.95-21.05-46.99-47-46.99h-1.37c-25.95 0-46.99 21.04-46.99 46.99v1.41a46.985 46.985 0 0027.29 42.3v60.94c-23.13 3.53-44.98 13.18-63.19 27.84L103.88 66.16c1.19-4.29 1.83-8.73 1.89-13.17v-.11C105.77 23.68 82.09 0 52.88 0 23.68 0 0 23.68 0 52.88c0 29.18 23.64 52.85 52.81 52.89 9.17-.08 18.16-2.59 26.06-7.23l164.62 128.07a133.501 133.501 0 00-22.16 73.61c0 27.39 8.46 54.17 24.18 76.58l-50.06 50.06a43.926 43.926 0 00-12.43-1.81c-23.96 0-43.38 19.42-43.38 43.37 0 23.96 19.42 43.38 43.38 43.38 23.95 0 43.37-19.42 43.37-43.38v-.13a41.81 41.81 0 00-2.02-12.5l49.52-49.56a133.687 133.687 0 0081.54 27.78c73.76 0 133.57-59.81 133.57-133.57 0-66.05-48.3-122.2-113.61-132.06l-.14.07zm-20.39 200.4c-36.79-1.52-65.85-31.79-65.85-68.62 0-35.43 26.97-65.06 62.23-68.38h3.62c35.8 2.73 63.46 32.58 63.46 68.48 0 35.91-27.66 65.76-63.45 68.48l-.01.04zm0 0z"/>
-      </svg>
-    </div>
+    <span class="stat-num">Certiport</span>
+    <span class="stat-lbl">IT Specialist: Data Analytics, 2026</span>
+  </div>
+  <div class="stat-item">
     <span class="stat-num">HubSpot</span>
-    <span class="stat-lbl">Certified Marketer</span>
-  </div>
-  <div class="stat-item">
-    <div class="stat-ico">
-      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
-        <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
-      </svg>
-    </div>
-    <span class="stat-num">Python &amp; BI</span>
-    <span class="stat-lbl">Analytical Stack</span>
+    <span class="stat-lbl">Certified 2025</span>
   </div>
 </div>
 
 <!-- ABOUT -->
-<section id="about" class="alt">
+<section id="about">
   <div class="container">
-    <div class="reveal">
-      <p class="sec-label">About Me</p>
-      <h2 class="sec-title">Marketing meets<br>market data.</h2>
-      <div class="sec-rule"></div>
+    <div class="sec-head reveal">
+      <p class="sec-label">About</p>
+      <h2 class="sec-title">Messy numbers in, clear reports out.</h2>
     </div>
-    <div class="about-grid reveal">
-      <div class="about-text">
-        <p><strong>I'm Abdul Rehman.</strong> BBA Marketing graduate from the <strong>University of Education, Lahore</strong>, with practical experience across FMCG retail operations and research-grade analytical work.</p>
-        <p>My thesis took me inside 15 of Pakistan's top FMCG companies, not as a visitor, but as someone building a data pipeline and pulling apart six years of financial reports to understand how brands actually behave under economic pressure.</p>
-        <p>I believe good marketing decisions need <strong>evidence, not assumption</strong>. Especially in a market as dynamic and unpredictable as Pakistan's.</p>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p><strong>I'm Abdul Rehman</strong>, a BBA Marketing graduate from the <strong>University of Education, Lahore</strong> (completed May 2026). Before analytics, I worked the floor: crew member and in-store trainer at McDonald's, front-of-house supervisor at Burger O'Clock, and sales and operations intern at Cakes &amp; Bakes.</p>
+        <p>That work showed me where business numbers go wrong: a cash drawer that does not match the till, fresh stock that expires before anyone logs it, an outlet receipt that never reaches the ERP. Reporting is the job of catching those gaps and explaining them in plain language.</p>
+        <p>My thesis applied the same discipline to six years of annual reports from 15 PSX-listed FMCG companies. Today I work on business reporting and marketing analytics in Excel, Power BI and SQL.</p>
       </div>
-      <div class="about-right">
-        <div class="about-stats">
-          <div class="about-stat-card">
-            <span class="about-stat-num">15</span>
-            <span class="about-stat-lbl">FMCG Firms Analysed</span>
-          </div>
-          <div class="about-stat-card">
-            <span class="about-stat-num">6</span>
-            <span class="about-stat-lbl">Years of Data</span>
-          </div>
-          <div class="about-stat-card">
-            <span class="about-stat-num">90</span>
-            <span class="about-stat-lbl">Data Observations</span>
-          </div>
-          <div class="about-stat-card">
-            <span class="about-stat-num">2+</span>
-            <span class="about-stat-lbl">Years QSR &amp; Retail Ops</span>
-          </div>
-        </div>
+      <aside class="facts reveal" aria-label="At a glance">
+        <h3>At a glance</h3>
+        <dl>
+          <div><dt>Based in</dt><dd>Lahore, Pakistan</dd></div>
+          <div><dt>Degree</dt><dd>BBA (Marketing), University of Education, Lahore. Completed May 2026</dd></div>
+          <div><dt>Focus</dt><dd>Business reporting, MIS, marketing analytics</dd></div>
+          <div><dt>Tools</dt><dd>Excel, Power BI, SQL (learning), SPSS, Looker Studio</dd></div>
+          <div><dt>Open to</dt><dd>Lahore roles and small remote projects</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- NOW -->
+<section id="now" class="alt">
+  <div class="container">
+    <div class="sec-head reveal">
+      <p class="sec-label">Now</p>
+      <h2 class="sec-title">What I'm working on</h2>
+      <p class="now-date">Updated November 2026</p>
+    </div>
+    <div class="card-grid">
+      <article class="card reveal">
+        <p class="card-kicker">Skill sprint</p>
+        <h3>50-day business reporting sprint</h3>
+        <p>8 November to 27 December 2026. Excel first, then Power BI, then SQL. Three projects on simulated data, built so the totals agree across all three tools.</p>
+        <ul>
+          <li>P1: POS vs ERP reconciliation in Excel (in progress)</li>
+          <li>P2: weekly sales and operations dashboard in Power BI</li>
+          <li>P3: the same data in SQL, totals matching P1 and P2</li>
+        </ul>
+      </article>
+      <article class="card reveal">
+        <p class="card-kicker">Client work</p>
+        <h3>First client project delivered</h3>
+        <p>A website and AdSense readiness review for a US site owner. I went through the posts and links one by one and handed over the findings in a shared document. The client's name and site stay private.</p>
+        <p class="status">A readiness review, not an approval promise. Approval is Google's decision.</p>
+      </article>
+      <article class="card reveal">
+        <p class="card-kicker">Offering</p>
+        <h3>Weekly sales reports for small online stores</h3>
+        <p>You send your store's weekly sales export. You get a short report: sales, orders, top products and what changed since last week, with every number traceable back to the export.</p>
+        <p class="status"><a href="#contact">Get in touch</a> if this would help your store.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- HOW I WORK -->
+<section id="how-i-work">
+  <div class="container">
+    <div class="sec-head reveal">
+      <p class="sec-label">How I work</p>
+      <h2 class="sec-title">Three rules I keep</h2>
+    </div>
+    <div class="principles">
+      <div class="principle reveal">
+        <h3>Check every claim against the source.</h3>
+        <p>Before a number goes into a report, I open where it came from: the sales export, the receipt, the annual report page. If I cannot trace it, it does not go in.</p>
+      </div>
+      <div class="principle reveal">
+        <h3>One source of truth per fact.</h3>
+        <p>Each figure lives in one place, and every chart and summary reads from it. The thesis charts on this page use the same dataset you can download below.</p>
+      </div>
+      <div class="principle reveal">
+        <h3>AI drafts, a human checks and decides.</h3>
+        <p>I use AI tools to draft and to speed up routine steps. I check what they produce, and the final call on what gets sent is mine.</p>
       </div>
     </div>
   </div>
 </section>
 
-
-
 <!-- PROJECTS -->
 <section id="projects" class="alt">
   <div class="container">
-    <div class="reveal">
-      <p class="sec-label">Applied Analysis</p>
-      <h2 class="sec-title">Ongoing Projects</h2>
-      <div class="sec-rule"></div>
+    <div class="sec-head reveal">
+      <p class="sec-label">Projects</p>
+      <h2 class="sec-title">Projects</h2>
+      <p class="sec-intro">Practice projects are labelled as such. Simulated data is marked as simulated.</p>
     </div>
-
-    <!-- Current Portfolio Builds -->
-    <div class="reveal" style="margin-top: 3.5rem;">
-      
-      
-      <div class="case-studies-grid">
-        <!-- Project 1: Looker Studio -->
-        <div class="case-card reveal">
-          <p class="case-tag">Performance Analytics</p>
-          <h4 class="case-title">Live GA4 E-Commerce Dashboard</h4>
-          <p class="case-desc">A real-time Looker Studio dashboard connecting to GA4 to visualize campaign ROI, bounce rates, and active user metrics for C-suite reporting.</p>
-          <div class="case-tools" style="margin-bottom: 1rem;">
-            <span class="case-tool">Looker Studio</span>
-            <span class="case-tool">GA4</span>
-            <span class="case-tool">Data Blending</span>
-            <span class="case-tool">Data Viz</span>
-          </div>
-          <a href="ga4-dashboard.html" target="_blank" class="btn-outline" style="font-size: 0.75rem; padding: 0.4rem 0.8rem; display: inline-block;">View Live Dashboard &rarr;</a>
-        </div>
-
-        <!-- Project 2: Web Tracking Auditor -->
-        <div class="case-card reveal" style="cursor: default;">
-          <p class="case-tag">Web Analytics & Automation</p>
-          <h4 class="case-title">Autonomous B2B Web Tracking Auditor <span class="badge badge-soon" style="vertical-align: middle;">In Progress</span></h4>
-          <p class="case-desc">Developing a Python-based diagnostic script to crawl target domains, audit Google Tag Manager, GA4, and Meta Pixel installations, and generate structured health reports.</p>
-          <div class="case-tools">
-            <span class="case-tool">Python</span>
-            <span class="case-tool">GA4</span>
-            <span class="case-tool">GTM</span>
-            <span class="case-tool">BeautifulSoup</span>
-          </div>
-        </div>
-
-        <!-- Project 3: ERP Inventory -->
-        <div class="case-card reveal" style="cursor: default;">
-          <p class="case-tag">Operational Analytics</p>
-          <h4 class="case-title">ERP-Driven Retail Inventory Reconciliation <span class="badge badge-soon" style="vertical-align: middle;">In Progress</span></h4>
-          <p class="case-desc">Building an end-to-end analytical dashboard modeling physical inventory counts against ERP point-of-sale data to visualize shrinkage, stockouts, and demand forecasting.</p>
-          <div class="case-tools">
-            <span class="case-tool">Excel Modeling</span>
-            <span class="case-tool">Looker Studio</span>
-            <span class="case-tool">ERP Data</span>
-            <span class="case-tool">Pivot Tables</span>
-          </div>
-        </div>
-      </div>
+    <div class="card-grid">
+      <article class="card reveal">
+        <p class="card-kicker">Operational reporting &middot; Sprint P1</p>
+        <h3>POS vs ERP Inventory Reconciliation <span class="badge">In progress</span></h3>
+        <p>Outlet POS receipts matched against ERP stock records for a simulated bakery chain, with deliberately messy data. Output: an exception log of every mismatch and a one-page finding. It is based on the kind of checks I did by hand at Cakes &amp; Bakes.</p>
+        <div class="tools"><span class="tool">Excel</span><span class="tool">Power Query</span><span class="tool">XLOOKUP</span><span class="tool">SUMIFS</span><span class="tool">Pivot tables</span></div>
+        <p class="status"><strong>Status, Nov 2026:</strong> being built in weeks 1 and 2 of the sprint. Simulated data only.</p>
+      </article>
+      <article class="card reveal">
+        <p class="card-kicker">Marketing analytics</p>
+        <h3>GA4 E-Commerce Dashboard</h3>
+        <p>A Looker Studio dashboard on Google's public GA4 demo account (the Google Merchandise Store): sessions, users, bounce rate, revenue, channel mix and top landing pages, with change against the previous period.</p>
+        <div class="tools"><span class="tool">Looker Studio</span><span class="tool">GA4</span><span class="tool">Data visualisation</span></div>
+        <p class="status"><a href="ga4-dashboard.html" class="btn btn-outline btn-sm">Open the dashboard</a></p>
+      </article>
+      <article class="card reveal">
+        <p class="card-kicker">Web analytics</p>
+        <h3>Website Tracking Auditor <span class="badge badge-muted">On hold</span></h3>
+        <p>A planned Python script to check whether a website's Google Tag Manager, GA4 and Meta Pixel tags are installed and firing, and to write a short health report.</p>
+        <div class="tools"><span class="tool">Python</span><span class="tool">GA4</span><span class="tool">GTM</span></div>
+        <p class="status"><strong>Status, Nov 2026:</strong> paused during the reporting sprint. No public version yet.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -1628,1135 +663,550 @@
 <!-- RESEARCH -->
 <section id="research">
   <div class="container">
-    <div class="reveal">
-      <p class="sec-label">Capstone Research — 2026</p>
-      <h2 class="sec-title">Research</h2>
-      <div class="sec-rule"></div>
+    <div class="sec-head reveal">
+      <p class="sec-label">Thesis research &middot; 2026</p>
+      <h2 class="sec-title">Ad spend during peak inflation</h2>
+      <p class="sec-intro">BBA thesis on 15 PSX-listed FMCG companies, 2019 to 2024. The charts below are built from the published dataset.</p>
     </div>
 
-    <!-- Interactive Dashboard Container -->
-    <div class="dashboard-container reveal">
-      <!-- Dashboard Title Block -->
+    <div class="dashboard reveal">
       <div class="dashboard-header">
-        <div class="dashboard-title-wrap">
-          <p class="dashboard-eyebrow">Thesis Data Explorer</p>
-          <h3 class="dashboard-title">FMCG Inflation Impact Dashboard</h3>
-          <p class="dashboard-subtitle">An interactive reconstruction of the 5-page Capstone Power BI dashboard. Switch tabs below to explore macroeconomic baselines, industry cost structures, and correlation trends across 15 Pakistani FMCG brands.</p>
-        </div>
+        <p class="dashboard-eyebrow">Thesis data explorer</p>
+        <h3 class="dashboard-title">FMCG inflation and advertising dashboard</h3>
+        <p class="dashboard-subtitle">A web version of my thesis Power BI dashboard. Hover or tap a point to see its values.</p>
       </div>
-      
-      <!-- Dashboard Navigation Tabs -->
-      <div class="dashboard-nav">
-        <button class="dashboard-tab-btn active" data-db-tab="db-macro">1. Macro Baseline</button>
-        <button class="dashboard-tab-btn" data-db-tab="db-adspend">2. Ad Spend vs. COGS</button>
-        <button class="dashboard-tab-btn" data-db-tab="db-scatter">3. Correlation Scatter</button>
-        <button class="dashboard-tab-btn" data-db-tab="db-benchmark">4. Firm Benchmarking</button>
-        <button class="dashboard-tab-btn" data-db-tab="db-insights">5. Executive Insights</button>
+      <div class="dashboard-nav" role="tablist" aria-label="Dashboard views">
+        <button class="dashboard-tab-btn" role="tab" aria-selected="true" aria-controls="db-macro" id="tab-macro" data-db-tab="db-macro">1. Inflation and rates</button>
+        <button class="dashboard-tab-btn" role="tab" aria-selected="false" aria-controls="db-adspend" id="tab-adspend" data-db-tab="db-adspend" tabindex="-1">2. Ad spend vs COGS</button>
+        <button class="dashboard-tab-btn" role="tab" aria-selected="false" aria-controls="db-scatter" id="tab-scatter" data-db-tab="db-scatter" tabindex="-1">3. Inflation vs ad spend</button>
+        <button class="dashboard-tab-btn" role="tab" aria-selected="false" aria-controls="db-benchmark" id="tab-benchmark" data-db-tab="db-benchmark" tabindex="-1">4. Firm comparison</button>
+        <button class="dashboard-tab-btn" role="tab" aria-selected="false" aria-controls="db-insights" id="tab-insights" data-db-tab="db-insights" tabindex="-1">5. Summary</button>
       </div>
 
-      <!-- Dashboard Interactive Content Panel -->
-      <div class="dashboard-content">
-        
-        <!-- Tab 1: Macroeconomic Baseline -->
-        <div id="db-macro" class="dashboard-panel active">
-          <div class="dashboard-panel-header">
-            <div class="dashboard-panel-title-wrap">
-              <h4 class="dashboard-panel-title">Pakistan's Inflation Timeline (2019–2024)</h4>
-              <p class="dashboard-panel-desc">A comparative timeline showing Pakistan's CPI Inflation rate against the State Bank of Pakistan's (SBP) Policy Rate. Hover over data nodes for details.</p>
+      <div class="dashboard-content" id="dashboardContent">
+        <div id="db-macro" class="dashboard-panel active" role="tabpanel" aria-labelledby="tab-macro">
+          <div class="panel-head">
+            <div>
+              <h4 class="panel-title">Pakistan's inflation and policy rate, 2019 to 2024</h4>
+              <p class="panel-desc">Average CPI inflation against the average State Bank of Pakistan (SBP) policy rate for each year.</p>
             </div>
-            <div class="dashboard-legend">
-              <div class="legend-item"><span class="legend-color coral-stroke"></span><span>Average CPI (%)</span></div>
-              <div class="legend-item"><span class="legend-color navy-stroke"></span><span>Average SBP Policy Rate (%)</span></div>
+            <div class="legend">
+              <span class="legend-item"><span class="sw sw-coral-ring"></span>CPI inflation (%)</span>
+              <span class="legend-item"><span class="sw sw-heading-ring"></span>SBP policy rate (%)</span>
             </div>
           </div>
-          <div class="chart-outer-wrap">
-            <div id="macroWrapper" class="chart-wrapper">
-              <svg id="macroSvg" class="chart-svg" viewBox="0 0 620 250"></svg>
-            </div>
-          </div>
-          <div class="finding" style="margin-bottom: 0;">
-            <p class="finding-lbl">Analytical Insight</p>
-            <p>CPI surged from <strong>9.5% to 30.8%</strong> between 2021–2023. The SBP responded by raising the policy rate to <strong>20.6%</strong>, the highest in Pakistan's modern history, to contain macro heat.</p>
+          <div class="chart-scroll"><div class="chart-wrapper fit"><svg id="macroSvg" class="chart-svg" viewBox="0 0 620 250" role="img" aria-label="Line chart: CPI inflation and SBP policy rate by year, 2019 to 2024"></svg></div></div>
+          <div class="finding">
+            <p class="finding-lbl">What the data shows</p>
+            <p>CPI inflation rose from <strong>9.5% in 2021 to 30.8% in 2023</strong>. The average policy rate followed, reaching <strong>20.6% in 2023</strong>. In the thesis data the two move together closely (r = 0.697, p &lt; 0.001).</p>
           </div>
         </div>
 
-        <!-- Tab 2: Ad Spend vs COGS Combo -->
-        <div id="db-adspend" class="dashboard-panel">
-          <div class="dashboard-panel-header">
-            <div class="dashboard-panel-title-wrap">
-              <h4 class="dashboard-panel-title">Cost Pressure vs. Advertising Response</h4>
-              <p class="dashboard-panel-desc">Comparing average firm cost structure (COGS % of revenue) as bars against average ad budget intensity (Ad Spend % of sales) as a line overlay.</p>
+        <div id="db-adspend" class="dashboard-panel" role="tabpanel" aria-labelledby="tab-adspend">
+          <div class="panel-head">
+            <div>
+              <h4 class="panel-title">Cost pressure vs advertising</h4>
+              <p class="panel-desc">Average cost of goods sold as a share of revenue (bars) against the average advertising-to-sales ratio (line), across the 15 firms.</p>
             </div>
-            <div class="dashboard-legend">
-              <div class="legend-item"><span class="legend-color blue-fill"></span><span>Average COGS Ratio (Left Axis)</span></div>
-              <div class="legend-item"><span class="legend-color coral-stroke"></span><span>Average Ad-to-Sales Ratio (Right Axis)</span></div>
-            </div>
-          </div>
-          <div class="chart-outer-wrap">
-            <div id="adspendWrapper" class="chart-wrapper">
-              <svg id="adspendSvg" class="chart-svg" viewBox="0 0 620 250"></svg>
+            <div class="legend">
+              <span class="legend-item"><span class="sw sw-accent"></span>COGS ratio (left axis)</span>
+              <span class="legend-item"><span class="sw sw-coral-ring"></span>Ad-to-sales (right axis)</span>
+              <span class="legend-item"><span class="sw sw-hollow"></span>2022 without Shield</span>
             </div>
           </div>
-          <div class="finding" style="margin-bottom: 0;">
-            <p class="finding-lbl">Analytical Insight</p>
-            <p>Average ad spend peaked at <strong>6.43% in 2022</strong> as firms went on the offensive during early inflation. By 2023–2024, as CPI hit 30.8% and input costs mounted, ad budgets collapsed to <strong>2.58%</strong> to protect cash flow.</p>
+          <div class="chart-scroll"><div class="chart-wrapper fit"><svg id="adspendSvg" class="chart-svg" viewBox="0 0 620 250" role="img" aria-label="Bar and line chart: average COGS ratio and average advertising-to-sales ratio by year"></svg></div></div>
+          <div class="finding">
+            <p class="finding-lbl">What the data shows</p>
+            <p>Average ad-to-sales <strong>spiked to 6.4% in 2022</strong>, then was <strong>cut to 2.7% in 2023</strong> as CPI peaked at 30.8%, and stayed near 2.6% in 2024.</p>
+            <p>One firm-year drives most of the 2022 spike: Shield Corporation reported advertising of 49.4% of revenue that year. Without it, the 2022 average is about 3.4%.</p>
           </div>
         </div>
 
-        <!-- Tab 3: Profitability Correlation Scatter -->
-        <div id="db-scatter" class="dashboard-panel">
-          <div class="dashboard-panel-header">
-            <div class="dashboard-panel-title-wrap">
-              <h4 class="dashboard-panel-title">Did Advertising Protect Margins?</h4>
-              <p class="dashboard-panel-desc">Scatter plot correlating Average Gross Profit Margin (GPM) against Average Ad-to-Sales Ratio across all 15 FMCG firms (2019–2024).</p>
+        <div id="db-scatter" class="dashboard-panel" role="tabpanel" aria-labelledby="tab-scatter">
+          <div class="panel-head">
+            <div>
+              <h4 class="panel-title">Did inflation move ad budgets?</h4>
+              <p class="panel-desc">Each dot is one firm in one year (90 firm-years). Across: that year's CPI inflation. Up: the firm's advertising-to-sales ratio. Dots in the same year are spread slightly sideways so they do not overlap.</p>
             </div>
-            <div class="dashboard-legend">
-              <div class="legend-item"><span class="legend-color navy-fill" style="border-radius: 50%;"></span><span>FMCG Company Node</span></div>
-              <div class="legend-item"><span class="legend-color coral-fill" style="height: 2px; width: 15px;"></span><span>Regression Line (&beta; = -0.110)</span></div>
+            <div class="legend">
+              <span class="legend-item"><span class="sw sw-dot" style="background: var(--accent);"></span>One firm-year</span>
             </div>
           </div>
-          <div class="chart-outer-wrap">
-            <div id="scatterWrapper" class="chart-wrapper">
-              <svg id="scatterSvg" class="chart-svg" viewBox="0 0 620 250"></svg>
-            </div>
-          </div>
-          <div class="finding" style="margin-bottom: 0; border-left-color: var(--navy);">
-            <p class="finding-lbl" style="color: var(--navy);">Empirical Regression Result</p>
-            <p style="font-style: italic;">"Empirical analysis confirms no statistically significant relationship between advertising intensity (A/S Ratio) and gross profit margins (GPM) across the 15-company sample. This indicates that margin performance during peak inflation was dominated by firm-level pricing power and cost structures, rather than marketing expenditures."</p>
+          <div class="chart-scroll"><div class="chart-wrapper fit"><svg id="scatterSvg" class="chart-svg" viewBox="0 0 620 280" role="img" aria-label="Scatter chart: CPI inflation against advertising-to-sales ratio for 90 firm-years"></svg></div></div>
+          <div class="finding">
+            <p class="finding-lbl">Statistical result</p>
+            <p>Pearson correlation in SPSS across the 90 firm-years: <strong>r = 0.008, p = 0.943</strong>. There is <strong>no statistically significant linear relationship</strong> between inflation and ad spend at the firm level (p &gt; 0.05). In the same year, firms ranged from almost nothing to over 10% of revenue: budgets followed each firm's own balance sheet strength, not the inflation rate.</p>
           </div>
         </div>
 
-        <!-- Tab 4: Firm Benchmarking Horizontal Bars -->
-        <div id="db-benchmark" class="dashboard-panel">
-          <div class="dashboard-panel-header">
-            <div class="dashboard-panel-title-wrap">
-              <h4 class="dashboard-panel-title">Market Leaders Comparison: Proactive vs. Defensive</h4>
-              <p class="dashboard-panel-desc">Ranking the average Ad-to-Sales allocation of the 15 FMCG firms. Hover over bars to view GPM margin values.</p>
+        <div id="db-benchmark" class="dashboard-panel" role="tabpanel" aria-labelledby="tab-benchmark">
+          <div class="panel-head">
+            <div>
+              <h4 class="panel-title">Average ad-to-sales by firm, 2019 to 2024</h4>
+              <p class="panel-desc">Six-year average share of revenue spent on advertising. Hover or tap a bar for the firm's average gross margin.</p>
             </div>
-            <div class="dashboard-legend">
-              <div class="legend-item"><span class="legend-color blue-fill"></span><span>Proactive Spenders (&ge; 4% Ad spend)</span></div>
-              <div class="legend-item"><span class="legend-color coral-fill"></span><span>Defensive Spenders (&lt; 4% Ad spend)</span></div>
-            </div>
-          </div>
-          <div class="chart-outer-wrap">
-            <div id="benchmarkWrapper" class="chart-wrapper" style="height: 380px;">
-              <svg id="benchmarkSvg" class="chart-svg" viewBox="0 0 620 380"></svg>
+            <div class="legend">
+              <span class="legend-item"><span class="sw sw-accent"></span>4% or more</span>
+              <span class="legend-item"><span class="sw sw-coral"></span>Under 4%</span>
             </div>
           </div>
-          <div class="finding" style="margin-bottom: 0;">
-            <p class="finding-lbl">Analytical Insight</p>
-            <p><strong>Shield Corporation</strong> allocated <strong>11.63%</strong> of total revenue to advertising—nearly <strong>40x more</strong> proportionally than <strong>Unity Foods (0.29%)</strong>. A select few 'Proactive' market leaders maintained high visibility to capture market share, while the rest turned 'Defensive'.</p>
+          <p class="swipe-hint">Swipe sideways to see the full chart.</p>
+          <div class="chart-scroll"><div class="chart-wrapper"><svg id="benchmarkSvg" class="chart-svg" viewBox="0 0 620 380" role="img" aria-label="Bar chart: six-year average advertising-to-sales ratio for each of the 15 firms"></svg></div></div>
+          <div class="finding">
+            <p class="finding-lbl">What the data shows</p>
+            <p><strong>Shield Corporation</strong> averaged <strong>11.63%</strong> of revenue on advertising, about 40 times <strong>Unity Foods (0.29%)</strong>. Same sector, same inflation, very different budgets. Shield's average includes its 49.4% year (2022); without that year it is about 4.1%.</p>
           </div>
         </div>
 
-        <!-- Tab 5: Executive Insights Summary Grid -->
-        <div id="db-insights" class="dashboard-panel">
+        <div id="db-insights" class="dashboard-panel" role="tabpanel" aria-labelledby="tab-insights">
           <div class="kpi-grid">
-            <div class="kpi-card">
-              <span class="kpi-value">15</span>
-              <span class="kpi-label">FMCG Firms Sampled</span>
-            </div>
-            <div class="kpi-card">
-              <span class="kpi-value">6 Years</span>
-              <span class="kpi-label">Analysis Span (2019-24)</span>
-            </div>
-            <div class="kpi-card">
-              <span class="kpi-value">3.77%</span>
-              <span class="kpi-label">Average Ad-to-Sales</span>
-            </div>
-            <div class="kpi-card">
-              <span class="kpi-value">30.77%</span>
-              <span class="kpi-label">Peak CPI Inflation</span>
-            </div>
+            <div class="kpi-card"><span class="kpi-value">15</span><span class="kpi-label">PSX FMCG firms</span></div>
+            <div class="kpi-card"><span class="kpi-value">90</span><span class="kpi-label">Firm-year observations</span></div>
+            <div class="kpi-card"><span class="kpi-value">3.77%</span><span class="kpi-label">Average ad-to-sales</span></div>
+            <div class="kpi-card"><span class="kpi-value">30.8%</span><span class="kpi-label">Peak CPI (2023)</span></div>
           </div>
-          
-          <h4 style="font-family: var(--serif); color: var(--navy); margin-bottom: 1rem; font-size: 1.1rem;">Key Strategic Takeaways</h4>
-          <ul class="findings-list">
-            <li><strong>Strategic Variance:</strong> No industry-wide consensus existed under inflation. Companies operated on a spectrum: "Proactive Heroes" defended visibility at all costs, while "Defensive Pragmatists" preserved operational cash flow.</li>
-            <li><strong>Spending Volatility:</strong> Raw promotional budgets peaked in 2022 at a record 6.43% industry average before severe supply-side inflation forced a sharp industry-wide retrenchment by 2023.</li>
-            <li><strong>Market Leadership:</strong> Shield Corporation (11.63%) and Gillette Pakistan (8.48%) maintained highly aggressive visibility footprints compared to standard commodity-spiced competitors.</li>
-            <li><strong>Margin Compression:</strong> Escalating global raw material costs drove average COGS ratios above 74% across the panel, which structurally squeezed gross margins regardless of marketing support.</li>
+          <ul class="takeaways">
+            <li><strong>No link at firm level:</strong> inflation and ad-to-sales did not move together (r = 0.008, p = 0.943).</li>
+            <li><strong>Sector average swung:</strong> 6.4% in 2022, cut to 2.7% in 2023 at peak inflation. The 2022 figure is pulled up by one firm-year (Shield Corporation).</li>
+            <li><strong>Wide spread between firms:</strong> six-year averages ran from 0.29% (Unity Foods) to 11.63% (Shield Corporation).</li>
+            <li><strong>Heavy cost base:</strong> cost of goods sold averaged about 74% of revenue across the panel.</li>
           </ul>
         </div>
 
-      <!-- Shared Tooltip Div for all charts -->
-      <div id="dashboardTooltip" class="chart-tooltip"></div>
+        <div id="dashboardTooltip" class="chart-tooltip" role="status" aria-live="polite"></div>
       </div>
     </div>
 
+    <article class="research-card reveal">
+      <div class="r-tags">
+        <span class="tool">FMCG</span><span class="tool">Pakistan</span><span class="tool">2019 to 2024</span><span class="tool">Firm-year panel</span>
+      </div>
+      <h3 class="r-title">Advertising Spend During Peak Inflation: An Analysis of Market Leaders in the Pakistani FMCG Sector (2019-2024)</h3>
+      <p class="r-desc">How did 15 PSX-listed FMCG companies set advertising budgets during one of Pakistan's worst inflation periods? I extracted revenue, cost of goods sold and advertising expense from six years of audited annual reports, cross-checked them into a 90-row firm-year dataset, calculated the ratios in Excel and tested the relationships in SPSS.</p>
+      <div class="r-stats">
+        <div class="r-stat"><span class="r-stat-n">15</span><span class="r-stat-l">PSX-listed firms</span></div>
+        <div class="r-stat"><span class="r-stat-n">6</span><span class="r-stat-l">Years (2019-2024)</span></div>
+        <div class="r-stat"><span class="r-stat-n">90</span><span class="r-stat-l">Firm-years</span></div>
+        <div class="r-stat"><span class="r-stat-n">PSX</span><span class="r-stat-l">Annual reports</span></div>
+      </div>
+      <div class="finding">
+        <p class="finding-lbl">Key finding</p>
+        <p>Inflation showed <strong>no statistically significant linear relationship</strong> with advertising spend at the firm level (p &gt; 0.05). The sector average spiked to 6.4% of sales in 2022 and was cut to 2.7% in 2023, when CPI peaked at 30.8%. Budgets followed each firm's balance sheet strength, not a textbook response to inflation.</p>
+      </div>
+      <div class="finding">
+        <p class="finding-lbl">What I took from it</p>
+        <p>An average can hide the story. The sector line moved sharply while individual firms went their own way, so a good report shows both views and names the outliers.</p>
+      </div>
+      <div class="tools" style="margin-top: var(--s2);">
+        <span class="tool">Excel</span><span class="tool">SPSS</span><span class="tool">Power BI</span><span class="tool">Python</span><span class="tool">Pearson correlation</span><span class="tool">Descriptive statistics</span>
+      </div>
+      <div class="actions">
+        <a href="Rai_Abdul_Rehman_FMCG_Dataset.xlsx" download class="btn btn-primary btn-sm">Download the dataset (Excel)</a>
+      </div>
 
-
-    <div class="research-card reveal">
-      <div class="research-inner">
-        <div class="r-tags">
-          <span class="r-tag">FMCG Sector</span>
-          <span class="r-tag">Pakistan</span>
-          <span class="r-tag">2019–2024</span>
-          <span class="r-tag">Panel Data</span>
-          <span class="r-tag">Inflation Analysis</span>
-        </div>
-        <h3 class="r-title">Advertising Spend During Peak Inflation: An Analysis of Market Leaders in the Pakistani FMCG Sector (2019–2024)</h3>
-        <p class="r-desc">An independent study examining how 15 of Pakistan's top PSX-listed FMCG companies allocated advertising budgets during one of the country's most severe inflationary periods. I built a Python data-extraction pipeline using AI-assisted parsing (Gemini API) to collect structured financial data from six years of annual reports, constructed a balanced panel dataset, and applied SPSS regression to test long-held assumptions about advertising effectiveness.</p>
-        <div class="r-stats">
-          <div class="r-stat">
-            <span class="r-stat-n">15</span>
-            <span class="r-stat-l">PSX-Listed Firms</span>
-          </div>
-          <div class="r-stat">
-            <span class="r-stat-n">6</span>
-            <span class="r-stat-l">Years (2019–24)</span>
-          </div>
-          <div class="r-stat">
-            <span class="r-stat-n">90</span>
-            <span class="r-stat-l">Observations</span>
-          </div>
-          <div class="r-stat">
-            <span class="r-stat-n">PSX</span>
-            <span class="r-stat-l">Data Source</span>
-          </div>
-        </div>
-        <div class="finding">
-          <p class="finding-lbl">Key Finding</p>
-          <p>Advertising expenditure showed <strong>no statistically significant effect on gross profit margin</strong> during Pakistan's 2019–2024 inflationary cycle. Firms exhibited "advertising rigidity" (maintaining budgets regardless of macro pressure), a finding that directly challenges conventional FMCG marketing assumptions.</p>
-        </div>
-        <div class="implication">
-          <p class="implication-lbl">Business Implication</p>
-          <p>FMCG firms should consider reallocating rigid advertising budgets toward targeted price-promotions and trade marketing during inflationary periods, where measurable ROI is more directly achievable.</p>
-        </div>
-        <div class="pills">
-          <span class="pill">Python</span>
-          <span class="pill">SPSS</span>
-          <span class="pill">Power BI</span>
-          <span class="pill">Advanced Excel</span>
-          <span class="pill">Panel Regression</span>
-          <span class="pill">AI-Assisted Extraction</span>
-          <span class="pill">Data Pipeline</span>
-        </div>
-        <div style="margin-top: 1.8rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; gap: 1rem; flex-wrap: wrap;">
-          <a href="Rai_Abdul_Rehman_FMCG_Dataset.xlsx" download class="btn-primary" style="font-size: .8rem; padding: .6rem 1.2rem;">Download Research Dataset (Excel)</a>
-          <a href="#pipeline" class="btn-outline" style="font-size: .8rem; padding: .6rem 1.2rem;">View Data Pipeline</a>
-        </div>
-
-        <!-- Data Pipeline Flowchart -->
-        <div class="pipeline" id="pipeline">
-          <p class="pipeline-label">How The Data Was Built</p>
-          <div class="pipeline-flow">
-            <div class="pipe-step">
-              <div class="pipe-step-icon">
-                <svg class="pipe-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                  <line x1="16" y1="13" x2="8" y2="13"></line>
-                  <line x1="16" y1="17" x2="8" y2="17"></line>
-                  <polyline points="10 9 9 9 8 9"></polyline>
-                </svg>
-              </div>
-              <div class="pipe-step-name">PDF Annual<br>Reports</div>
-              <div class="pipe-step-tool">90 documents</div>
-            </div>
-            <div class="pipe-arrow">→</div>
-            <div class="pipe-step">
-              <div class="pipe-step-icon">
-                <svg class="pipe-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-                  <rect x="9" y="9" width="6" height="6"></rect>
-                  <line x1="9" y1="1" x2="9" y2="4"></line>
-                  <line x1="15" y1="1" x2="15" y2="4"></line>
-                  <line x1="9" y1="20" x2="9" y2="23"></line>
-                  <line x1="15" y1="20" x2="15" y2="23"></line>
-                  <line x1="20" y1="9" x2="23" y2="9"></line>
-                  <line x1="20" y1="15" x2="23" y2="15"></line>
-                  <line x1="1" y1="9" x2="4" y2="9"></line>
-                  <line x1="1" y1="15" x2="4" y2="15"></line>
-                </svg>
-              </div>
-              <div class="pipe-step-name">AI-Assisted<br>Extraction</div>
-              <div class="pipe-step-tool">Python + Gemini API</div>
-            </div>
-            <div class="pipe-arrow">→</div>
-            <div class="pipe-step">
-              <div class="pipe-step-icon">
-                <svg class="pipe-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                  <path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-                  <path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"></path>
-                  <path d="M17 12l2 2 4-4"></path>
-                </svg>
-              </div>
-              <div class="pipe-step-name">Data Cleaning<br>&amp; Normalisation</div>
-              <div class="pipe-step-tool">Excel + pandas</div>
-            </div>
-            <div class="pipe-arrow">→</div>
-            <div class="pipe-step">
-              <div class="pipe-step-icon">
-                <svg class="pipe-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="18" y1="20" x2="18" y2="10"></line>
-                  <line x1="12" y1="20" x2="12" y2="4"></line>
-                  <line x1="6" y1="20" x2="6" y2="14"></line>
-                  <line x1="2" y1="20" x2="22" y2="20"></line>
-                  <path d="M3 12l6-4 6 8 6-12"></path>
-                </svg>
-              </div>
-              <div class="pipe-step-name">Statistical<br>Analysis</div>
-              <div class="pipe-step-tool">SPSS Regression</div>
-            </div>
-            <div class="pipe-arrow">→</div>
-            <div class="pipe-step">
-              <div class="pipe-step-icon">
-                <svg class="pipe-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                  <line x1="9" y1="3" x2="9" y2="21"></line>
-                  <line x1="9" y1="9" x2="21" y2="9"></line>
-                  <line x1="15" y1="9" x2="15" y2="21"></line>
-                </svg>
-              </div>
-              <div class="pipe-step-name">Dashboard<br>&amp; Insights</div>
-              <div class="pipe-step-tool">Power BI</div>
-            </div>
-          </div>
+      <div class="pipeline">
+        <p class="pipeline-label">How the data was built</p>
+        <div class="pipeline-flow">
+          <div class="pipe-step"><span class="pipe-n">1</span><div class="pipe-step-name">Annual reports</div><div class="pipe-step-tool">15 firms x 6 years = 90 reports</div></div>
+          <div class="pipe-step"><span class="pipe-n">2</span><div class="pipe-step-name">Extraction</div><div class="pipe-step-tool">AI-assisted, Python</div></div>
+          <div class="pipe-step"><span class="pipe-n">3</span><div class="pipe-step-name">Cleaning and cross-checks</div><div class="pipe-step-tool">Excel</div></div>
+          <div class="pipe-step"><span class="pipe-n">4</span><div class="pipe-step-name">Statistics</div><div class="pipe-step-tool">SPSS: descriptives, Pearson correlation</div></div>
+          <div class="pipe-step"><span class="pipe-n">5</span><div class="pipe-step-name">Dashboard</div><div class="pipe-step-tool">Power BI</div></div>
         </div>
       </div>
-    </div>
+    </article>
   </div>
 </section>
 
 <!-- EXPERIENCE -->
-<section id="experience">
+<section id="experience" class="alt">
   <div class="container">
-    <div class="reveal">
-      <p class="sec-label">Where I've Worked</p>
-      <h2 class="sec-title">Experience</h2>
-      <div class="sec-rule"></div>
+    <div class="sec-head reveal">
+      <p class="sec-label">Experience</p>
+      <h2 class="sec-title">Where the habits come from</h2>
     </div>
     <div class="timeline">
-
       <div class="exp-item reveal">
-        <div class="exp-dot"></div>
-        <p class="exp-date">Jul 2025 – Sep 2025</p>
-        <h3 class="exp-role">Sales &amp; Operations Intern</h3>
-        <p class="exp-co"><strong>Cakes &amp; Bakes Pakistan</strong> — Lahore</p>
+        <p class="exp-date">Jul 2025 - Sep 2025</p>
+        <h3 class="exp-role">Sales and Operations Intern</h3>
+        <p class="exp-co">Cakes &amp; Bakes Pakistan &middot; Lahore</p>
         <ul class="exp-list">
-          <li>Executed point-of-purchase (POP) merchandising and in-store promotional campaigns, ensuring compliance with principal brand guidelines.</li>
-          <li>Supported retail-level consumer engagement activities and front-end product placement compliance.</li>
-          <li>Reconciled daily inventory counts and sales reports for 150+ retail SKUs using MS Excel.</li>
+          <li>Cross-checked outlet POS receipt logs against Microsoft Dynamics ERP records to catch inventory mismatches.</li>
+          <li>Tracked fresh products with a 24 to 48 hour shelf life: daily batch returns, write-offs and shrinkage.</li>
+          <li>Kept dispatch logs for stock moving between the central bakery and the retail outlets.</li>
         </ul>
       </div>
-
       <div class="exp-item reveal">
-        <div class="exp-dot"></div>
-        <p class="exp-date">Feb 2025 – Jun 2025</p>
+        <p class="exp-date">Feb 2025 - Jun 2025</p>
         <h3 class="exp-role">Senior Front-of-House Supervisor</h3>
-        <p class="exp-co"><strong>Burger O'Clock</strong> — Lahore</p>
+        <p class="exp-co">Burger O'Clock &middot; Lahore</p>
         <ul class="exp-list">
-          <li>Upheld brand service standards across 200+ daily customer touchpoints during peak trading hours.</li>
-          <li>Recruited, onboarded, and trained 8+ team members on brand protocols and service quality standards.</li>
-          <li>Identified operational inefficiencies impacting customer satisfaction and implemented targeted corrective measures.</li>
+          <li>Logged hourly sales tallies, cancellations, voids, promotional discounts and refunds in the store's register books for the shift managers.</li>
+          <li>Reconciled end-of-shift cash drawers against POS totals and wrote down the cause of each variance.</li>
         </ul>
       </div>
-
       <div class="exp-item reveal">
-        <div class="exp-dot"></div>
-        <p class="exp-date">Aug 2023 – Feb 2025</p>
-        <h3 class="exp-role">Crew Member &amp; In-Store Trainer</h3>
-        <p class="exp-co"><strong>McDonald's Pakistan</strong> — Lahore</p>
+        <p class="exp-date">Aug 2023 - Feb 2025</p>
+        <h3 class="exp-role">Crew Member, promoted to In-Store Trainer</h3>
+        <p class="exp-co">McDonald's Pakistan &middot; Lahore</p>
         <ul class="exp-list">
-          <li>Maintained brand satisfaction metrics as a frontline representative of one of Pakistan's largest QSR chains.</li>
-          <li>Promoted to In-Store Trainer; delivered structured brand and service protocol onboarding to new crew members.</li>
-          <li>Managed customer grievance escalation, protecting brand reputation through professional conflict resolution.</li>
+          <li>Worked front counter and drive-thru through peak rushes: 30+ orders on screen and 100+ transactions an hour.</li>
+          <li>As In-Store Trainer, trained 8 new crew members on the POS, customer service and floor safety. All 8 passed their probation reviews.</li>
+          <li>Balanced register drawers and kept food safety and hygiene standards under tight time targets.</li>
         </ul>
       </div>
+    </div>
 
+    <p class="sub-head reveal">Education</p>
+    <div class="timeline">
+      <div class="exp-item reveal">
+        <p class="exp-date">Sep 2022 - May 2026</p>
+        <h3 class="exp-role">Bachelor of Business Administration (Marketing)</h3>
+        <p class="exp-co">University of Education, Lahore &middot; Completed May 2026</p>
+        <ul class="exp-list">
+          <li>Quantitative thesis on advertising spend during peak inflation (see Research above).</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- SKILLS -->
-<section id="skills" class="alt">
+<section id="skills">
   <div class="container">
-    <div class="reveal">
-      <p class="sec-label">Capabilities</p>
-      <h2 class="sec-title">Skills</h2>
-      <div class="sec-rule"></div>
+    <div class="sec-head reveal">
+      <p class="sec-label">Skills</p>
+      <h2 class="sec-title">Tools and where I stand</h2>
     </div>
     <div class="skills-grid">
-      <div class="skill-card reveal">
-        <div class="sk-svg-wrap">
-          <svg class="sk-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <circle cx="11" cy="11" r="8" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8 11h6" />
-          </svg>
-        </div>
-        <div class="sk-name">Market Research</div>
-        <div class="sk-desc">Quantitative research design, consumer data analysis, panel data methods</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="sk-svg-wrap">
-          <svg class="sk-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M18 20V10M12 20V4M6 20v-6" />
-          </svg>
-        </div>
-        <div class="sk-name">Power BI</div>
-        <div class="sk-desc">Dashboard design, data visualisation, business intelligence reporting</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="sk-svg-wrap">
-          <svg class="sk-svg" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M11.93 2.02c-2.67 0-4.7 2.03-4.7 4.7v1.86h4.84V9h-6.7c-2.14 0-3.35 1.25-3.35 3.39v4.18c0 2.14 1.48 3.53 3.62 3.53h1.86v-2.42c0-1.79 1.46-3.25 3.25-3.25h4.63c1.79 0 3.25-1.46 3.25-3.25V6.72c0-2.67-2.03-4.7-4.7-4.7zm-2.05 1.56a.91.91 0 1 1 0 1.82.91.91 0 0 1 0-1.82zm4.18 8.16v2.42c0 1.79-1.46 3.25-3.25 3.25H6.18c-1.79 0-3.25 1.46-3.25 3.25v1.86c0 2.67 2.03 4.7 4.7 4.7h5.18c2.67 0 4.7-2.03 4.7-4.7v-1.86h-4.84v-.42h6.7c2.14 0 3.35-1.25 3.35-3.39v-4.18c-0.01-2.14-1.49-3.53-3.63-3.53H14.06zM14.1 18.6a.91.91 0 1 1 0 1.82.91.91 0 0 1 0-1.82z"/>
-          </svg>
-        </div>
-        <div class="sk-name">Python</div>
-        <div class="sk-desc">Data extraction pipelines, PDF parsing, AI-assisted processing, pandas</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="sk-svg-wrap">
-          <svg class="sk-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M3 14h18m-9-4v8m-5-8v8m10-8v8M4 6h16a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2z" />
-          </svg>
-        </div>
-        <div class="sk-name">Advanced Excel</div>
-        <div class="sk-desc">Financial modelling, pivot tables, formula logic, data cleaning</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="sk-svg-wrap">
-          <svg class="sk-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-          </svg>
-        </div>
-        <div class="sk-name">FMCG &amp; QSR Operations</div>
-        <div class="sk-desc">Retail brand execution, POP merchandising, promotional campaigns</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="sk-svg-wrap">
-          <svg class="sk-svg" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 489 511.8">
-            <path fill="#FF7A59" fill-rule="nonzero" d="M375.25 168.45V107.5c16.43-7.68 26.97-24.15 27.08-42.29V63.8c0-25.95-21.05-46.99-47-46.99h-1.37c-25.95 0-46.99 21.04-46.99 46.99v1.41a46.985 46.985 0 0027.29 42.3v60.94c-23.13 3.53-44.98 13.18-63.19 27.84L103.88 66.16c1.19-4.29 1.83-8.73 1.89-13.17v-.11C105.77 23.68 82.09 0 52.88 0 23.68 0 0 23.68 0 52.88c0 29.18 23.64 52.85 52.81 52.89 9.17-.08 18.16-2.59 26.06-7.23l164.62 128.07a133.501 133.501 0 00-22.16 73.61c0 27.39 8.46 54.17 24.18 76.58l-50.06 50.06a43.926 43.926 0 00-12.43-1.81c-23.96 0-43.38 19.42-43.38 43.37 0 23.96 19.42 43.38 43.38 43.38 23.95 0 43.37-19.42 43.37-43.38v-.13a41.81 41.81 0 00-2.02-12.5l49.52-49.56a133.687 133.687 0 0081.54 27.78c73.76 0 133.57-59.81 133.57-133.57 0-66.05-48.3-122.2-113.61-132.06l-.14.07zm-20.39 200.4c-36.79-1.52-65.85-31.79-65.85-68.62 0-35.43 26.97-65.06 62.23-68.38h3.62c35.8 2.73 63.46 32.58 63.46 68.48 0 35.91-27.66 65.76-63.45 68.48l-.01.04zm0 0z"/>
-          </svg>
-        </div>
-        <div class="sk-name">HubSpot Marketing</div>
-        <div class="sk-desc">CRM fundamentals, marketing automation, digital marketing</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="sk-svg-wrap">
-          <svg class="sk-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21h12a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            <circle cx="7" cy="12" r="1.5" fill="currentColor" />
-            <circle cx="10" cy="9" r="1.5" fill="currentColor" />
-            <circle cx="13" cy="12" r="1.5" fill="currentColor" />
-            <circle cx="17" cy="8" r="1.5" fill="currentColor" />
-          </svg>
-        </div>
-        <div class="sk-name">SPSS</div>
-        <div class="sk-desc">Regression analysis, statistical testing, panel data modelling</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="sk-svg-wrap">
-          <svg class="sk-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-          </svg>
-        </div>
-        <div class="sk-name">Team Leadership</div>
-        <div class="sk-desc">Staff training, onboarding design, workflow coordination</div>
-      </div>
+      <div class="skill-card reveal"><div class="sk-name">Excel</div><div class="sk-desc">Cleaning, SUMIFS, XLOOKUP, pivot tables, ratio models. Power Query in progress.</div></div>
+      <div class="skill-card reveal"><div class="sk-name">Power BI</div><div class="sk-desc">Built my thesis dashboard. Data models and measures are the sprint's next step.</div></div>
+      <div class="skill-card reveal"><div class="sk-name">SQL <span class="level">Learning</span></div><div class="sk-desc">SELECT, WHERE, GROUP BY, CASE and joins, scheduled for December 2026.</div></div>
+      <div class="skill-card reveal"><div class="sk-name">SPSS</div><div class="sk-desc">Descriptive statistics and correlation testing for the thesis.</div></div>
+      <div class="skill-card reveal"><div class="sk-name">Looker Studio and GA4</div><div class="sk-desc">Marketing dashboard on GA4 data: traffic, channels, revenue, landing pages.</div></div>
+      <div class="skill-card reveal"><div class="sk-name">Python <span class="level">Basic</span></div><div class="sk-desc">pandas for loading and cleaning data. Used in the thesis data work.</div></div>
+      <div class="skill-card reveal"><div class="sk-name">Reconciliation</div><div class="sk-desc">POS vs ERP, cash drawer vs till, stock logs and write-offs, from real floor work.</div></div>
+      <div class="skill-card reveal"><div class="sk-name">HubSpot and CRM</div><div class="sk-desc">CRM fundamentals and inbound marketing (HubSpot certified 2025).</div></div>
     </div>
   </div>
 </section>
 
 <!-- CERTIFICATIONS -->
-<section id="certifications">
+<section id="certifications" class="alt">
   <div class="container">
-    <div class="reveal">
+    <div class="sec-head reveal">
       <p class="sec-label">Credentials</p>
       <h2 class="sec-title">Certifications</h2>
-      <div class="sec-rule"></div>
     </div>
     <div class="cert-grid">
       <div class="cert-card reveal">
-        <div class="cert-ico">
-          <svg class="cert-svg" fill="currentColor" viewBox="0 0 24 24" style="width: 22px; height: 22px;">
-            <path d="M12 1a2 2 0 012 2v2.5a2 2 0 01-4 0V3a2 2 0 012-2zm0 15a2 2 0 012 2v2.5a2 2 0 01-4 0V18a2 2 0 012-2zm7.778-9.778a2 2 0 010 2.828l-1.768 1.768a2 2 0 11-2.828-2.828l1.768-1.768a2 2 0 012.828 0zM5.99 15.182a2 2 0 010 2.828l-1.768 1.768a2 2 0 11-2.828-2.828l1.768-1.768a2 2 0 012.828 0zM23 12a2 2 0 01-2 2h-2.5a2 2 0 010-4H21a2 2 0 012 2zM5.5 12a2 2 0 01-2 2H1a2 2 0 010-4h2.5a2 2 0 012 2zm14.278 3.182a2 2 0 012.828 2.828l-1.768 1.768a2 2 0 11-2.828-2.828l1.768-1.768zm-13.788-6.01a2 2 0 012.828 2.828L7.05 10.586A2 2 0 114.222 7.758L5.99 5.99z" />
-          </svg>
-        </div>
-        <div>
-          <div class="cert-name">IT Specialist — Data Analytics</div>
-          <div class="cert-issuer">Pearson Certiport</div>
-          <span class="badge badge-soon">In Progress — Aug 2026</span>
-        </div>
+        <div class="cert-name">IT Specialist: Data Analytics</div>
+        <div class="cert-issuer">Pearson Certiport</div>
+        <span class="badge">Certified 2026</span>
       </div>
       <div class="cert-card reveal">
-        <div class="cert-ico">
-          <svg class="cert-svg" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 489 511.8" style="width: 22px; height: 22px;">
-            <path fill="#FF7A59" fill-rule="nonzero" d="M375.25 168.45V107.5c16.43-7.68 26.97-24.15 27.08-42.29V63.8c0-25.95-21.05-46.99-47-46.99h-1.37c-25.95 0-46.99 21.04-46.99 46.99v1.41a46.985 46.985 0 0027.29 42.3v60.94c-23.13 3.53-44.98 13.18-63.19 27.84L103.88 66.16c1.19-4.29 1.83-8.73 1.89-13.17v-.11C105.77 23.68 82.09 0 52.88 0 23.68 0 0 23.68 0 52.88c0 29.18 23.64 52.85 52.81 52.89 9.17-.08 18.16-2.59 26.06-7.23l164.62 128.07a133.501 133.501 0 00-22.16 73.61c0 27.39 8.46 54.17 24.18 76.58l-50.06 50.06a43.926 43.926 0 00-12.43-1.81c-23.96 0-43.38 19.42-43.38 43.37 0 23.96 19.42 43.38 43.38 43.38 23.95 0 43.37-19.42 43.37-43.38v-.13a41.81 41.81 0 00-2.02-12.5l49.52-49.56a133.687 133.687 0 0081.54 27.78c73.76 0 133.57-59.81 133.57-133.57 0-66.05-48.3-122.2-113.61-132.06l-.14.07zm-20.39 200.4c-36.79-1.52-65.85-31.79-65.85-68.62 0-35.43 26.97-65.06 62.23-68.38h3.62c35.8 2.73 63.46 32.58 63.46 68.48 0 35.91-27.66 65.76-63.45 68.48l-.01.04zm0 0z"/>
-          </svg>
-        </div>
-        <div>
-          <div class="cert-name">HubSpot Marketing Certification</div>
-          <div class="cert-issuer">HubSpot Academy</div>
-          <span class="badge badge-active">Certified — 2025</span>
-        </div>
+        <div class="cert-name">HubSpot Marketing Certification</div>
+        <div class="cert-issuer">HubSpot Academy</div>
+        <span class="badge">Completed 2025 (renewal due)</span>
       </div>
       <div class="cert-card reveal">
-        <div class="cert-ico">
-          <svg class="cert-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width: 20px; height: 20px;">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-          </svg>
-        </div>
-        <div>
-          <div class="cert-name">Changemaking Intelligence — Course 101</div>
-          <div class="cert-issuer">YES Network Pakistan</div>
-          <span class="badge badge-active">Completed</span>
-        </div>
+        <div class="cert-name">Changemaking Intelligence: Course 101</div>
+        <div class="cert-issuer">YES Network Pakistan</div>
+        <span class="badge">Completed</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="alt">
+<section id="contact">
   <div class="container reveal">
-    <p class="sec-label">Let's Connect</p>
-    <h2 class="sec-title">Get in Touch</h2>
-    <div class="sec-rule" style="margin: .6rem auto 1.3rem;"></div>
-    <p class="contact-sub">Open to FMCG marketing roles, analytics opportunities, and research collaborations across Pakistan. Based in Lahore.</p>
-    <div class="contact-links">
-      <a href="mailto:raiabdul.analytics@gmail.com" class="btn-primary">Email Me</a>
-      <a href="https://www.linkedin.com/in/rai-abdul-rehman-aa2295315" target="_blank" rel="noopener" class="btn-outline">LinkedIn →</a>
+    <div class="sec-head">
+      <p class="sec-label">Contact</p>
+      <h2 class="sec-title">Let's talk</h2>
     </div>
+    <p class="contact-sub">Open to Reporting, MIS and Marketing Analyst roles in Lahore, and to small freelance reporting projects. Email is the fastest way to reach me.</p>
+    <div class="contact-links">
+      <a href="mailto:raiabdul.analytics@gmail.com" class="btn btn-primary">Email me</a>
+      <a href="https://www.linkedin.com/in/rai-abdul-rehman-aa2295315" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
+    </div>
+    <p class="contact-mail"><a href="mailto:raiabdul.analytics@gmail.com">raiabdul.analytics@gmail.com</a></p>
   </div>
 </section>
 
+</main>
+
 <footer>
-  <p>&copy; 2026 Abdul Rehman &middot; Lahore, Pakistan</p>
+  <p>&copy; 2026 Abdul Rehman &middot; Lahore, Pakistan &middot; Last updated November 2026</p>
 </footer>
 
 <script>
-  // ── INTERACTIVE DASHBOARD CODE ────────────────────────────
-  // 1. Data Definitions
-  const timelineData = {
-    years: [2019, 2020, 2021, 2022, 2023, 2024],
-    cpi: [10.6, 9.7, 9.5, 19.9, 30.8, 12.6],
-    sbp: [12.0, 8.9, 7.3, 12.0, 20.6, 19.0],
-    cogs: [73.76, 75.71, 74.53, 76.11, 70.98, 74.01],
-    adSpend: [4.81, 3.24, 3.04, 6.43, 2.70, 2.58]
-  };
-
-  const firmData = [
-    { name: "Shield Corporation", gpm: 27.0, ad: 11.63 },
-    { name: "Gillette Pakistan", gpm: 29.0, ad: 8.48 },
-    { name: "Fauji Foods", gpm: 6.0, ad: 6.49 },
-    { name: "Unilever Pakistan Foods", gpm: 38.0, ad: 5.45 },
-    { name: "National Foods", gpm: 29.0, ad: 4.43 },
-    { name: "Colgate-Palmolive", gpm: 31.0, ad: 4.30 },
-    { name: "Nestle Pakistan", gpm: 30.0, ad: 4.23 },
-    { name: "Zil Limited", gpm: 28.0, ad: 3.10 },
-    { name: "FrieslandCampina Engro", gpm: 15.0, ad: 2.69 },
-    { name: "Mitchells Fruit Farms", gpm: 24.0, ad: 1.92 },
-    { name: "Ismail Industries", gpm: 21.0, ad: 1.85 },
-    { name: "Attahur Limited", gpm: 35.0, ad: 0.73 },
-    { name: "Bunny's Limited", gpm: 23.0, ad: 0.52 },
-    { name: "Shezan International", gpm: 22.0, ad: 0.42 },
-    { name: "Unity Foods", gpm: 9.0, ad: 0.29 }
-  ];
-
-  // Tooltip Helper Functions
-  const dbTooltip = document.getElementById('dashboardTooltip');
-  
-  function showTooltip(e, content) {
-    dbTooltip.innerHTML = content;
-    dbTooltip.style.opacity = '1';
-    moveTooltip(e);
-  }
-
-  function moveTooltip(e) {
-    const contentBox = document.querySelector('.dashboard-content').getBoundingClientRect();
-    const tooltipW = dbTooltip.offsetWidth;
-    const tooltipH = dbTooltip.offsetHeight;
-    
-    let x = e.clientX - contentBox.left + 15;
-    let y = e.clientY - contentBox.top - tooltipH - 10;
-    
-    // Prevent clipping edges
-    if (x + tooltipW > contentBox.width) {
-      x = e.clientX - contentBox.left - tooltipW - 15;
-    }
-    if (y < 0) {
-      y = e.clientY - contentBox.top + 15;
-    }
-    
-    dbTooltip.style.left = `${x}px`;
-    dbTooltip.style.top = `${y}px`;
-  }
-
-  function hideTooltip() {
-    dbTooltip.style.opacity = '0';
-  }
-
-  // DOM SVG Namespace Helper
-  function createSvgEl(tag, attrs = {}) {
-    const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
-    for (let key in attrs) {
-      el.setAttribute(key, attrs[key]);
-    }
-    return el;
-  }
-
-  // ── CHART 1: MACRO TIMELINE ───────────────────────────────
-  function drawMacroChart() {
-    const svg = document.getElementById('macroSvg');
-    svg.innerHTML = '';
-    
-    const w = 620;
-    const h = 250;
-    const padding = { top: 30, right: 40, bottom: 40, left: 45 };
-    
-    const chartW = w - padding.left - padding.right;
-    const chartH = h - padding.top - padding.bottom;
-    
-    // Limits
-    const yMax = 35; // 0 to 35% CPI/Rates
-    
-    // Coordinate Mapping Helpers
-    const getX = (i) => padding.left + (i / 5) * chartW;
-    const getY = (val) => padding.top + chartH - (val / yMax) * chartH;
-    
-    // Draw Grid Lines & Axes Labels
-    for (let val = 0; val <= 35; val += 10) {
-      const y = getY(val);
-      svg.appendChild(createSvgEl('line', { x1: padding.left, y1: y, x2: w - padding.right, y2: y, class: 'grid-line' }));
-      
-      const label = createSvgEl('text', { x: padding.left - 10, y: y + 4, 'text-anchor': 'end', class: 'axis-text' });
-      label.textContent = `${val}%`;
-      svg.appendChild(label);
-    }
-    
-    // Draw Year Labels
-    timelineData.years.forEach((year, i) => {
-      const x = getX(i);
-      const label = createSvgEl('text', { x: x, y: h - padding.bottom + 18, 'text-anchor': 'middle', class: 'axis-text' });
-      label.textContent = year;
-      svg.appendChild(label);
-    });
-    
-    // Draw Axis lines
-    svg.appendChild(createSvgEl('line', { x1: padding.left, y1: padding.top, x2: padding.left, y2: h - padding.bottom, class: 'axis-line' }));
-    svg.appendChild(createSvgEl('line', { x1: padding.left, y1: h - padding.bottom, x2: w - padding.right, y2: h - padding.bottom, class: 'axis-line' }));
-    
-    // CPI Path (Coral)
-    const cpiPoints = timelineData.cpi.map((val, i) => `${getX(i)},${getY(val)}`).join(' L ');
-    const cpiPath = createSvgEl('path', { d: `M ${cpiPoints}`, class: 'chart-path-coral' });
-    
-    // SBP Path (Navy)
-    const sbpPoints = timelineData.sbp.map((val, i) => `${getX(i)},${getY(val)}`).join(' L ');
-    const sbpPath = createSvgEl('path', { d: `M ${sbpPoints}`, class: 'chart-path-navy' });
-    
-    svg.appendChild(cpiPath);
-    svg.appendChild(sbpPath);
-    
-    // Draw nodes & Tooltips
-    timelineData.years.forEach((year, i) => {
-      const x = getX(i);
-      const cpiY = getY(timelineData.cpi[i]);
-      const sbpY = getY(timelineData.sbp[i]);
-      
-      // CPI Dot
-      const cpiDot = createSvgEl('circle', { cx: x, cy: cpiY, r: 4.5, fill: '#E05A47', stroke: '#fff', 'stroke-width': 1.5, class: 'chart-dot' });
-      cpiDot.addEventListener('mouseover', (e) => {
-        showTooltip(e, `
-          <div class="tooltip-header">${year} Macro Baseline</div>
-          <div class="tooltip-row"><span>CPI Inflation:</span><span class="tooltip-val" style="color: #E05A47;">${timelineData.cpi[i]}%</span></div>
-          <div class="tooltip-row"><span>SBP Policy Rate:</span><span class="tooltip-val">${timelineData.sbp[i]}%</span></div>
-        `);
-      });
-      cpiDot.addEventListener('mousemove', moveTooltip);
-      cpiDot.addEventListener('mouseout', hideTooltip);
-      
-      // SBP Dot
-      const sbpDot = createSvgEl('circle', { cx: x, cy: sbpY, r: 4.5, fill: 'var(--navy)', stroke: '#fff', 'stroke-width': 1.5, class: 'chart-dot' });
-      sbpDot.addEventListener('mouseover', (e) => {
-        showTooltip(e, `
-          <div class="tooltip-header">${year} Macro Baseline</div>
-          <div class="tooltip-row"><span>SBP Policy Rate:</span><span class="tooltip-val" style="color: var(--blue);">${timelineData.sbp[i]}%</span></div>
-          <div class="tooltip-row"><span>CPI Inflation:</span><span class="tooltip-val">${timelineData.cpi[i]}%</span></div>
-        `);
-      });
-      sbpDot.addEventListener('mousemove', moveTooltip);
-      sbpDot.addEventListener('mouseout', hideTooltip);
-      
-      svg.appendChild(cpiDot);
-      svg.appendChild(sbpDot);
-    });
-  }
-
-  // ── CHART 2: AD SPEND VS COGS COMBO ────────────────────────
-  function drawAdspendChart() {
-    const svg = document.getElementById('adspendSvg');
-    svg.innerHTML = '';
-    
-    const w = 620;
-    const h = 250;
-    const padding = { top: 30, right: 45, bottom: 40, left: 45 };
-    
-    const chartW = w - padding.left - padding.right;
-    const chartH = h - padding.top - padding.bottom;
-    
-    const getX = (i) => padding.left + (i / 5) * chartW;
-    const getCogsY = (val) => padding.top + chartH - (val / 100) * chartH; // COGS: 0 to 100%
-    const getAdY = (val) => padding.top + chartH - (val / 8) * chartH;     // Ad Spend: 0 to 8%
-    
-    // Draw Left Y-Axis Grid & Labels (COGS: 0-100)
-    for (let val = 0; val <= 100; val += 20) {
-      const y = getCogsY(val);
-      svg.appendChild(createSvgEl('line', { x1: padding.left, y1: y, x2: w - padding.right, y2: y, class: 'grid-line' }));
-      
-      const label = createSvgEl('text', { x: padding.left - 10, y: y + 4, 'text-anchor': 'end', class: 'axis-text' });
-      label.textContent = `${val}%`;
-      svg.appendChild(label);
-    }
-    
-    // Draw Right Y-Axis Labels (Ad Spend: 0-8%)
-    for (let val = 0; val <= 8; val += 2) {
-      const y = getAdY(val);
-      const label = createSvgEl('text', { x: w - padding.right + 10, y: y + 4, 'text-anchor': 'start', class: 'axis-text' });
-      label.textContent = `${val}%`;
-      svg.appendChild(label);
-    }
-    
-    // Draw Year Labels
-    timelineData.years.forEach((year, i) => {
-      const x = getX(i);
-      const label = createSvgEl('text', { x: x, y: h - padding.bottom + 18, 'text-anchor': 'middle', class: 'axis-text' });
-      label.textContent = year;
-      svg.appendChild(label);
-    });
-    
-    // Draw Axis lines
-    svg.appendChild(createSvgEl('line', { x1: padding.left, y1: padding.top, x2: padding.left, y2: h - padding.bottom, class: 'axis-line' }));
-    svg.appendChild(createSvgEl('line', { x1: w - padding.right, y1: padding.top, x2: w - padding.right, y2: h - padding.bottom, class: 'axis-line' }));
-    svg.appendChild(createSvgEl('line', { x1: padding.left, y1: h - padding.bottom, x2: w - padding.right, y2: h - padding.bottom, class: 'axis-line' }));
-    
-    // 1. Draw COGS Bars (Light Blue)
-    const barW = 28;
-    timelineData.cogs.forEach((val, i) => {
-      const x = getX(i) - barW / 2;
-      const y = getCogsY(val);
-      const barH = h - padding.bottom - y;
-      
-      const rect = createSvgEl('rect', {
-        x: x, y: y, width: barW, height: barH,
-        fill: 'var(--blue)', opacity: '0.8', rx: '2', class: 'chart-bar'
-      });
-      
-      rect.addEventListener('mouseover', (e) => {
-        showTooltip(e, `
-          <div class="tooltip-header">${timelineData.years[i]} Cost Dynamics</div>
-          <div class="tooltip-row"><span>Avg COGS Ratio:</span><span class="tooltip-val" style="color: var(--blue-hover);">${val.toFixed(2)}%</span></div>
-          <div class="tooltip-row"><span>Avg Ad-to-Sales:</span><span class="tooltip-val">${timelineData.adSpend[i].toFixed(2)}%</span></div>
-        `);
-      });
-      rect.addEventListener('mousemove', moveTooltip);
-      rect.addEventListener('mouseout', hideTooltip);
-      svg.appendChild(rect);
-    });
-    
-    // 2. Draw Ad Spend Line overlay (Coral)
-    const adPoints = timelineData.adSpend.map((val, i) => `${getX(i)},${getAdY(val)}`).join(' L ');
-    const adPath = createSvgEl('path', { d: `M ${adPoints}`, class: 'chart-path-coral' });
-    svg.appendChild(adPath);
-    
-    // 3. Draw Ad Spend Dots
-    timelineData.adSpend.forEach((val, i) => {
-      const x = getX(i);
-      const y = getAdY(val);
-      const dot = createSvgEl('circle', { cx: x, cy: y, r: 4.5, fill: '#E05A47', stroke: '#fff', 'stroke-width': 1.5, class: 'chart-dot' });
-      
-      dot.addEventListener('mouseover', (e) => {
-        showTooltip(e, `
-          <div class="tooltip-header">${timelineData.years[i]} Advertising Spend</div>
-          <div class="tooltip-row"><span>Avg Ad-to-Sales:</span><span class="tooltip-val" style="color: #E05A47;">${val.toFixed(2)}%</span></div>
-          <div class="tooltip-row"><span>Avg COGS Ratio:</span><span class="tooltip-val">${timelineData.cogs[i].toFixed(2)}%</span></div>
-        `);
-      });
-      dot.addEventListener('mousemove', moveTooltip);
-      dot.addEventListener('mouseout', hideTooltip);
-      svg.appendChild(dot);
-    });
-  }
-
-  // ── CHART 3: CORRELATION SCATTER ───────────────────────────
-  function drawScatterChart() {
-    const svg = document.getElementById('scatterSvg');
-    svg.innerHTML = '';
-    
-    const w = 620;
-    const h = 250;
-    const padding = { top: 30, right: 30, bottom: 40, left: 45 };
-    
-    const chartW = w - padding.left - padding.right;
-    const chartH = h - padding.top - padding.bottom;
-    
-    // X-axis: 0 to 12% (Ad spend)
-    // Y-axis: 0 to 50% (GPM)
-    const getX = (val) => padding.left + (val / 12) * chartW;
-    const getY = (val) => padding.top + chartH - (val / 50) * chartH;
-    
-    // Draw Y grid & labels
-    for (let val = 0; val <= 50; val += 10) {
-      const y = getY(val);
-      svg.appendChild(createSvgEl('line', { x1: padding.left, y1: y, x2: w - padding.right, y2: y, class: 'grid-line' }));
-      
-      const label = createSvgEl('text', { x: padding.left - 10, y: y + 4, 'text-anchor': 'end', class: 'axis-text' });
-      label.textContent = `${val}%`;
-      svg.appendChild(label);
-    }
-    
-    // Draw X labels
-    for (let val = 0; val <= 12; val += 2) {
-      const x = getX(val);
-      const label = createSvgEl('text', { x: x, y: h - padding.bottom + 18, 'text-anchor': 'middle', class: 'axis-text' });
-      label.textContent = `${val}%`;
-      svg.appendChild(label);
-    }
-    
-    // X Axis Title
-    const xTitle = createSvgEl('text', { x: padding.left + chartW / 2, y: h - 6, 'text-anchor': 'middle', class: 'axis-title' });
-    xTitle.textContent = "Average Ad-to-Sales Ratio";
-    svg.appendChild(xTitle);
-    
-    // Y Axis Title
-    const yTitle = createSvgEl('text', { x: 12, y: padding.top + chartH / 2, 'text-anchor': 'middle', transform: `rotate(-90 12 ${padding.top + chartH / 2})`, class: 'axis-title' });
-    yTitle.textContent = "Average GP Margin";
-    svg.appendChild(yTitle);
-    
-    // Axes lines
-    svg.appendChild(createSvgEl('line', { x1: padding.left, y1: padding.top, x2: padding.left, y2: h - padding.bottom, class: 'axis-line' }));
-    svg.appendChild(createSvgEl('line', { x1: padding.left, y1: h - padding.bottom, x2: w - padding.right, y2: h - padding.bottom, class: 'axis-line' }));
-    
-    // 1. Draw SPSS Regression Line (Coral)
-    // Formula: GPM = 27.5% - 0.11 * AdSpend
-    const lineX1 = getX(0);
-    const lineY1 = getY(27.5);
-    const lineX2 = getX(12);
-    const lineY2 = getY(27.5 - 0.11 * 12);
-    
-    const regression = createSvgEl('line', {
-      x1: lineX1, y1: lineY1, x2: lineX2, y2: lineY2,
-      stroke: '#E05A47', 'stroke-width': 2.5, class: 'trend-line'
-    });
-    svg.appendChild(regression);
-    
-    // 2. Plot Company Nodes
-    firmData.forEach((firm) => {
-      const cx = getX(firm.ad);
-      const cy = getY(firm.gpm);
-      
-      const circle = createSvgEl('circle', {
-        cx: cx, cy: cy, r: 5,
-        fill: 'var(--navy)', stroke: '#fff', 'stroke-width': 1.5, class: 'chart-dot'
-      });
-      
-      circle.addEventListener('mouseover', (e) => {
-        circle.setAttribute('fill', '#E05A47');
-        showTooltip(e, `
-          <div class="tooltip-header" style="border-bottom-color: rgba(224,90,71,0.3);">${firm.name}</div>
-          <div class="tooltip-row"><span>Ad-to-Sales Ratio:</span><span class="tooltip-val">${firm.ad.toFixed(2)}%</span></div>
-          <div class="tooltip-row"><span>Gross Profit Margin:</span><span class="tooltip-val" style="color: var(--blue);">${firm.gpm.toFixed(1)}%</span></div>
-        `);
-      });
-      
-      circle.addEventListener('mousemove', moveTooltip);
-      
-      circle.addEventListener('mouseout', () => {
-        circle.setAttribute('fill', 'var(--navy)');
-        hideTooltip();
-      });
-      
-      svg.appendChild(circle);
-    });
-  }
-
-  // ── CHART 4: FIRM BENCHMARKING H-BARS ──────────────────────
-  function drawBenchmarkChart() {
-    const svg = document.getElementById('benchmarkSvg');
-    svg.innerHTML = '';
-    
-    const w = 620;
-    const h = 380;
-    const padding = { top: 20, right: 40, bottom: 40, left: 160 }; // generous left padding for names
-    
-    const chartW = w - padding.left - padding.right;
-    const chartH = h - padding.top - padding.bottom;
-    
-    const getX = (val) => padding.left + (val / 12) * chartW; // ad spend max: 12%
-    const getBarY = (i) => padding.top + (i / 15) * chartH;
-    
-    // Draw Vertical Grid Lines & Labels
-    for (let val = 0; val <= 12; val += 2) {
-      const x = getX(val);
-      svg.appendChild(createSvgEl('line', { x1: x, y1: padding.top, x2: x, y2: h - padding.bottom, class: 'grid-line' }));
-      
-      const label = createSvgEl('text', { x: x, y: h - padding.bottom + 16, 'text-anchor': 'middle', class: 'axis-text' });
-      label.textContent = `${val}%`;
-      svg.appendChild(label);
-    }
-    
-    // Draw Axis Title
-    const axisTitle = createSvgEl('text', { x: padding.left + chartW / 2, y: h - 6, 'text-anchor': 'middle', class: 'axis-title' });
-    axisTitle.textContent = "Average Ad-to-Sales Ratio (2019-2024)";
-    svg.appendChild(axisTitle);
-    
-    // Axis lines
-    svg.appendChild(createSvgEl('line', { x1: padding.left, y1: padding.top, x2: padding.left, y2: h - padding.bottom, class: 'axis-line' }));
-    svg.appendChild(createSvgEl('line', { x1: padding.left, y1: h - padding.bottom, x2: w - padding.right, y2: h - padding.bottom, class: 'axis-line' }));
-    
-    // Render Bars & Firm Labels
-    const barHeight = 13;
-    firmData.forEach((firm, i) => {
-      const y = getBarY(i) + 4;
-      const barW = getX(firm.ad) - padding.left;
-      
-      // Label (Company Name)
-      const label = createSvgEl('text', {
-        x: padding.left - 10, y: y + 10, 'text-anchor': 'end',
-        class: 'axis-text', 'font-weight': '500'
-      });
-      label.textContent = firm.name;
-      svg.appendChild(label);
-      
-      // Color-coding gradient (Proactive vs Defensive boundary: 4%)
-      const isProactive = firm.ad >= 4.0;
-      const barColor = isProactive ? 'var(--blue)' : '#E05A47';
-      
-      // Animated bar structure
-      const rect = createSvgEl('rect', {
-        x: padding.left, y: y, width: 0, height: barHeight,
-        fill: barColor, opacity: '0.8', rx: '1.5', class: 'chart-bar'
-      });
-      svg.appendChild(rect);
-      
-      // Animate width expansion
-      setTimeout(() => {
-        rect.setAttribute('width', barW);
-      }, 50 + i * 20);
-      
-      // Hover event
-      rect.addEventListener('mouseover', (e) => {
-        rect.setAttribute('opacity', '0.98');
-        showTooltip(e, `
-          <div class="tooltip-header">${firm.name}</div>
-          <div class="tooltip-row"><span>Ad-to-Sales Ratio:</span><span class="tooltip-val" style="color: ${barColor};">${firm.ad.toFixed(2)}%</span></div>
-          <div class="tooltip-row"><span>Gross Profit Margin:</span><span class="tooltip-val">${firm.gpm.toFixed(1)}%</span></div>
-          <div class="tooltip-row"><span>Strategy:</span><span class="tooltip-val" style="color: ${barColor};">${isProactive ? 'Proactive' : 'Defensive'}</span></div>
-        `);
-      });
-      rect.addEventListener('mousemove', moveTooltip);
-      rect.addEventListener('mouseout', () => {
-        rect.setAttribute('opacity', '0.8');
-        hideTooltip();
-      });
-    });
-  }
-
-  // ── TAB INITIALIZER & RE-RENDER SWITCHER ───────────────────
-  function initDashboard() {
-    // Render initially active tab
-    drawMacroChart();
-    
-    // Bind Tab Click Handlers
-    document.querySelectorAll('.dashboard-tab-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const activeTab = e.target.getAttribute('data-db-tab');
-        
-        // Remove active state from all buttons and panels
-        document.querySelectorAll('.dashboard-tab-btn').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.dashboard-panel').forEach(p => p.classList.remove('active'));
-        
-        // Activate current
-        btn.classList.add('active');
-        document.getElementById(activeTab).classList.add('active');
-        
-        // Trigger specific chart renders on display to ensure correct viewport sizes
-        if (activeTab === 'db-macro') drawMacroChart();
-        else if (activeTab === 'db-adspend') drawAdspendChart();
-        else if (activeTab === 'db-scatter') drawScatterChart();
-        else if (activeTab === 'db-benchmark') drawBenchmarkChart();
-      });
-    });
-  }
-
-  // Run Dashboard Initialisation on load
-  initDashboard();
-
-  // Light/Dark Theme Toggle
-  const themeToggleBtn = document.getElementById('themeToggle');
-  const sunIcon = themeToggleBtn.querySelector('.sun-icon');
-  const moonIcon = themeToggleBtn.querySelector('.moon-icon');
-
-  // Check stored theme preference
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  if (savedTheme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    sunIcon.style.display = 'none';
-    moonIcon.style.display = 'block';
-  }
-
-  themeToggleBtn.addEventListener('click', () => {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    if (isDark) {
-      document.documentElement.removeAttribute('data-theme');
-      sunIcon.style.display = 'block';
-      moonIcon.style.display = 'none';
-      localStorage.setItem('theme', 'light');
+  /* Block 1: reveal on scroll, nav, theme. Kept separate from the charts so an
+     error in one block cannot leave the page blank. */
+  (function () {
+    var root = document.documentElement;
+    var items = document.querySelectorAll('.reveal');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!('IntersectionObserver' in window) || reduce) {
+      items.forEach(function (el) { el.classList.add('visible'); });
     } else {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      sunIcon.style.display = 'none';
-      moonIcon.style.display = 'block';
-      localStorage.setItem('theme', 'dark');
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+      items.forEach(function (el) { io.observe(el); });
+      /* After an anchor jump, show everything above the landing point too. */
+      var showAbove = function () {
+        items.forEach(function (el) { if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible'); });
+      };
+      window.addEventListener('hashchange', function () { setTimeout(showAbove, 50); });
+      window.addEventListener('load', showAbove);
     }
-  });
 
-  // Nav scroll effect
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
-
-  // Mobile menu
-  function toggleNav() {
-    document.getElementById('navLinks').classList.toggle('open');
-  }
-  document.querySelectorAll('.nav-links a').forEach(a =>
-    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
-  );
-
-
-  // ── DESIGN SPELLS ──────────────────────────────────────────
-  
-  // 1. Custom Morphing Cursor
-  const cursorDot = document.querySelector('.cursor-dot');
-  const cursorOutline = document.querySelector('.cursor-outline');
-  
-  if (window.matchMedia("(pointer: fine)").matches && cursorDot && cursorOutline) {
-    let mouseX = 0, mouseY = 0;
-    let outlineX = 0, outlineY = 0;
-    
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursorDot.style.left = `${mouseX}px`;
-      cursorDot.style.top = `${mouseY}px`;
-    });
-    
-    const animateCursor = () => {
-      outlineX += (mouseX - outlineX) * 0.15;
-      outlineY += (mouseY - outlineY) * 0.15;
-      cursorOutline.style.left = `${outlineX}px`;
-      cursorOutline.style.top = `${outlineY}px`;
-      requestAnimationFrame(animateCursor);
+    /* Theme toggle (light is the default; choice remembered when storage is available) */
+    var btn = document.getElementById('themeToggle');
+    var setLabel = function () {
+      var dark = root.getAttribute('data-theme') === 'dark';
+      btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
     };
-    animateCursor();
-    
-    const clickables = document.querySelectorAll('a, button, .case-card');
-    clickables.forEach(el => {
-      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    setLabel();
+    btn.addEventListener('click', function () {
+      var dark = root.getAttribute('data-theme') === 'dark';
+      if (dark) root.removeAttribute('data-theme'); else root.setAttribute('data-theme', 'dark');
+      try { localStorage.setItem('theme', dark ? 'light' : 'dark'); } catch (e) {}
+      setLabel();
     });
-  }
 
-  // 2. Flashlight Glow & 3D Tilt on Cards
-  const caseCards = document.querySelectorAll('.case-card');
-  caseCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      card.style.transition = 'transform 0.1s ease-out, box-shadow 0.25s';
-    });
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
-      // Flashlight variables
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
+    /* Nav border on scroll */
+    var nav = document.getElementById('nav');
+    var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 8); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
-      // 3D Tilt
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateY = ((x - centerX) / centerX) * 5;
-      const rotateX = -((y - centerY) / centerY) * 5;
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    /* Mobile menu */
+    var hbg = document.getElementById('hbg');
+    var links = document.getElementById('navLinks');
+    var closeMenu = function () { links.classList.remove('open'); hbg.setAttribute('aria-expanded', 'false'); hbg.setAttribute('aria-label', 'Open menu'); };
+    hbg.addEventListener('click', function () {
+      var open = links.classList.toggle('open');
+      hbg.setAttribute('aria-expanded', open ? 'true' : 'false');
+      hbg.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
-    card.addEventListener('mouseleave', () => {
-      card.style.transition = 'all .25s, opacity .6s ease, transform .6s ease';
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-    });
-  });
+    links.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+  })();
+</script>
 
-  // 3. Magnetic Buttons
-  const magnets = document.querySelectorAll('.btn-primary, .btn-outline');
-  magnets.forEach(magnet => {
-    magnet.addEventListener('mouseenter', () => {
-      magnet.style.transition = 'transform 0.05s ease-out, background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, color 0.25s ease';
-    });
-    magnet.addEventListener('mousemove', (e) => {
-      const rect = magnet.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      magnet.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-    });
-    magnet.addEventListener('mouseleave', () => {
-      magnet.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, color 0.25s ease';
-      magnet.style.transform = '';
-    });
-  });
+<script>
+  /* Block 2: thesis dashboard. All values come from Rai_Abdul_Rehman_FMCG_Dataset.xlsx (sheet "SpSS"). */
+  (function () {
+    var years = [2019, 2020, 2021, 2022, 2023, 2024];
+    var cpi = [10.6, 9.7, 9.5, 19.9, 30.8, 12.6];
+    var sbp = [12.0, 8.9, 7.3, 12.0, 20.6, 19.0];
+    var cogs = [73.76, 75.71, 74.53, 76.11, 70.98, 74.01];
+    var adSpend = [4.61, 3.24, 3.04, 6.43, 2.70, 2.58];
+    var ad2022ExShield = 3.36;
 
-  // 4. Kinetic Typography (Split text)
-  const secTitles = document.querySelectorAll('.sec-title');
-  secTitles.forEach(title => {
-    // Only split if it's a reveal element
-    if (title.classList.contains('reveal')) {
-      const text = title.textContent;
-      title.textContent = '';
-      [...text].forEach((char, i) => {
-        const span = document.createElement('span');
-        span.textContent = char === ' ' ? '\u00A0' : char;
-        span.className = 'char';
-        span.style.transitionDelay = `${i * 30}ms`;
-        title.appendChild(span);
-      });
+    var firmNames = ["Mitchell's", "Colgate-Palmolive", "FrieslandCampina Engro", "Nestle Pakistan", "National Foods", "Shezan", "Unilever Pakistan Foods", "Fauji Foods", "Ismail Industries", "Shield Corporation", "Unity Foods", "Zil", "Gillette Pakistan", "Bunny's", "At-Tahur"];
+    /* [firm index, year index, ad-to-sales %] for all 90 firm-years */
+    var firmYears = [[0,0,1.31],[0,1,0.62],[0,2,1.09],[0,3,7.21],[0,4,1.23],[0,5,0.07],[1,0,4.85],[1,1,5.23],[1,2,4.18],[1,3,4.22],[1,4,3.6],[1,5,3.72],[2,0,2.81],[2,1,2.69],[2,2,3.14],[2,3,2.78],[2,4,2.52],[2,5,2.18],[3,0,4.36],[3,1,4.26],[3,2,3.79],[3,3,3.59],[3,4,4.28],[3,5,5.11],[4,0,5.4],[4,1,5.84],[4,2,4.22],[4,3,4.59],[4,4,3.53],[4,5,2.98],[5,0,1.21],[5,1,0.29],[5,2,0.27],[5,3,0.39],[5,4,0.25],[5,5,0.1],[6,0,6.57],[6,1,5.1],[6,2,6.68],[6,3,5.22],[6,4,5.54],[6,5,3.57],[7,0,13.59],[7,1,6.31],[7,2,6.44],[7,3,6.22],[7,4,2.89],[7,5,3.47],[8,0,3.3],[8,1,4.15],[8,2,0.49],[8,3,1.15],[8,4,0.99],[8,5,1.04],[9,0,6.56],[9,1,3.36],[9,2,3.0],[9,3,49.39],[9,4,2.26],[9,5,5.2],[10,0,0.44],[10,1,0.17],[10,2,0.41],[10,3,0.2],[10,4,0.2],[10,5,0.31],[11,0,6.18],[11,1,2.63],[11,2,2.5],[11,3,0.5],[11,4,2.56],[11,5,4.24],[12,0,11.1],[12,1,6.57],[12,2,7.69],[12,3,9.78],[12,4,9.91],[12,5,5.82],[13,0,0.6],[13,1,0.55],[13,2,1.07],[13,3,0.62],[13,4,0.16],[13,5,0.1],[14,0,0.91],[14,1,0.82],[14,2,0.65],[14,3,0.62],[14,4,0.56],[14,5,0.84]];
+
+    /* Six-year averages per firm: ad-to-sales % and gross profit margin % */
+    var firmAvg = [
+      { name: "Shield Corporation", ad: 11.63, gpm: 26.5 },
+      { name: "Gillette Pakistan", ad: 8.48, gpm: 32.9 },
+      { name: "Fauji Foods", ad: 6.49, gpm: 6.4 },
+      { name: "Unilever Pakistan Foods", ad: 5.45, gpm: 42.0 },
+      { name: "National Foods", ad: 4.43, gpm: 29.4 },
+      { name: "Colgate-Palmolive", ad: 4.30, gpm: 34.8 },
+      { name: "Nestle Pakistan", ad: 4.23, gpm: 31.7 },
+      { name: "Zil", ad: 3.10, gpm: 23.1 },
+      { name: "FrieslandCampina Engro", ad: 2.69, gpm: 15.1 },
+      { name: "Mitchell's", ad: 1.92, gpm: 21.1 },
+      { name: "Ismail Industries", ad: 1.85, gpm: 20.0 },
+      { name: "At-Tahur", ad: 0.73, gpm: 49.9 },
+      { name: "Bunny's", ad: 0.52, gpm: 24.5 },
+      { name: "Shezan", ad: 0.42, gpm: 20.2 },
+      { name: "Unity Foods", ad: 0.29, gpm: 9.6 }
+    ];
+
+    var NS = 'http://www.w3.org/2000/svg';
+    function el(tag, attrs, text) {
+      var e = document.createElementNS(NS, tag);
+      for (var k in attrs) e.setAttribute(k, attrs[k]);
+      if (text !== undefined) e.textContent = text;
+      return e;
     }
-  });
+    function row(label, value) { return '<div class="tt-row"><span>' + label + '</span><b>' + value + '</b></div>'; }
 
-  // 5. Velocity Scroll Skew
-  let scrollPos = window.scrollY;
-  let scrollVelocity = 0;
-  const skewElements = document.querySelectorAll('.hero-name, .hero-tagline, .case-desc');
-  
-  window.addEventListener('scroll', () => {
-    scrollVelocity = window.scrollY - scrollPos;
-    scrollPos = window.scrollY;
-  });
-  
-  const renderSkew = () => {
-    scrollVelocity *= 0.9;
-    const clampedSkew = Math.max(Math.min(scrollVelocity * 0.03, 3), -3);
-    
-    if (Math.abs(clampedSkew) > 0.01) {
-      skewElements.forEach(el => {
-        el.style.transform = `skewY(${clampedSkew}deg)`;
-      });
-    } else {
-      skewElements.forEach(el => el.style.transform = `skewY(0deg)`);
+    /* ---- Tooltip: mouse hover, tap on touch, keyboard focus ---- */
+    var box = document.getElementById('dashboardContent');
+    var tip = document.getElementById('dashboardTooltip');
+    function place(clientX, clientY) {
+      var b = box.getBoundingClientRect();
+      var w = tip.offsetWidth, h = tip.offsetHeight;
+      var x = clientX - b.left + 14;
+      if (x + w > b.width - 4) x = clientX - b.left - w - 14;
+      x = Math.max(4, Math.min(x, b.width - w - 4));
+      var y = clientY - b.top - h - 12;
+      if (y < 4) y = clientY - b.top + 16;
+      tip.style.transform = 'translate(' + Math.round(x) + 'px,' + Math.round(y) + 'px)';
     }
-    requestAnimationFrame(renderSkew);
-  };
-  renderSkew();
+    function show(html, x, y) { tip.innerHTML = html; tip.classList.add('show'); place(x, y); }
+    function hide() { tip.classList.remove('show'); }
+    function bind(node, html) {
+      node.setAttribute('tabindex', '0');
+      node.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') show(html, e.clientX, e.clientY); });
+      node.addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse') place(e.clientX, e.clientY); });
+      node.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') hide(); });
+      node.addEventListener('click', function (e) { e.stopPropagation(); show(html, e.clientX, e.clientY); });
+      node.addEventListener('focus', function () { var r = node.getBoundingClientRect(); show(html, r.left + r.width / 2, r.top); });
+      node.addEventListener('blur', hide);
+    }
+    document.addEventListener('click', hide);
+    window.addEventListener('scroll', hide, { passive: true });
+    document.querySelectorAll('.chart-scroll').forEach(function (s) { s.addEventListener('scroll', hide, { passive: true }); });
 
-  // ── INTERSECTION OBSERVER FOR SCROLL REVEALS ──
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 40);
-        io.unobserve(e.target);
+    function axes(svg, p, w, h) {
+      svg.appendChild(el('line', { x1: p.left, y1: p.top, x2: p.left, y2: h - p.bottom, 'class': 'axis-line' }));
+      svg.appendChild(el('line', { x1: p.left, y1: h - p.bottom, x2: w - p.right, y2: h - p.bottom, 'class': 'axis-line' }));
+    }
+
+    /* ---- Chart 1: CPI and policy rate ---- */
+    function drawMacro() {
+      var svg = document.getElementById('macroSvg'); svg.innerHTML = '';
+      var w = 620, h = 250, p = { top: 20, right: 30, bottom: 36, left: 45 };
+      var cw = w - p.left - p.right, ch = h - p.top - p.bottom, yMax = 35;
+      var X = function (i) { return p.left + (i / 5) * cw; };
+      var Y = function (v) { return p.top + ch - (v / yMax) * ch; };
+      for (var v = 0; v <= 30; v += 10) {
+        svg.appendChild(el('line', { x1: p.left, y1: Y(v), x2: w - p.right, y2: Y(v), 'class': 'grid-line' }));
+        svg.appendChild(el('text', { x: p.left - 8, y: Y(v) + 4, 'text-anchor': 'end', 'class': 'axis-text' }, v + '%'));
       }
+      years.forEach(function (yr, i) { svg.appendChild(el('text', { x: X(i), y: h - p.bottom + 18, 'text-anchor': 'middle', 'class': 'axis-text' }, yr)); });
+      axes(svg, p, w, h);
+      svg.appendChild(el('path', { d: 'M ' + cpi.map(function (v, i) { return X(i) + ',' + Y(v); }).join(' L '), 'class': 'line-coral' }));
+      svg.appendChild(el('path', { d: 'M ' + sbp.map(function (v, i) { return X(i) + ',' + Y(v); }).join(' L '), 'class': 'line-heading' }));
+      years.forEach(function (yr, i) {
+        var html = '<div class="tt-head">' + yr + '</div>' + row('CPI inflation', cpi[i].toFixed(1) + '%') + row('SBP policy rate', sbp[i].toFixed(1) + '%');
+        var a = el('circle', { cx: X(i), cy: Y(cpi[i]), r: 5, 'class': 'pt pt-coral', 'aria-label': yr + ': CPI ' + cpi[i] + '%' });
+        var b = el('circle', { cx: X(i), cy: Y(sbp[i]), r: 5, 'class': 'pt pt-heading', 'aria-label': yr + ': policy rate ' + sbp[i] + '%' });
+        bind(a, html); bind(b, html); svg.appendChild(a); svg.appendChild(b);
+      });
+    }
+
+    /* ---- Chart 2: COGS bars + ad-to-sales line ---- */
+    function drawAdspend() {
+      var svg = document.getElementById('adspendSvg'); svg.innerHTML = '';
+      var w = 620, h = 250, p = { top: 20, right: 45, bottom: 36, left: 45 };
+      var cw = w - p.left - p.right, ch = h - p.top - p.bottom;
+      var X = function (i) { return p.left + ((i + 0.5) / 6) * cw; };
+      var YC = function (v) { return p.top + ch - (v / 100) * ch; };
+      var YA = function (v) { return p.top + ch - (v / 8) * ch; };
+      for (var v = 0; v <= 100; v += 25) {
+        svg.appendChild(el('line', { x1: p.left, y1: YC(v), x2: w - p.right, y2: YC(v), 'class': 'grid-line' }));
+        svg.appendChild(el('text', { x: p.left - 8, y: YC(v) + 4, 'text-anchor': 'end', 'class': 'axis-text' }, v + '%'));
+      }
+      for (var a = 0; a <= 8; a += 2) {
+        svg.appendChild(el('text', { x: w - p.right + 8, y: YA(a) + 4, 'text-anchor': 'start', 'class': 'axis-text' }, a + '%'));
+      }
+      years.forEach(function (yr, i) { svg.appendChild(el('text', { x: X(i), y: h - p.bottom + 18, 'text-anchor': 'middle', 'class': 'axis-text' }, yr)); });
+      axes(svg, p, w, h);
+      svg.appendChild(el('line', { x1: w - p.right, y1: p.top, x2: w - p.right, y2: h - p.bottom, 'class': 'axis-line' }));
+      var bw = 34;
+      cogs.forEach(function (v, i) {
+        var r = el('rect', { x: X(i) - bw / 2, y: YC(v), width: bw, height: h - p.bottom - YC(v), rx: 2, 'class': 'bar bar-accent', 'aria-label': years[i] + ': COGS ' + v + '% of revenue' });
+        bind(r, '<div class="tt-head">' + years[i] + '</div>' + row('Avg COGS ratio', v.toFixed(2) + '%') + row('Avg ad-to-sales', adSpend[i].toFixed(2) + '%'));
+        svg.appendChild(r);
+      });
+      svg.appendChild(el('path', { d: 'M ' + adSpend.map(function (v, i) { return X(i) + ',' + YA(v); }).join(' L '), 'class': 'line-coral' }));
+      adSpend.forEach(function (v, i) {
+        var c = el('circle', { cx: X(i), cy: YA(v), r: 5, 'class': 'pt pt-coral', 'aria-label': years[i] + ': ad-to-sales ' + v + '%' });
+        var extra = i === 3 ? row('Without Shield', ad2022ExShield.toFixed(2) + '%') : '';
+        bind(c, '<div class="tt-head">' + years[i] + '</div>' + row('Avg ad-to-sales', v.toFixed(2) + '%') + extra + row('Avg COGS ratio', cogs[i].toFixed(2) + '%'));
+        svg.appendChild(c);
+      });
+      var hollow = el('circle', { cx: X(3), cy: YA(ad2022ExShield), r: 5, 'class': 'pt pt-hollow', 'aria-label': '2022 without Shield Corporation: ' + ad2022ExShield + '%' });
+      bind(hollow, '<div class="tt-head">2022 without Shield Corporation</div>' + row('Avg ad-to-sales (14 firms)', ad2022ExShield.toFixed(2) + '%') + row('With Shield (15 firms)', '6.43%'));
+      svg.appendChild(hollow);
+    }
+
+    /* ---- Chart 3: CPI vs ad-to-sales, 90 firm-years ---- */
+    function drawScatter() {
+      var svg = document.getElementById('scatterSvg'); svg.innerHTML = '';
+      var w = 620, h = 280, p = { top: 26, right: 24, bottom: 46, left: 50 };
+      var cw = w - p.left - p.right, ch = h - p.top - p.bottom, yMax = 15, xMax = 35;
+      var X = function (v) { return p.left + (v / xMax) * cw; };
+      var Y = function (v) { return p.top + ch - (Math.min(v, yMax) / yMax) * ch; };
+      for (var v = 0; v <= 15; v += 5) {
+        svg.appendChild(el('line', { x1: p.left, y1: Y(v), x2: w - p.right, y2: Y(v), 'class': 'grid-line' }));
+        svg.appendChild(el('text', { x: p.left - 8, y: Y(v) + 4, 'text-anchor': 'end', 'class': 'axis-text' }, v + '%'));
+      }
+      for (var x = 0; x <= 35; x += 5) {
+        svg.appendChild(el('text', { x: X(x), y: h - p.bottom + 18, 'text-anchor': 'middle', 'class': 'axis-text' }, x + '%'));
+      }
+      svg.appendChild(el('text', { x: p.left + cw / 2, y: h - 6, 'text-anchor': 'middle', 'class': 'axis-title' }, 'CPI inflation that year'));
+      svg.appendChild(el('text', { x: 12, y: p.top + ch / 2, 'text-anchor': 'middle', transform: 'rotate(-90 12 ' + (p.top + ch / 2) + ')', 'class': 'axis-title' }, 'Ad-to-sales'));
+      axes(svg, p, w, h);
+      firmYears.forEach(function (d) {
+        var f = d[0], yi = d[1], val = d[2];
+        var jitter = (f - 7) * 0.09;
+        var cx = X(cpi[yi] + jitter), cy = Y(val);
+        var off = val > yMax;
+        var c = el('circle', { cx: cx, cy: cy, r: off ? 6 : 4.5, 'class': 'pt ' + (off ? 'pt-coral' : 'pt-firm'), 'aria-label': firmNames[f] + ' ' + years[yi] + ': ' + val + '%' });
+        bind(c, '<div class="tt-head">' + firmNames[f] + ', ' + years[yi] + '</div>' + row('Ad-to-sales', val.toFixed(2) + '%') + row('CPI that year', cpi[yi].toFixed(1) + '%') + (off ? row('Note', 'off the scale') : ''));
+        svg.appendChild(c);
+        if (off) svg.appendChild(el('text', { x: cx + 10, y: cy + 4, 'class': 'note-text' }, 'Shield 2022: ' + val.toFixed(1) + '%'));
+      });
+    }
+
+    /* ---- Chart 4: firm averages ---- */
+    function drawBenchmark() {
+      var svg = document.getElementById('benchmarkSvg'); svg.innerHTML = '';
+      var w = 620, h = 380, p = { top: 10, right: 40, bottom: 40, left: 160 };
+      var cw = w - p.left - p.right, ch = h - p.top - p.bottom;
+      var X = function (v) { return p.left + (v / 12) * cw; };
+      var Y = function (i) { return p.top + (i / 15) * ch; };
+      for (var v = 0; v <= 12; v += 2) {
+        svg.appendChild(el('line', { x1: X(v), y1: p.top, x2: X(v), y2: h - p.bottom, 'class': 'grid-line' }));
+        svg.appendChild(el('text', { x: X(v), y: h - p.bottom + 16, 'text-anchor': 'middle', 'class': 'axis-text' }, v + '%'));
+      }
+      svg.appendChild(el('text', { x: p.left + cw / 2, y: h - 6, 'text-anchor': 'middle', 'class': 'axis-title' }, 'Average ad-to-sales, 2019-2024'));
+      axes(svg, p, w, h);
+      firmAvg.forEach(function (f, i) {
+        var y = Y(i) + 4, hi = f.ad >= 4;
+        svg.appendChild(el('text', { x: p.left - 10, y: y + 10, 'text-anchor': 'end', 'class': 'axis-text' }, f.name));
+        var r = el('rect', { x: p.left, y: y, width: X(f.ad) - p.left, height: 14, rx: 1.5, 'class': 'bar ' + (hi ? 'bar-accent' : 'bar-coral'), 'aria-label': f.name + ': ' + f.ad + '%' });
+        bind(r, '<div class="tt-head">' + f.name + '</div>' + row('Avg ad-to-sales', f.ad.toFixed(2) + '%') + row('Avg gross margin', f.gpm.toFixed(1) + '%'));
+        svg.appendChild(r);
+        svg.appendChild(el('text', { x: X(f.ad) + 6, y: y + 11, 'class': 'axis-text' }, f.ad.toFixed(2) + '%'));
+      });
+    }
+
+    var drawn = {};
+    var draw = { 'db-macro': drawMacro, 'db-adspend': drawAdspend, 'db-scatter': drawScatter, 'db-benchmark': drawBenchmark };
+    function activate(id) {
+      hide();
+      document.querySelectorAll('.dashboard-tab-btn').forEach(function (b) {
+        var on = b.getAttribute('data-db-tab') === id;
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+        b.setAttribute('tabindex', on ? '0' : '-1');
+      });
+      document.querySelectorAll('.dashboard-panel').forEach(function (pnl) { pnl.classList.toggle('active', pnl.id === id); });
+      if (draw[id] && !drawn[id]) { draw[id](); drawn[id] = true; }
+    }
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.dashboard-tab-btn'));
+    tabs.forEach(function (b, i) {
+      b.addEventListener('click', function () { activate(b.getAttribute('data-db-tab')); });
+      b.addEventListener('keydown', function (e) {
+        var n = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
+        if (n === null) return;
+        var t = tabs[(n + tabs.length) % tabs.length]; t.focus(); activate(t.getAttribute('data-db-tab'));
+      });
     });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    activate('db-macro');
+  })();
 </script>
 </body>
 </html>
