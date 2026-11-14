@@ -48,6 +48,9 @@
       --coral:       #D9482F;
       --nav-bg:      rgba(255, 255, 255, 0.92);
       --grid:        #E3E9F1;
+      --mark:        rgba(29, 78, 216, 0.22);
+      --cobalt:      #1D4ED8;
+      --cobalt-deep: #1E40AF;
       --shadow:      0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.04);
 
       --serif: 'Source Serif 4', Georgia, serif;
@@ -79,6 +82,7 @@
       --coral:       #F28B74;
       --nav-bg:      rgba(11, 17, 32, 0.9);
       --grid:        rgba(148, 163, 184, 0.13);
+      --mark:        rgba(138, 180, 248, 0.3);
       --shadow:      0 1px 2px rgba(0, 0, 0, 0.3);
     }
 
@@ -182,6 +186,13 @@
       font-size: var(--t-xs); letter-spacing: .14em; text-transform: uppercase;
       color: var(--accent-text); font-weight: 600; margin-bottom: var(--s1);
     }
+    .sec-num {
+      color: var(--muted); font-variant-numeric: tabular-nums; margin-right: .6rem;
+    }
+    .sec-num::after {
+      content: ''; display: inline-block; width: 18px; height: 1px;
+      background: currentColor; vertical-align: middle; margin-left: .6rem;
+    }
     .sec-title {
       font-family: var(--sans);
       font-size: clamp(1.75rem, 4.2vw, 2.5rem);
@@ -243,6 +254,12 @@
       color: var(--heading); margin-bottom: var(--s3);
     }
     .hero-name span { color: var(--accent-text); }
+    .mark {
+      background-image: linear-gradient(transparent 52%, var(--mark) 52%, var(--mark) 96%, transparent 96%);
+      background-repeat: no-repeat; background-size: 100% 100%;
+      padding: 0 .08em; animation: markIn .7s .55s ease-out both;
+    }
+    @keyframes markIn { from { background-size: 0% 100%; } to { background-size: 100% 100%; } }
     .hero-lede {
       font-family: var(--serif); font-weight: 600;
       font-size: clamp(1.25rem, 3vw, 1.6rem); line-height: 1.35;
@@ -263,7 +280,7 @@
     .hero-content > *:nth-child(6) { animation-delay: .25s; }
     .hero-content > *:nth-child(7) { animation-delay: .3s; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-    @media (prefers-reduced-motion: reduce) { .hero-content > * { animation: none; } }
+    @media (prefers-reduced-motion: reduce) { .hero-content > *, .mark { animation: none; } }
 
     /* ===== Facts strip ===== */
     .stats-bar {
@@ -481,16 +498,53 @@
     .cert-name { font-weight: 600; font-size: .95rem; color: var(--heading); line-height: 1.35; }
     .cert-issuer { font-size: var(--t-sm); color: var(--muted); margin: .15rem 0 .5rem; }
 
-    /* ===== Contact ===== */
-    #contact { text-align: center; }
-    #contact .sec-head { margin: 0 auto var(--s3); }
-    .contact-sub { color: var(--body); max-width: 520px; margin: 0 auto var(--s3); }
-    .contact-links { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
-    .contact-mail { margin-top: var(--s2); font-size: var(--t-sm); color: var(--muted); }
-    .contact-mail a { color: var(--accent-text); }
+    /* ===== Contact band: the one big cobalt moment ===== */
+    .band {
+      background: var(--cobalt); color: #FFFFFF;
+      position: relative; isolation: isolate; overflow: hidden;
+      padding: 6.5rem var(--s3); border: 0;
+    }
+    .band::before {
+      content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,.09) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,.09) 1px, transparent 1px);
+      background-size: 88px 30px;
+      -webkit-mask-image: linear-gradient(to bottom left, #000 10%, transparent 75%);
+              mask-image: linear-gradient(to bottom left, #000 10%, transparent 75%);
+    }
+    .band ::selection { background: #FFFFFF; color: var(--cobalt); }
+    .band :focus-visible { outline-color: #FFFFFF; }
+    .band .sec-label, .band .sec-num { color: rgba(255,255,255,.8); }
+    .band-grid { display: grid; grid-template-columns: 1.4fr 1fr; column-gap: var(--s5); row-gap: var(--s2); align-items: end; }
+    .band-head { grid-column: 1 / -1; }
+    .band-title {
+      font-size: clamp(2.4rem, 6.5vw, 4.5rem); font-weight: 800;
+      letter-spacing: -0.04em; line-height: 1.02; color: #FFFFFF; margin-bottom: var(--s2);
+    }
+    .band-sub { color: rgba(255,255,255,.88); max-width: 520px; margin-bottom: var(--s4); }
+    .contact-links { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .btn-white { background: #FFFFFF; color: var(--cobalt); border: 1px solid #FFFFFF; }
+    .btn-white:hover { background: #E8EFFE; border-color: #E8EFFE; }
+    .btn-ghost { background: transparent; color: #FFFFFF; border: 1px solid rgba(255,255,255,.55); }
+    .btn-ghost:hover { background: rgba(255,255,255,.1); border-color: #FFFFFF; }
+    .band-side { border-top: 1px solid rgba(255,255,255,.3); padding-top: var(--s3); display: grid; gap: var(--s2); }
+    .band-side dt { font-size: var(--t-xs); letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.8); }
+    .band-side dd { color: #FFFFFF; font-weight: 500; overflow-wrap: anywhere; }
+    .band-side a { color: #FFFFFF; text-underline-offset: 4px; text-decoration-color: rgba(255,255,255,.5); }
+    .band-side a:hover { text-decoration-color: #FFFFFF; }
+    @media (max-width: 760px) {
+      .band { padding: var(--s6) var(--s2); }
+      .band-grid { grid-template-columns: 1fr; row-gap: var(--s3); }
+      .band-head { grid-column: auto; }
+    }
 
-    footer { border-top: 1px solid var(--border); background: var(--bg-alt); padding: var(--s3) var(--s2); text-align: center; }
-    footer p { color: var(--muted); font-size: var(--t-xs); }
+    footer { background: var(--cobalt-deep); color: rgba(255,255,255,.82); padding: 1.1rem var(--s3); }
+    footer ::selection { background: #FFFFFF; color: var(--cobalt-deep); }
+    .foot-inner { max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: var(--s2); flex-wrap: wrap; font-size: var(--t-xs); }
+    .foot-logo { font-family: var(--serif); font-weight: 700; font-size: 1rem; color: #FFFFFF; text-decoration: none; }
+    .foot-top { color: #FFFFFF; text-decoration: none; font-weight: 600; }
+    .foot-top:hover { text-decoration: underline; text-underline-offset: 3px; }
 
     @media print {
       nav, .theme-btn, .hero-cta, .dashboard-nav { display: none; }
@@ -530,7 +584,7 @@
     <img src="rehman_headshot_sm.jpg" width="112" height="112" alt="Portrait of Abdul Rehman" class="hero-avatar">
     <p class="hero-eyebrow">Business reporting and marketing analytics &middot; Lahore, Pakistan</p>
     <h1 class="hero-name">Abdul <span>Rehman</span></h1>
-    <p class="hero-lede">I turn messy business data into reports people act on.</p>
+    <p class="hero-lede">I turn messy business data into reports people <span class="mark">act on</span>.</p>
     <p class="hero-sub">BBA Marketing graduate with two years of retail and restaurant floor work behind me. I build reports in Excel, Power BI and SQL, and I check every number against its source before it goes out.</p>
     <p class="hero-open">Open to Reporting, MIS and Marketing Analyst roles in Lahore, and small freelance reporting projects.</p>
     <div class="hero-cta">
@@ -565,7 +619,7 @@
 <section id="about">
   <div class="container">
     <div class="sec-head reveal">
-      <p class="sec-label">About</p>
+      <p class="sec-label"><span class="sec-num">01</span>About</p>
       <h2 class="sec-title">Messy numbers in, clear reports out.</h2>
     </div>
     <div class="about-grid">
@@ -592,7 +646,7 @@
 <section id="now" class="alt">
   <div class="container">
     <div class="sec-head reveal">
-      <p class="sec-label">Now</p>
+      <p class="sec-label"><span class="sec-num">02</span>Now</p>
       <h2 class="sec-title">What I'm working on</h2>
       <p class="now-date">Updated November 2026</p>
     </div>
@@ -627,7 +681,7 @@
 <section id="how-i-work">
   <div class="container">
     <div class="sec-head reveal">
-      <p class="sec-label">How I work</p>
+      <p class="sec-label"><span class="sec-num">03</span>How I work</p>
       <h2 class="sec-title">Three rules I keep</h2>
     </div>
     <div class="principles">
@@ -651,7 +705,7 @@
 <section id="projects" class="alt">
   <div class="container">
     <div class="sec-head reveal">
-      <p class="sec-label">Projects</p>
+      <p class="sec-label"><span class="sec-num">04</span>Projects</p>
       <h2 class="sec-title">Projects</h2>
       <p class="sec-intro">Practice projects are labelled as such. Simulated data is marked as simulated.</p>
     </div>
@@ -685,7 +739,7 @@
 <section id="research">
   <div class="container">
     <div class="sec-head reveal">
-      <p class="sec-label">Thesis research &middot; 2026</p>
+      <p class="sec-label"><span class="sec-num">05</span>Thesis research &middot; 2026</p>
       <h2 class="sec-title">Ad spend during peak inflation</h2>
       <p class="sec-intro">BBA thesis on 15 PSX-listed FMCG companies, 2019 to 2024. The charts below are built from the published dataset.</p>
     </div>
@@ -843,7 +897,7 @@
 <section id="experience" class="alt">
   <div class="container">
     <div class="sec-head reveal">
-      <p class="sec-label">Experience</p>
+      <p class="sec-label"><span class="sec-num">06</span>Experience</p>
       <h2 class="sec-title">Where the habits come from</h2>
     </div>
     <div class="timeline">
@@ -896,7 +950,7 @@
 <section id="skills">
   <div class="container">
     <div class="sec-head reveal">
-      <p class="sec-label">Skills</p>
+      <p class="sec-label"><span class="sec-num">07</span>Skills</p>
       <h2 class="sec-title">Tools and where I stand</h2>
     </div>
     <div class="skills-grid">
@@ -916,7 +970,7 @@
 <section id="certifications" class="alt">
   <div class="container">
     <div class="sec-head reveal">
-      <p class="sec-label">Credentials</p>
+      <p class="sec-label"><span class="sec-num">08</span>Credentials</p>
       <h2 class="sec-title">Certifications</h2>
     </div>
     <div class="cert-grid">
@@ -940,25 +994,37 @@
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
-  <div class="container reveal">
-    <div class="sec-head">
-      <p class="sec-label">Contact</p>
-      <h2 class="sec-title">Let's talk</h2>
+<section id="contact" class="band">
+  <div class="container">
+    <div class="band-grid reveal">
+      <div class="band-head">
+        <p class="sec-label"><span class="sec-num">09</span>Contact</p>
+        <h2 class="band-title">Messy numbers?<br>Let's make them clear.</h2>
+      </div>
+      <div>
+        <p class="band-sub">Tell me what you are working with: a sales export, a tracker that does not add up, or a report nobody reads. I will tell you plainly whether I can help. Email is the fastest way to reach me.</p>
+        <div class="contact-links">
+          <a href="mailto:raiabdul.analytics@gmail.com" class="btn btn-white">Email me</a>
+          <a href="https://www.linkedin.com/in/rai-abdul-rehman-aa2295315" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+        </div>
+      </div>
+      <dl class="band-side">
+        <div><dt>Email</dt><dd><a href="mailto:raiabdul.analytics@gmail.com">raiabdul.analytics@gmail.com</a></dd></div>
+        <div><dt>Based in</dt><dd>Lahore, Pakistan &middot; PKT (UTC+5)</dd></div>
+        <div><dt>Open to</dt><dd>Full-time roles in Lahore, remote freelance projects</dd></div>
+      </dl>
     </div>
-    <p class="contact-sub">Open to Reporting, MIS and Marketing Analyst roles in Lahore, and to small freelance reporting projects. Email is the fastest way to reach me.</p>
-    <div class="contact-links">
-      <a href="mailto:raiabdul.analytics@gmail.com" class="btn btn-primary">Email me</a>
-      <a href="https://www.linkedin.com/in/rai-abdul-rehman-aa2295315" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
-    </div>
-    <p class="contact-mail"><a href="mailto:raiabdul.analytics@gmail.com">raiabdul.analytics@gmail.com</a></p>
   </div>
 </section>
 
 </main>
 
 <footer>
-  <p>&copy; 2026 Abdul Rehman &middot; Lahore, Pakistan &middot; Last updated November 2026</p>
+  <div class="foot-inner">
+    <a href="#hero" class="foot-logo">AR.</a>
+    <span>&copy; 2026 Abdul Rehman &middot; Lahore, Pakistan &middot; Last updated November 2026</span>
+    <a href="#hero" class="foot-top">Back to top &uarr;</a>
+  </div>
 </footer>
 
 <script>
