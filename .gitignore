@@ -26,3 +26,6 @@ Thumbs.db
 # Local-only working files (not part of the site)
 .claude/
 rework_screens/
+
+# Old CV kept locally only (outdated email and dates); do not publish
+Rai_Abdul_Rehman_CV.pdf
